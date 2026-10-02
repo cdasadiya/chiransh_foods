@@ -1,0 +1,184 @@
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import usePageMeta from "@/hooks/usePageMeta";
+import Reveal from "@/components/Reveal";
+import SectionHeading from "@/components/SectionHeading";
+import VegMark from "@/components/VegMark";
+import { BRAND_VALUES } from "@/components/Values";
+
+const IMG =
+  "/images";
+
+export default function About() {
+  usePageMeta({
+    title: "About Us — Chiransh Foods | Our Gujarati Food Story",
+    description:
+      "Chiransh Foods is a home-grown, 100% vegetarian Gujarati food brand from Gujarat, India — bringing the authentic flavours of Gujarat's street-food culture to your table.",
+  });
+
+  return (
+    <>
+      <header className="relative overflow-hidden bg-leaf" data-testid="about-header">
+        <div
+          className="pattern-dots-light absolute inset-0 opacity-60"
+          aria-hidden="true"
+        />
+        <span
+          aria-hidden="true"
+          className="font-guj text-outline-cream pointer-events-none absolute -bottom-8 right-0 select-none whitespace-nowrap text-[22vw] font-bold leading-none md:text-[13vw]"
+        >
+          વાર્તા
+        </span>
+        <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-28 sm:px-6 lg:px-8 lg:pb-24 lg:pt-40">
+          <SectionHeading
+            dark
+            eyebrow="Our Story"
+            title={
+              <>
+                A love letter to Gujarat's{" "}
+                <em className="italic text-gold">street food</em>
+              </>
+            }
+            lede="Chiransh Foods began where all good Gujarati food begins — at home, around real flavours."
+          />
+        </div>
+      </header>
+
+      <section className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-28" data-testid="about-story">
+        <div>
+          <SectionHeading
+            eyebrow="Who We Are"
+            title={
+              <>
+                Born of Gujarat's{" "}
+                <em className="italic text-saffron-deep">street-food soul</em>
+              </>
+            }
+          />
+          <Reveal delay={0.1}>
+            <div className="mt-5 space-y-4 text-base leading-relaxed text-stone-600">
+              <p>
+                Chiransh Foods is a home-grown Gujarati food brand — a
+                home-based kitchen with a simple ambition: to serve the
+                authentic, bold and comforting flavours of Gujarat's
+                street-food culture, made properly and served proudly.
+              </p>
+              <p>
+                Our cooking is inspired by the legendary street food of
+                Vadodara — the usal bowls, the crunch, the warmth — and by the
+                homestyle Gujarati food that holds families together. Every
+                dish we make is 100% vegetarian.
+              </p>
+              <p>
+                We believe good food doesn't need shortcuts: real spices,
+                patient cooking and clean, careful preparation. That's the
+                standard we hold ourselves to, one plate at a time.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+        <Reveal className="relative">
+          <div
+            className="pattern-dots absolute -right-4 -top-6 h-full w-full rounded-3xl sm:-right-6"
+            aria-hidden="true"
+          />
+          <img
+            src={`${IMG}/f60e06ce5df687c2b2b455940b778d6a054b268564dceae3fc75de82cc31877d.webp`}
+            alt="A Gujarati vegetarian food spread on a wooden table"
+            loading="lazy"
+            decoding="async"
+            className="relative aspect-[4/3] w-full rounded-3xl object-cover shadow-lift"
+          />
+        </Reveal>
+      </section>
+
+      <section className="border-y border-leaf/10 bg-ivory" data-testid="about-values">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+          <SectionHeading
+            eyebrow="What We Stand For"
+            title={
+              <>
+                Small kitchen,{" "}
+                <em className="italic text-saffron-deep">high standards</em>
+              </>
+            }
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {BRAND_VALUES.map((v, i) => (
+              <Reveal key={v.slug} delay={i * 0.08} className="h-full">
+                <div
+                  data-testid={`about-value-card-${v.slug}`}
+                  className="flex h-full flex-col rounded-3xl border border-leaf/10 bg-cream p-7 shadow-soft"
+                >
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-leaf text-cream">
+                    <v.Icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="mt-5 font-serif text-xl font-semibold text-leaf">
+                    {v.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                    {v.text}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28" data-testid="about-food">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <Reveal className="order-2 lg:order-1">
+            <img
+              src={`${IMG}/384a05646bbcef1e73af0433ab6e9d7d2e31ab9757a30e99bd75df1fc4db15c2.webp`}
+              alt="A flat-lay of Indian spices — turmeric, chilies and coriander seeds"
+              loading="lazy"
+              decoding="async"
+              className="aspect-[4/3] w-full rounded-3xl object-cover shadow-lift"
+            />
+          </Reveal>
+          <div className="order-1 lg:order-2">
+            <SectionHeading
+              eyebrow="Our Food"
+              title={
+                <>
+                  Honest ingredients,{" "}
+                  <em className="italic text-saffron-deep">patient cooking</em>
+                </>
+              }
+            />
+            <Reveal delay={0.1}>
+              <div className="mt-5 space-y-4 text-base leading-relaxed text-stone-600">
+                <p>
+                  Gujarati food is a balance — sweet meets spice, crunch meets
+                  comfort. Getting that balance right takes spices you can
+                  smell from across the kitchen and cooking that refuses to be
+                  rushed.
+                </p>
+                <p>
+                  Our signature dishes — Baroda-style Sev Usal and Tuvar Totha
+                  — are made the way they're meant to be: slow-simmered,
+                  generously finished and served hot, exactly as the streets of
+                  Gujarat would have them.
+                </p>
+              </div>
+              <div className="mt-7 flex flex-wrap items-center gap-4">
+                <span className="inline-flex items-center gap-2 rounded-full border border-leaf/15 bg-ivory px-4 py-2 font-display text-xs font-semibold uppercase tracking-[0.2em] text-leaf">
+                  <VegMark className="h-3.5 w-3.5" /> 100% Vegetarian
+                </span>
+                <Link
+                  to="/menu"
+                  data-testid="about-explore-menu-btn"
+                  className="group inline-flex items-center gap-2 rounded-full bg-leaf px-6 py-3 font-display text-sm font-semibold text-cream transition-colors hover:bg-forest"
+                >
+                  Explore the menu
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
