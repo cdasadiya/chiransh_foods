@@ -6,10 +6,11 @@ import { ArrowRight, MessageCircle, UtensilsCrossed } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
 import { fetchProducts } from "@/lib/api";
 import { useSettings } from "@/context/SettingsContext";
+import { useTranslation } from "react-i18next";
 import {
   FALLBACK_PRODUCTS,
-  SITE_DESCRIPTION,
   SITE_NAME,
+  SITE_DESCRIPTION,
   whatsappUrl,
 } from "@/lib/site";
 import Marquee from "@/components/Marquee";
@@ -23,7 +24,7 @@ const MARQUEE_ITEMS = [
   "Baroda-style Sev Usal",
   "સેવ ઉસળ",
   "Tuvar Totha",
-  "તુવર તોથા",
+  "તુવેર ટોઠા",
   "100% Pure Vegetarian",
   "Homemade Heritage",
   "Gujarati Street Food",
@@ -84,6 +85,7 @@ function RotatingBadge() {
 }
 
 function Hero() {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const { settings } = useSettings();
   const wa = whatsappUrl(settings);
@@ -106,32 +108,28 @@ function Hero() {
         style={{ x: xWord }}
         className="font-guj text-outline pointer-events-none absolute -top-6 left-0 select-none whitespace-nowrap text-[26vw] font-bold leading-none md:text-[19vw]"
       >
-        સેવ ઉસળ
+        {t("home.marquee.1")}
       </motion.span>
 
       <div className="relative mx-auto grid max-w-7xl gap-14 px-4 pb-16 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8 lg:pb-28">
         <div className="flex flex-col justify-center lg:col-span-7">
           <Reveal delay={0.05} y={16}>
             <span className="inline-flex items-center gap-2 rounded-full border border-leaf/15 bg-ivory px-4 py-2 font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-leaf sm:text-xs">
-              <VegMark className="h-3.5 w-3.5" /> 100% Vegetarian · Gujarati
-              Street Food
+              <VegMark className="h-3.5 w-3.5" /> {t("home.hero.badge")}
             </span>
           </Reveal>
 
           <h1 className="mt-6 font-serif text-[2.6rem] font-semibold leading-[1.06] text-leaf sm:text-6xl lg:text-[4.25rem]">
-            <HeroLine index={0}>Authentic Gujarati</HeroLine>
-            <HeroLine index={1}>flavours, straight from</HeroLine>
+            <HeroLine index={0}>{t("home.hero.title_1")}</HeroLine>
+            <HeroLine index={1}>{t("home.hero.title_2")}</HeroLine>
             <HeroLine index={2}>
-              the heart of <em className="italic text-saffron-deep">Gujarat</em>.
+              {t("home.hero.title_3")} <em className="italic text-saffron-deep">{t("home.hero.title_gujarat")}</em>.
             </HeroLine>
           </h1>
 
           <Reveal delay={0.55} y={20}>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-stone-600 sm:text-lg">
-              {SITE_NAME} is a 100% vegetarian Gujarati food brand serving
-              authentic street-food legends — Baroda-style Sev Usal and Tuvar
-              Totha — made with homestyle care and the bold flavours of
-              Gujarat.
+              {t("home.hero.desc")}
             </p>
           </Reveal>
 
@@ -142,7 +140,7 @@ function Hero() {
                 data-testid="hero-explore-menu-btn"
                 className="group inline-flex items-center gap-2 rounded-full bg-leaf px-7 py-3.5 font-display text-sm font-semibold text-cream shadow-soft transition-all duration-300 hover:bg-forest"
               >
-                Explore Menu
+                {t("home.hero.explore_menu")}
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               {wa ? (
@@ -153,7 +151,7 @@ function Hero() {
                   data-testid="hero-whatsapp-order-btn"
                   className="inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3.5 font-display text-sm font-semibold text-cream shadow-soft transition-all duration-300 hover:bg-leaf"
                 >
-                  <MessageCircle className="h-4 w-4" /> Order on WhatsApp
+                  <MessageCircle className="h-4 w-4" /> {t("home.hero.order_whatsapp")}
                 </a>
               ) : (
                 <Link
@@ -161,7 +159,7 @@ function Hero() {
                   data-testid="hero-contact-order-btn"
                   className="inline-flex items-center gap-2 rounded-full border border-leaf/25 px-7 py-3.5 font-display text-sm font-semibold text-leaf transition-colors duration-300 hover:border-leaf hover:bg-ivory"
                 >
-                  Contact to Order
+                  {t("home.hero.contact_order")}
                 </Link>
               )}
             </div>
@@ -205,10 +203,10 @@ function Hero() {
                 />
                 <span>
                   <span className="block font-serif text-base font-semibold text-leaf">
-                    Tuvar Totha <span className="font-guj text-saffron-deep">તુવર તોથા</span>
+                    {t("home.marquee.2")} <span className="font-guj text-saffron-deep">{t("home.marquee.3")}</span>
                   </span>
                   <span className="mt-0.5 inline-flex items-center gap-1 font-display text-xs font-semibold text-saffron-deep">
-                    View dish <ArrowRight className="h-3 w-3" />
+                    {t("home.signature.view_dish")} <ArrowRight className="h-3 w-3" />
                   </span>
                 </span>
               </Link>
@@ -221,17 +219,24 @@ function Hero() {
 }
 
 function SignatureBento({ products }) {
+  const { t, i18n } = useTranslation();
+  const isGu = i18n.language === "gu";
   const usal =
     products.find((p) => p.slug === "baroda-style-sev-usal") || products[0];
   const totha =
     products.find((p) => p.slug === "tuvar-totha") || products[1] || products[0];
 
-  const BigCard = ({ product, testId }) => (
+  const BigCard = ({ product, testId }) => {
+    const mainName = isGu && product.gujarati_name ? product.gujarati_name : product.name;
+    const secondaryName = isGu && product.gujarati_name ? product.name : product.gujarati_name;
+    const shortDesc = isGu && product.gujarati_short_description ? product.gujarati_short_description : product.short_description;
+    
+    return (
     <Link
       to={`/menu/${product.slug}`}
       data-testid={testId}
       className="group relative flex h-full min-h-[420px] flex-col justify-end overflow-hidden rounded-3xl shadow-soft"
-      aria-label={`${product.name} — view details`}
+      aria-label={`${mainName} — view details`}
     >
       <img
         src={product.image}
@@ -246,20 +251,20 @@ function SignatureBento({ products }) {
           <UtensilsCrossed className="h-3 w-3" /> {product.badge || "Signature"}
         </span>
         <h3 className="mt-4 font-serif text-3xl font-semibold text-cream md:text-4xl">
-          {product.name}
+          {mainName}
         </h3>
-        {product.gujarati_name && (
-          <p className="font-guj mt-1 text-xl text-gold">{product.gujarati_name}</p>
+        {secondaryName && (
+          <p className="font-guj mt-1 text-xl text-gold">{secondaryName}</p>
         )}
         <p className="mt-3 max-w-md text-sm leading-relaxed text-cream/85">
-          {product.short_description}
+          {shortDesc}
         </p>
         <span className="mt-5 inline-flex items-center gap-2 font-display text-sm font-semibold text-cream transition-transform duration-300 group-hover:translate-x-1">
-          View the dish <ArrowRight className="h-4 w-4" />
+          {t("home.signature.view_dish")} <ArrowRight className="h-4 w-4" />
         </span>
       </div>
     </Link>
-  );
+  )};
 
   return (
     <section
@@ -267,14 +272,14 @@ function SignatureBento({ products }) {
       data-testid="signature-section"
     >
       <SectionHeading
-        eyebrow="Our Signatures"
+        eyebrow={t("home.signature.eyebrow")}
         title={
           <>
-            Our Signature Gujarati{" "}
-            <em className="italic text-saffron-deep">Favourites</em>
+            {t("home.signature.title_1")}{" "}
+            <em className="italic text-saffron-deep">{t("home.signature.title_2")}</em>
           </>
         }
-        lede="Two legends of Gujarat's street-food culture, made the way they're meant to be."
+        lede={t("home.signature.lede")}
       />
       <div className="mt-12 grid gap-6 md:grid-cols-12">
         <Reveal className="md:col-span-7">
@@ -290,6 +295,7 @@ function SignatureBento({ products }) {
 }
 
 function StorySnapshot() {
+  const { t } = useTranslation();
   return (
     <section
       className="bg-ivory"
@@ -311,25 +317,20 @@ function StorySnapshot() {
         </Reveal>
         <div>
           <SectionHeading
-            eyebrow="Our Story"
+            eyebrow={t("home.story.eyebrow")}
             title={
               <>
-                The soul of Gujarat's streets,{" "}
-                <em className="italic text-saffron-deep">served with care</em>
+                {t("home.story.title_1")}{" "}
+                <em className="italic text-saffron-deep">{t("home.story.title_2")}</em>
               </>
             }
           />
           <Reveal delay={0.1}>
             <p className="mt-5 text-base leading-relaxed text-stone-600">
-              Chiransh Foods is a home-grown Gujarati food brand with one aim —
-              to bring the honest, bold flavours of Gujarat's street-food
-              culture to your table.
+              {t("home.story.p1")}
             </p>
             <p className="mt-4 text-base leading-relaxed text-stone-600">
-              From the slow-simmered comfort of Tuvar Totha to the iconic
-              crunch of a Baroda-style Sev Usal, everything we prepare is 100%
-              vegetarian, rooted in the food culture we love, and made with the
-              care of a home kitchen.
+              {t("home.story.p2")}
             </p>
             <Link
               to="/about"
@@ -337,7 +338,7 @@ function StorySnapshot() {
               className="group mt-7 inline-flex items-center gap-2 font-display text-sm font-semibold text-leaf"
             >
               <span className="border-b border-saffron pb-0.5 transition-colors group-hover:text-saffron-deep">
-                Read our story
+                {t("home.story.read_story")}
               </span>
               <ArrowRight className="h-4 w-4 text-saffron-deep transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
@@ -349,26 +350,27 @@ function StorySnapshot() {
 }
 
 function MenuPreview() {
+  const { t } = useTranslation();
   const categories = [
     {
       slug: "gujarati-street-food",
-      name: "Gujarati Street Food",
-      note: "Our signature street-food dishes, made the Gujarati way.",
-      count: "2 dishes live",
+      name: t("home.menu_preview.cats.gujarati.name"),
+      note: t("home.menu_preview.cats.gujarati.note"),
+      count: t("home.menu_preview.live"),
       soon: false,
     },
     {
       slug: "fast-food",
-      name: "Fast Food",
-      note: "Crowd-pleasing favourites are on the way.",
-      count: "Coming soon",
+      name: t("home.menu_preview.cats.fast.name"),
+      note: t("home.menu_preview.cats.fast.note"),
+      count: t("home.menu_preview.soon"),
       soon: true,
     },
     {
       slug: "indian",
-      name: "Indian",
-      note: "Classic Indian preparations are on the way.",
-      count: "Coming soon",
+      name: t("home.menu_preview.cats.indian.name"),
+      note: t("home.menu_preview.cats.indian.note"),
+      count: t("home.menu_preview.soon"),
       soon: true,
     },
   ];
@@ -379,14 +381,14 @@ function MenuPreview() {
       data-testid="menu-preview-section"
     >
       <SectionHeading
-        eyebrow="The Menu"
+        eyebrow={t("home.menu_preview.eyebrow")}
         title={
           <>
-            Explore the <em className="italic text-saffron-deep">Chiransh</em>{" "}
-            menu
+            {t("home.menu_preview.title_1")} <em className="italic text-saffron-deep">{t("home.menu_preview.title_2")}</em>{" "}
+            {t("home.menu_preview.title_3")}
           </>
         }
-        lede="A focused menu today, a growing brand tomorrow — new dishes are added as they're perfected."
+        lede={t("home.menu_preview.lede")}
       />
       <div className="mt-12 grid gap-6 md:grid-cols-3">
         {categories.map((c, i) => (
@@ -428,7 +430,7 @@ function MenuPreview() {
           data-testid="home-view-full-menu-btn"
           className="inline-flex items-center gap-2 rounded-full bg-saffron px-8 py-3.5 font-display text-sm font-semibold text-cream shadow-soft transition-all duration-300 hover:bg-saffron-deep"
         >
-          View Full Menu <ArrowRight className="h-4 w-4" />
+          {t("home.menu_preview.view_full")} <ArrowRight className="h-4 w-4" />
         </Link>
       </Reveal>
     </section>
@@ -436,6 +438,7 @@ function MenuPreview() {
 }
 
 function OrderBand() {
+  const { t } = useTranslation();
   return (
     <section
       className="relative overflow-hidden bg-leaf"
@@ -448,15 +451,14 @@ function OrderBand() {
       <div className="relative mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 lg:py-28">
         <Reveal>
           <p className="font-display text-xs font-semibold uppercase tracking-[0.3em] text-gold">
-            Order / Enquire
+            {t("home.order.eyebrow")}
           </p>
           <h2 className="mt-4 font-serif text-4xl font-semibold leading-tight text-cream sm:text-5xl">
-            Hungry? Let's serve you{" "}
-            <em className="italic text-gold">like family</em>.
+            {t("home.order.title_1")}{" "}
+            <em className="italic text-gold">{t("home.order.title_2")}</em>.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-cream/70">
-            Explore the menu or send us an order enquiry — we'll take care of
-            the rest.
+            {t("home.order.desc")}
           </p>
           <div className="mt-8">
             <OrderButtons align="center" testPrefix="cta" />
@@ -465,7 +467,7 @@ function OrderBand() {
             className="mt-12 text-xs italic text-cream/50"
             data-testid="reviews-coming-soon"
           >
-            Customer reviews coming soon.
+            {t("home.order.reviews")}
           </p>
         </Reveal>
       </div>
@@ -474,11 +476,15 @@ function OrderBand() {
 }
 
 export default function Home() {
+  const { t } = useTranslation();
   const { data } = useQuery({
     queryKey: ["products"],
     queryFn: fetchProducts,
   });
   const products = data?.length ? data : FALLBACK_PRODUCTS;
+  
+  const translatedMarquee = t("home.marquee", { returnObjects: true });
+  const actualMarqueeItems = Array.isArray(translatedMarquee) ? translatedMarquee : MARQUEE_ITEMS;
 
   usePageMeta({
     title: "Chiransh Foods | Authentic Gujarati Vegetarian Food",
@@ -497,7 +503,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Marquee items={MARQUEE_ITEMS} />
+      <Marquee items={actualMarqueeItems} />
       <SignatureBento products={products} />
       <StorySnapshot />
       <MenuPreview />

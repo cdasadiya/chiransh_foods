@@ -4,10 +4,13 @@ import { Search, RefreshCw } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
 import { fetchProducts } from "@/lib/api";
 import { CATEGORY_NOTES, MENU_CATEGORIES } from "@/lib/site";
+import { useTranslation } from "react-i18next";
 import ProductCard from "@/components/ProductCard";
 import SectionHeading from "@/components/SectionHeading";
 
 export default function Menu() {
+  const { t, i18n } = useTranslation();
+  const isGu = i18n.language === "gu";
   usePageMeta({
     title: "Menu — Chiransh Foods | Gujarati Street Food & More",
     description:
@@ -30,7 +33,7 @@ export default function Menu() {
       const inCategory = category === "All" || p.category === category;
       const inSearch =
         !q ||
-        `${p.name} ${p.gujarati_name} ${p.short_description} ${p.description}`
+        `${p.name} ${p.gujarati_name} ${p.short_description} ${p.description} ${p.gujarati_description} ${p.gujarati_short_description}`
           .toLowerCase()
           .includes(q);
       return inCategory && inSearch;
@@ -54,19 +57,19 @@ export default function Menu() {
           aria-hidden="true"
           className="font-guj text-outline-cream pointer-events-none absolute -bottom-10 right-0 select-none whitespace-nowrap text-[24vw] font-bold leading-none md:text-[14vw]"
         >
-          મેનૂ
+          {t("home.marquee.1")} 
         </span>
         <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-28 sm:px-6 lg:px-8 lg:pb-24 lg:pt-40">
           <SectionHeading
             dark
-            eyebrow="The Menu"
+            eyebrow={t("menu.header.eyebrow")}
             title={
               <>
-                Straight from our{" "}
-                <em className="italic text-gold">kitchen</em>
+                {t("menu.header.title_1")}{" "}
+                <em className="italic text-gold">{t("menu.header.title_2")}</em>
               </>
             }
-            lede="Authentic, 100% vegetarian Gujarati food — starting with the street-food legends of Baroda. Our menu grows with every new dish we perfect."
+            lede={t("menu.header.lede")}
           />
         </div>
       </header>
@@ -96,7 +99,7 @@ export default function Menu() {
                     : "border border-leaf/15 bg-ivory text-stone-600 hover:border-leaf/40"
                 }`}
               >
-                {tab}{" "}
+                {t(`menu.categories.${tab}`, tab)}{" "}
                 <span className="text-xs opacity-60">({countFor(tab)})</span>
               </button>
             ))}
@@ -110,8 +113,8 @@ export default function Menu() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               data-testid="menu-search-input"
-              placeholder="Search the menu…"
-              aria-label="Search the menu"
+              placeholder={t("menu.search")}
+              aria-label={t("menu.search")}
               className="w-full rounded-full border border-leaf/15 bg-ivory py-2.5 pl-10 pr-4 text-sm text-charcoal placeholder:text-stone-400 focus:border-saffron focus:outline-none focus:ring-2 focus:ring-saffron/30"
             />
           </div>
@@ -123,17 +126,17 @@ export default function Menu() {
             data-testid="menu-error-state"
           >
             <p className="font-serif text-2xl font-semibold text-leaf">
-              We couldn't load the menu.
+              {t("menu.error")}
             </p>
             <p className="mt-2 text-sm text-stone-500">
-              Please check your connection and try again.
+              {t("menu.check_connection")}
             </p>
             <button
               onClick={() => refetch()}
               data-testid="menu-retry-btn"
               className="mt-6 inline-flex items-center gap-2 rounded-full bg-leaf px-6 py-3 font-display text-sm font-semibold text-cream transition-colors hover:bg-forest"
             >
-              <RefreshCw className="h-4 w-4" /> Try again
+              <RefreshCw className="h-4 w-4" /> {t("menu.try_again")}
             </button>
           </div>
         ) : isLoading ? (
@@ -154,19 +157,19 @@ export default function Menu() {
             data-testid="menu-empty-state"
           >
             <p className="font-serif text-2xl font-semibold text-leaf">
-              {search ? "No dishes match your search." : "New dishes are on the way."}
+              {search ? t("menu.no_match") : t("menu.empty")}
             </p>
             <p className="mt-2 text-sm text-stone-500">
               {search
-                ? "Try a different name or clear the search."
-                : "This category is being prepared — please check back soon."}
+                ? t("menu.no_match_desc")
+                : t("menu.empty_desc")}
             </p>
           </div>
         ) : (
           <>
             {category !== "All" && CATEGORY_NOTES[category] && (
               <p className="mt-8 text-sm italic text-stone-500">
-                {CATEGORY_NOTES[category]}
+                {t(`menu.notes.${category}`, CATEGORY_NOTES[category])}
               </p>
             )}
             <div

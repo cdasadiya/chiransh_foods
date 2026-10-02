@@ -1,5 +1,6 @@
 import { Flame, HeartHandshake, Leaf } from "lucide-react";
 import Reveal from "./Reveal";
+import { useTranslation } from "react-i18next";
 
 export const BRAND_VALUES = [
   {
@@ -23,6 +24,8 @@ export const BRAND_VALUES = [
 ];
 
 export function ValuesGrid() {
+  const { t } = useTranslation();
+  
   return BRAND_VALUES.map((v, i) => (
     <Reveal key={v.slug} delay={0.1 + i * 0.08} className="md:col-span-4">
       <div
@@ -33,8 +36,8 @@ export function ValuesGrid() {
           <v.Icon className="h-5 w-5" />
         </span>
         <div>
-          <h3 className="font-serif text-lg font-semibold text-leaf">{v.title}</h3>
-          <p className="mt-1 text-sm leading-relaxed text-stone-600">{v.text}</p>
+          <h3 className="font-serif text-lg font-semibold text-leaf">{t(`values.${v.slug}.title`, v.title)}</h3>
+          <p className="mt-1 text-sm leading-relaxed text-stone-600">{t(`values.${v.slug}.text`, v.text)}</p>
         </div>
       </div>
     </Reveal>

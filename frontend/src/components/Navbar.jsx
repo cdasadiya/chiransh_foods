@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu as MenuIcon, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import Logo from "./Logo";
 import { useSettings } from "@/context/SettingsContext";
 import { whatsappUrl } from "@/lib/site";
@@ -15,6 +16,7 @@ const LINKS = [
 ];
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
@@ -30,7 +32,7 @@ export default function Navbar() {
   }, []);
 
   const orderHref = wa || "/contact";
-  const orderLabel = wa ? "Order on WhatsApp" : "Order Now";
+  const orderLabel = wa ? t("nav.order_whatsapp", "Order on WhatsApp") : t("home.cta_button");
   const externalProps = wa ? { target: "_blank", rel: "noopener noreferrer" } : {};
   const isActive = (to) =>
     to === "/" ? pathname === "/" : pathname.startsWith(to);
@@ -58,7 +60,7 @@ export default function Navbar() {
                       isActive(l.to) ? "text-leaf" : "text-stone-600 hover:text-leaf"
                     }`}
                   >
-                    {l.label}
+                    {t(`nav.${l.label.toLowerCase()}`)}
                     <span
                       className={`mt-0.5 block h-0.5 rounded-full bg-saffron transition-all duration-300 ${
                         isActive(l.to) ? "w-full" : "w-0"
@@ -69,6 +71,13 @@ export default function Navbar() {
               ))}
             </ul>
             <div className="flex items-center gap-3">
+              <button
+                onClick={() => i18n.changeLanguage(i18n.language === "en" ? "gu" : "en")}
+                className="hidden sm:inline-flex items-center justify-center font-display text-sm font-semibold text-leaf px-3 py-1.5 border border-leaf rounded-full hover:bg-leaf hover:text-cream transition-colors"
+                title="Toggle Language"
+              >
+                {i18n.language === "en" ? "GU" : "EN"}
+              </button>
               <a
                 href={orderHref}
                 {...externalProps}
@@ -113,6 +122,14 @@ export default function Navbar() {
               </button>
             </div>
             <ul className="mt-10 flex flex-col">
+              <li className="mb-4 flex justify-center">
+                <button
+                  onClick={() => { i18n.changeLanguage(i18n.language === "en" ? "gu" : "en"); setOpen(false); }}
+                  className="inline-flex items-center justify-center font-display text-sm font-semibold text-cream px-4 py-2 border border-cream rounded-full hover:bg-cream hover:text-leaf transition-colors"
+                >
+                  {i18n.language === "en" ? "Switch to Gujarati" : "Switch to English"}
+                </button>
+              </li>
               {LINKS.map((l, i) => (
                 <motion.li
                   key={l.to}
@@ -125,7 +142,7 @@ export default function Navbar() {
                     data-testid={`nav-mobile-${l.label.toLowerCase()}-link`}
                     className="block border-b border-cream/10 py-4 font-serif text-3xl font-medium text-cream"
                   >
-                    {l.label}
+                    {t(`nav.${l.label.toLowerCase()}`)}
                   </Link>
                 </motion.li>
               ))}

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Mail, MessageCircle, Phone, Youtube } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import Logo from "./Logo";
 import { useSettings } from "@/context/SettingsContext";
 import { whatsappUrl } from "@/lib/site";
@@ -20,6 +21,7 @@ const LEGAL = [
 ];
 
 export default function Footer() {
+  const { t } = useTranslation();
   const { settings } = useSettings();
   const phone = settings?.contact?.phone;
   const email = settings?.contact?.email;
@@ -44,8 +46,7 @@ export default function Footer() {
           <div className="md:col-span-5">
             <Logo light />
             <p className="mt-5 max-w-sm font-serif text-lg italic leading-relaxed text-cream/80">
-              Authentic Gujarati vegetarian food, with the soul of Gujarat's
-              street-food culture.
+              {t("footer.description", "Authentic Gujarati vegetarian food, with the soul of Gujarat's street-food culture.")}
             </p>
             {socials.length > 0 && (
               <div className="mt-6 flex gap-3">
@@ -68,7 +69,7 @@ export default function Footer() {
 
           <nav className="md:col-span-3" aria-label="Footer">
             <h3 className="font-display text-xs font-semibold uppercase tracking-[0.3em] text-gold">
-              Explore
+              {t("footer.explore", "Explore")}
             </h3>
             <ul className="mt-5 space-y-3">
               {EXPLORE.map((l) => (
@@ -78,7 +79,7 @@ export default function Footer() {
                     data-testid={`footer-${l.label.toLowerCase()}-link`}
                     className="text-sm text-cream/75 transition-colors hover:text-cream"
                   >
-                    {l.label}
+                    {t(`nav.${l.to.slice(1) || 'home'}`, l.label)}
                   </Link>
                 </li>
               ))}
@@ -87,7 +88,7 @@ export default function Footer() {
 
           <nav className="md:col-span-2" aria-label="Legal">
             <h3 className="font-display text-xs font-semibold uppercase tracking-[0.3em] text-gold">
-              Legal
+              {t("footer.legal", "Legal")}
             </h3>
             <ul className="mt-5 space-y-3">
               {LEGAL.map((l) => (
@@ -97,7 +98,7 @@ export default function Footer() {
                     data-testid={`footer-legal-${l.label.toLowerCase().split(" ")[0]}-link`}
                     className="text-sm text-cream/75 transition-colors hover:text-cream"
                   >
-                    {l.label}
+                    {t(`footer.${l.to.slice(1).split('/')[0]}`, l.label)}
                   </Link>
                 </li>
               ))}
@@ -106,7 +107,7 @@ export default function Footer() {
 
           <div className="md:col-span-2">
             <h3 className="font-display text-xs font-semibold uppercase tracking-[0.3em] text-gold">
-              Contact
+              {t("footer.contact", "Contact")}
             </h3>
             <ul className="mt-5 space-y-3">
               {contactRows.map(
@@ -121,14 +122,14 @@ export default function Footer() {
                         data-testid={testId}
                         className="inline-flex items-center gap-2 text-sm text-cream/75 transition-colors hover:text-cream"
                       >
-                        <Icon className="h-4 w-4" /> {value}
+                        <Icon className="h-4 w-4" /> {t(`footer.${label.toLowerCase()}`, value)}
                       </a>
                     </li>
                   ),
               )}
               {!phone && !wa && !email && (
                 <li className="text-sm italic text-cream/60">
-                  Contact details coming soon — reach us via the enquiry form.
+                  {t("footer.contact_soon", "Contact details coming soon — reach us via the enquiry form.")}
                 </li>
               )}
             </ul>
@@ -137,10 +138,10 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-cream/10 pt-6 sm:flex-row">
           <p className="text-xs text-cream/60">
-            © {new Date().getFullYear()} Chiransh Foods · Gujarat, India
+            {t("footer.copyright", `© ${new Date().getFullYear()} Chiransh Foods · Gujarat, India`)}
           </p>
           <p className="font-display text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-cream/50">
-            100% Vegetarian · Made with care
+            {t("footer.tagline", "100% Vegetarian · Made with care")}
           </p>
         </div>
       </div>

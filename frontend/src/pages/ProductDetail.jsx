@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { ChevronRight, RefreshCw, Sparkles } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
@@ -19,6 +20,8 @@ const AVAILABILITY = {
 
 export default function ProductDetail() {
   const { slug } = useParams();
+  const { t, i18n } = useTranslation();
+  const isGu = i18n.language === "gu";
   const {
     data: product,
     isLoading,
@@ -37,12 +40,17 @@ export default function ProductDetail() {
 
   const is404 = isError && error?.response?.status === 404;
 
+  const mainName = product ? (isGu && product.gujarati_name ? product.gujarati_name : product.name) : "";
+  const secondaryName = product ? (isGu && product.gujarati_name ? product.name : product.gujarati_name) : "";
+  const desc = product ? (isGu && product.gujarati_description ? product.gujarati_description : product.description) : "";
+  const shortDesc = product ? (isGu && product.gujarati_short_description ? product.gujarati_short_description : product.short_description) : "";
+
   usePageMeta({
     title: product
-      ? `${product.name} (${product.gujarati_name}) — Chiransh Foods`
+      ? `${mainName} (${secondaryName}) — Chiransh Foods`
       : "Product — Chiransh Foods",
     description: product
-      ? `${product.short_description} ${product.name} is a 100% vegetarian ${product.category.toLowerCase()} dish by Chiransh Foods, Gujarat.`
+      ? `${shortDesc} ${product.name} is a 100% vegetarian ${product.category.toLowerCase()} dish by Chiransh Foods, Gujarat.`
       : "Discover authentic Gujarati vegetarian dishes by Chiransh Foods.",
     type: "product",
     image: product?.image,
@@ -52,9 +60,9 @@ export default function ProductDetail() {
           {
             "@context": "https://schema.org",
             "@type": "Product",
-            name: product.name,
+            name: mainName,
             image: [absUrl(product.image)],
-            description: product.description || product.short_description,
+            description: desc || shortDesc,
             category: product.category,
             brand: { "@type": "Organization", name: SITE_NAME },
           },
@@ -64,7 +72,7 @@ export default function ProductDetail() {
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: `${window.location.origin}/` },
               { "@type": "ListItem", position: 2, name: "Menu", item: `${window.location.origin}/menu` },
-              { "@type": "ListItem", position: 3, name: product.name },
+              { "@type": "ListItem", position: 3, name: mainName },
             ],
           },
         ]
@@ -124,7 +132,7 @@ export default function ProductDetail() {
         <ol className="flex flex-wrap items-center gap-1.5 text-sm text-stone-500">
           <li>
             <Link to="/" className="transition-colors hover:text-leaf">
-              Home
+              {t("nav.home", "Home")}
             </Link>
           </li>
           <li aria-hidden="true">
@@ -132,14 +140,14 @@ export default function ProductDetail() {
           </li>
           <li>
             <Link to="/menu" className="transition-colors hover:text-leaf">
-              Menu
+              {t("nav.menu", "Menu")}
             </Link>
           </li>
           <li aria-hidden="true">
             <ChevronRight className="h-3.5 w-3.5" />
           </li>
           <li className="font-medium text-leaf" aria-current="page">
-            {product.name}
+            {mainName}
           </li>
         </ol>
       </nav>
@@ -156,7 +164,7 @@ export default function ProductDetail() {
           <div className="relative overflow-hidden rounded-3xl shadow-lift">
             <img
               src={product.image}
-              alt={`${product.name} — ${product.short_description}`}
+              alt={`${mainName} — ${shortDesc}`}
               className="aspect-[4/3] w-full object-cover"
               fetchPriority="high"
             />
@@ -181,22 +189,22 @@ export default function ProductDetail() {
             </div>
 
             <h1 className="mt-5 font-serif text-4xl font-semibold leading-tight text-leaf sm:text-5xl">
-              {product.name}
+              {mainName}
             </h1>
-            {product.gujarati_name && (
-              <p className="font-guj mt-2 text-2xl text-saffron-deep" lang="gu">
-                {product.gujarati_name}
+            {secondaryName && (
+              <p className="font-guj mt-2 text-2xl text-saffron-deep" lang={isGu ? "en" : "gu"}>
+                {secondaryName}
               </p>
             )}
 
             <p className="mt-4 text-base leading-relaxed text-stone-600">
-              {product.description}
+              {desc}
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-3 border-y border-leaf/10 py-4">
               <div>
                 <p className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-400">
-                  Price
+                  {t("menu.price", "Price")}
                 </p>
                 <p className="mt-0.5 font-display text-base font-semibold text-leaf" data-testid="product-detail-price">
                   {priceLabel(product.price)}
@@ -204,20 +212,19 @@ export default function ProductDetail() {
               </div>
               <div>
                 <p className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-400">
-                  Category
+                  {t("menu.category", "Category")}
                 </p>
                 <p className="mt-0.5 font-display text-base font-semibold text-leaf">
-                  {product.category}
+                  {t(`menu.categories.${product.category}`, product.category)}
                 </p>
               </div>
             </div>
 
             <div className="mt-7">
-              <OrderButtons productName={product.name} testPrefix="product-detail" />
+              <OrderButtons productName={mainName} testPrefix="product-detail" />
               {product.availability === "unavailable" && (
                 <p className="mt-3 text-sm italic text-stone-500">
-                  This dish is currently unavailable — contact us to enquire
-                  when it's back.
+                  {t("menu.unavailable", "This dish is currently unavailable — contact us to enquire when it's back.")}
                 </p>
               )}
             </div>
@@ -225,7 +232,7 @@ export default function ProductDetail() {
             <div className="mt-9 space-y-5">
               <div data-testid="product-ingredients">
                 <h2 className="font-serif text-xl font-semibold text-leaf">
-                  Ingredients
+                  {t("menu.ingredients", "Ingredients")}
                 </h2>
                 {product.ingredients?.length ? (
                   <ul className="mt-3 flex flex-wrap gap-2">
@@ -240,18 +247,17 @@ export default function ProductDetail() {
                   </ul>
                 ) : (
                   <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                    Detailed ingredient information is available on request —
-                    please contact us for current details.
+                    {t("menu.ingredient_info")}
                   </p>
                 )}
               </div>
               <div data-testid="product-serving-info">
                 <h2 className="font-serif text-xl font-semibold text-leaf">
-                  Serving
+                  {t("menu.serving", "Serving")}
                 </h2>
                 <p className="mt-2 text-sm leading-relaxed text-stone-600">
                   {product.serving_info ||
-                    "Serving details are available on request. Please contact Chiransh Foods for current availability."}
+                    t("menu.serving_info")}
                 </p>
               </div>
             </div>
@@ -266,10 +272,10 @@ export default function ProductDetail() {
         >
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
             <SectionHeading
-              eyebrow="Keep Exploring"
+              eyebrow={t("menu.keep_exploring", "Keep Exploring")}
               title={
                 <>
-                  You may also <em className="italic text-saffron-deep">love</em>
+                  {t("menu.may_also_love", "You may also")} <em className="italic text-saffron-deep">{t("menu.love", "love")}</em>
                 </>
               }
             />
