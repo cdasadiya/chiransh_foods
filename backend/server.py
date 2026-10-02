@@ -8,7 +8,7 @@ Endpoints reproduced (captured from the live preview on 2026-10-02):
   GET  /api/settings         -> site settings (data/settings.json)
   POST /api/enquiries        -> validates and appends to data/enquiries.json (instead of MongoDB)
 
-Run:  uvicorn server:app --port 8001 --reload
+Run:  uvicorn server:app --port 8001
 """
 import json
 import re
