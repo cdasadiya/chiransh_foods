@@ -72,8 +72,8 @@ npm run preview        # http://localhost:4173  (/api is still proxied to :8001;
 
 | Layer | Original (Emergent AI app builder) | This copy |
 |---|---|---|
-| Frontend | React 19 + react-router v7, **Create React App via craco** (webpack dev server, `bundle.js` served in dev mode with source maps), `@/` → `src/` alias | Same source, built with **Vite 6** |
-| Styling | Tailwind CSS 3.4.17 + shadcn/ui-style HSL CSS variables, `tailwindcss-animate` | Tailwind 3.4.17; config rebuilt from the compiled CSS. `index.css` is the original (recovered from the CSS source map) |
+| Frontend | React 19 + react-router v7, **Create React App via craco** (webpack dev server, `bundle.js` served in dev mode with source maps), `@/` → `src/` alias | Same source, built with **Vite 8.3.2** and **React 19.3.0** |
+| Styling | Tailwind CSS 3.4.17 + shadcn/ui-style HSL CSS variables, `tailwindcss-animate` | **Tailwind 4.3.3**; config rebuilt into `index.css` using Tailwind v4 `@theme` directives. |
 | Motion | framer-motion (scroll reveals, lightbox, hero), Lenis smooth scroll, CSS marquee | same |
 | Data | `@tanstack/react-query` + axios → `${REACT_APP_BACKEND_URL}/api` | same, via `import.meta.env.VITE_BACKEND_URL` |
 | Backend | FastAPI (+ MongoDB, judging by `_id` ObjectIds) behind `/api` | `backend/server.py` (FastAPI) + JSON files |
@@ -106,13 +106,12 @@ backend/
 run.sh / run.bat         one-command start (Linux/macOS / Windows)
 frontend/
   index.html             cleaned entry HTML (no Emergent/PostHog/Cloudflare scripts)
-  vite.config.js         @ alias, .js-as-JSX, /api proxy, vendor chunk splitting
-  tailwind.config.js     reconstructed theme (palette, fonts, shadows, slow-spin)
+  vite.config.js         @ alias, /api proxy, Tailwind v4 plugin, vendor chunk splitting
   public/images/         10 WebP images + og-image.jpg
   public/fonts/          self-hosted Google Fonts + fonts.css
   public/{favicon.svg,robots.txt,sitemap.xml}
   src/
-    index.js, App.js, index.css
+    index.jsx, App.jsx, index.css
     pages/      Home, Menu, ProductDetail, About, Gallery, Contact, FAQ,
                 Privacy, Terms, Refund, Legal (shared layout), NotFound
     components/ Navbar, Footer, Logo, Marquee, OrderButtons, ProductCard,
