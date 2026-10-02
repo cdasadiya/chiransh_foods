@@ -1,0 +1,54 @@
+{
+  "key": "site",
+  "contact": {
+    "phone": null,
+    "whatsapp": "919106354619",
+    "email": null
+  },
+  "location": {
+    "state": "Gujarat, India",
+    "city": null,
+    "locality": null,
+    "service_area": "Gujarat, India",
+    "address_public": null,
+    "maps_url": null,
+    "pickup_available": null,
+    "delivery_available": null,
+    "delivery_partners": []
+  },
+  "business_hours": {
+    "monday": null,
+    "tuesday": null,
+    "wednesday": null,
+    "thursday": null,
+    "friday": null,
+    "saturday": null,
+    "sunday": null,
+    "note": "Business hours will be announced soon. Please contact us for current availability."
+  },
+  "ordering": {
+    "mode": "contact",
+    "whatsapp_message_template": "Hello Chiransh Foods, I would like to order {product}.",
+    "online_ordering_url": null,
+    "zomato_url": null,
+    "swiggy_url": null
+  },
+  "social": {
+    "instagram": "https://instagram.com/chiranshfoods",
+    "facebook": "https://facebook.com/chiranshfoods",
+    "youtube": "https://youtube.com/@chiranshfoods",
+    "google_business": null
+  },
+  "reviews": {
+    "enabled": false,
+    "note": "Customer reviews coming soon."
+  },
+  "analytics": {
+    "google_analytics_id": null,
+    "google_search_console": null,
+    "meta_pixel_id": null
+  },
+  "domain": {
+    "canonical_base": null
+  }
+}
