@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Baroda-style Sev Usal",
+    "gujarati_name": "સેવ ઉસળ",
+    "slug": "baroda-style-sev-usal",
+    "category": "Gujarati Street Food",
+    "description": "A true taste of Vadodara's streets. Our Baroda-style Sev Usal is built on a hearty, slow-simmered spiced pea curry, ladled steaming hot and finished the Baroda way — a generous crown of crunchy sev, sharp onion, fresh coriander and a squeeze of lemon. Warming, filling and full of character, it is the dish Chiransh Foods is proud to be known for.",
+    "short_description": "Vadodara's beloved street-food legend — slow-simmered spiced usal crowned with a generous heap of crunchy sev.",
+    "image": "/images/d3b76fd97342f13594358947b448a9c10a2319e38042a72df4c09224ad05bb14.webp",
+    "price": null,
+    "availability": "available",
+    "vegetarian": true,
+    "featured": true,
+    "sort_order": 1,
+    "ingredients": [],
+    "serving_info": "",
+    "badge": "Signature"
+  },
+  {
+    "name": "Tuvar Totha",
+    "gujarati_name": "તુવર તોથા",
+    "slug": "tuvar-totha",
+    "category": "Gujarati Street Food",
+    "description": "Tuvar Totha is a much-loved Gujarati street-food favourite — a rustic, curry-style preparation of tuvar (pigeon peas) cooked with warming Gujarati flavours and plenty of patience. Comforting, hearty and full of soul, it is homestyle Gujarat served hot.",
+    "short_description": "A rustic, heartwarming Gujarati street-style tuvar preparation — bold flavour, homestyle comfort.",
+    "image": "/images/a16bc408c30ead3a4c7c8c653f1ea3bab08f7e28bf4de8cd1454704edd1a3b56.webp",
+    "price": null,
+    "availability": "available",
+    "vegetarian": true,
+    "featured": true,
+    "sort_order": 2,
+    "ingredients": [],
+    "serving_info": "",
+    "badge": "Signature"
+  }
+]
