@@ -1,0 +1,294 @@
+{
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "about": "About Us",
+    "gallery": "Gallery",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "badge": "100% Vegetarian · Gujarati Street Food",
+      "title_1": "Authentic Gujarati",
+      "title_2": "flavours, straight from",
+      "title_3": "the heart of",
+      "title_gujarat": "Gujarat",
+      "desc": "Chiransh Foods is a 100% vegetarian Gujarati food brand serving authentic street-food legends — Baroda-style Sev Usal and Tuvar Totha — made with homestyle care and the bold flavours of Gujarat.",
+      "explore_menu": "Explore Menu",
+      "order_whatsapp": "Order on WhatsApp",
+      "contact_order": "Contact to Order"
+    },
+    "signature": {
+      "eyebrow": "Our Signatures",
+      "title_1": "Our Signature Gujarati",
+      "title_2": "Favourites",
+      "lede": "Two legends of Gujarat's street-food culture, made the way they're meant to be.",
+      "view_dish": "View the dish"
+    },
+    "story": {
+      "eyebrow": "Our Story",
+      "title_1": "The soul of Gujarat's streets,",
+      "title_2": "served with care",
+      "p1": "Chiransh Foods is a home-grown Gujarati food brand with one aim — to bring the honest, bold flavours of Gujarat's street-food culture to your table.",
+      "p2": "From the slow-simmered comfort of Tuvar Totha to the iconic crunch of a Baroda-style Sev Usal, everything we prepare is 100% vegetarian, rooted in the food culture we love, and made with the care of a home kitchen.",
+      "read_story": "Read our story"
+    },
+    "menu_preview": {
+      "eyebrow": "The Menu",
+      "title_1": "Explore the",
+      "title_2": "Chiransh",
+      "title_3": "menu",
+      "lede": "A focused menu today, a growing brand tomorrow — new dishes are added as they're perfected.",
+      "cats": {
+        "gujarati": {
+          "name": "Gujarati Street Food",
+          "note": "Our signature street-food dishes, made the Gujarati way."
+        },
+        "fast": {
+          "name": "Fast Food",
+          "note": "Crowd-pleasing favourites are on the way."
+        },
+        "indian": {
+          "name": "Indian",
+          "note": "Classic Indian preparations are on the way."
+        }
+      },
+      "live": "2 dishes live",
+      "soon": "Coming soon",
+      "view_full": "View Full Menu"
+    },
+    "order": {
+      "eyebrow": "Order / Enquire",
+      "title_1": "Hungry? Let's serve you",
+      "title_2": "like family",
+      "desc": "Explore the menu or send us an order enquiry — we'll take care of the rest.",
+      "reviews": "Customer reviews coming soon."
+    },
+    "marquee": [
+      "Baroda-style Sev Usal",
+      "સેવ ઉસળ",
+      "Tuvar Totha",
+      "તુવેર ટોઠા",
+      "100% Pure Vegetarian",
+      "Homemade Heritage",
+      "Gujarati Street Food",
+      "Warm Indian Hospitality"
+    ]
+  },
+  "footer": {
+    "about_us": "About Us",
+    "contact": "Contact Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "refund": "Refund Policy",
+    "rights": "All rights reserved.",
+    "description": "Authentic Gujarati vegetarian food, with the soul of Gujarat's street-food culture.",
+    "copyright": "© 2026 Chiransh Foods · Gujarat, India",
+    "tagline": "100% Vegetarian · Made with care"
+  },
+  "menu": {
+    "header": {
+      "eyebrow": "The Menu",
+      "title_1": "Straight from our",
+      "title_2": "kitchen",
+      "lede": "Authentic, 100% vegetarian Gujarati food — starting with the street-food legends of Baroda. Our menu grows with every new dish we perfect."
+    },
+    "search": "Search the menu…",
+    "error": "We couldn't load the menu.",
+    "check_connection": "Please check your connection and try again.",
+    "try_again": "Try again",
+    "empty": "New dishes are on the way.",
+    "empty_desc": "This category is being prepared — please check back soon.",
+    "no_match": "No dishes match your search.",
+    "no_match_desc": "Try a different name or clear the search.",
+    "view_dish": "View dish",
+    "unavailable": "This dish is currently unavailable — contact us to enquire when it's back.",
+    "categories": {
+      "All": "All",
+      "Sev Usal (Regular)": "Sev Usal (Regular)",
+      "Tuvar Totha (Regular)": "Tuvar Totha (Regular)",
+      "Combos (Regular)": "Combos (Regular)",
+      "Jain & Swaminarayan": "Jain & Swaminarayan",
+      "Family & Party Packs (Regular)": "Family & Party Packs (Regular)",
+      "Extras (Regular)": "Extras (Regular)",
+      "Beverages": "Beverages"
+    },
+    "notes": {
+      "Sev Usal (Regular)": "Our signature Baroda-style street food legend.",
+      "Tuvar Totha (Regular)": "A rustic, heartwarming Gujarati tuvar preparation.",
+      "Combos (Regular)": "The best of both worlds on a single plate.",
+      "Jain & Swaminarayan": "Separate recipes made with strict adherence to Jain and Swaminarayan rules (no onion, no garlic, no root veg).",
+      "Family & Party Packs (Regular)": "Larger packs for home and gatherings.",
+      "Extras (Regular)": "Add-ons and sides to complete your meal.",
+      "Beverages": "Refreshing drinks to pair with spicy flavors."
+    },
+    "ingredients": "Ingredients",
+    "serving": "Serving",
+    "price": "Price",
+    "category": "Category",
+    "ingredient_info": "Detailed ingredient information is available on request — please contact us for current details.",
+    "serving_info": "Serving details are available on request. Please contact Chiransh Foods for current availability.",
+    "keep_exploring": "Keep Exploring",
+    "may_also_love": "You may also",
+    "love": "love"
+  },
+  "about": {
+    "header_story": "વાર્તા",
+    "eyebrow_story": "Our Story",
+    "title_story_1": "A love letter to Gujarat's ",
+    "title_story_2": "street food",
+    "lede": "Chiransh Foods began where all good Gujarati food begins — at home, around real flavours.",
+    "eyebrow_who": "Who We Are",
+    "title_who_1": "Born of Gujarat's ",
+    "title_who_2": "street-food soul",
+    "p1": "Chiransh Foods is a home-grown Gujarati food brand — a home-based kitchen with a simple ambition: to serve the authentic, bold and comforting flavours of Gujarat's street-food culture, made properly and served proudly.",
+    "p2": "Our cooking is inspired by the legendary street food of Vadodara — the usal bowls, the crunch, the warmth — and by the homestyle Gujarati food that holds families together. Every dish we make is 100% vegetarian.",
+    "p3": "We believe good food doesn't need shortcuts: real spices, patient cooking and clean, careful preparation. That's the standard we hold ourselves to, one plate at a time.",
+    "eyebrow_stand": "What We Stand For",
+    "title_stand_1": "Small kitchen, ",
+    "title_stand_2": "high standards",
+    "eyebrow_food": "Our Food",
+    "title_food_1": "Honest ingredients, ",
+    "title_food_2": "patient cooking",
+    "p4": "Gujarati food is a balance — sweet meets spice, crunch meets comfort. Getting that balance right takes spices you can smell from across the kitchen and cooking that refuses to be rushed.",
+    "p5": "Our signature dishes — Baroda-style Sev Usal and Tuvar Totha — are made the way they're meant to be: slow-simmered, generously finished and served hot, exactly as the streets of Gujarat would have them.",
+    "veg_100": "100% Vegetarian",
+    "explore_menu": "Explore the menu"
+  },
+  "contact": {
+    "eyebrow_header": "Contact & Order",
+    "title_header_1": "Let's get you ",
+    "title_header_2": "served",
+    "lede": "Order directly on WhatsApp or send us an enquiry — we'll confirm your order personally. Online ordering is on the way.",
+    "form_success": "Enquiry received!",
+    "form_success_msg": "Thank you for reaching out to Chiransh Foods. We've received your enquiry and will get back to you as soon as possible.",
+    "btn_another": "Send another enquiry",
+    "form_title": "Send an order enquiry",
+    "form_req": "Fields marked * are required.",
+    "lbl_name": "Name *",
+    "plh_name": "Your full name",
+    "err_name": "Please enter your name.",
+    "lbl_phone": "Phone *",
+    "plh_phone": "Your phone number",
+    "err_phone": "Please enter a valid phone number.",
+    "lbl_email": "Email ",
+    "lbl_email_opt": "(optional)",
+    "plh_email": "you@example.com",
+    "err_email": "Please enter a valid email address.",
+    "lbl_product": "Product interest",
+    "opt_general": "General enquiry",
+    "lbl_message": "Message",
+    "plh_message": "Quantity, preferred date, anything else we should know…",
+    "btn_sending": "Sending…",
+    "btn_send": "Send enquiry",
+    "info_contact": "Contact",
+    "lbl_phone_val": "Phone",
+    "lbl_whatsapp_val": "WhatsApp",
+    "lbl_email_val": "Email",
+    "val_chat": "Chat with us",
+    "val_tba": "To be announced",
+    "empty_contact": "Phone, WhatsApp and email details will be published soon.",
+    "info_location": "Location & Service Area",
+    "lbl_service_area": "Service area",
+    "empty_location": "Exact location and map details will be published soon.",
+    "info_hours": "Business Hours",
+    "hours_note": "Please contact Chiransh Foods for current availability.",
+    "map_title": "Location details coming soon",
+    "map_text": "Serving Gujarat, India. A map and pickup details will be published once our public location is confirmed.",
+    "days": {
+      "monday": "monday",
+      "tuesday": "tuesday",
+      "wednesday": "wednesday",
+      "thursday": "thursday",
+      "friday": "friday",
+      "saturday": "saturday",
+      "sunday": "sunday"
+    },
+    "toast_success": "Thank you! We've received your enquiry and will get back to you soon.",
+    "toast_error": "Something went wrong while sending your enquiry. Please try again in a moment."
+  },
+  "faq": {
+    "eyebrow_header": "FAQ",
+    "title_header_1": "Questions, ",
+    "title_header_2": "answered",
+    "lede": "Everything you need to know about Chiransh Foods — and if we've missed something, just ask.",
+    "items": [
+      {
+        "q": "Is Chiransh Foods fully vegetarian?",
+        "a": "Yes. Every dish Chiransh Foods makes is 100% vegetarian. We do not offer any non-vegetarian products — and we never will."
+      },
+      {
+        "q": "What cuisine does Chiransh Foods specialise in?",
+        "a": "We specialise in Gujarati cuisine and Gujarati street food, with fast food and Indian categories planned as our menu grows."
+      },
+      {
+        "q": "What is Baroda-style Sev Usal?",
+        "a": "Sev Usal is a popular street-food specialty associated with Vadodara (Baroda) — a hearty, slow-simmered spiced pea curry served steaming hot and crowned with crunchy sev, onion and a squeeze of lemon. It is one of our signature dishes."
+      },
+      {
+        "q": "What is Tuvar Totha?",
+        "a": "Tuvar Totha is a much-loved Gujarati snack/curry-style street food made with tuvar (pigeon peas). Comforting, hearty and full of homestyle character, it is one of our signature dishes."
+      },
+      {
+        "q": "Where do you serve?",
+        "a": "Chiransh Foods is associated with Gujarat, India. Our exact service area is being finalised — please contact us for current availability."
+      },
+      {
+        "q": "How can I place an order?",
+        "a": "The quickest way is WhatsApp — tap \"Order on WhatsApp\" anywhere on the site and send us a pre-filled message. You can also send your details through the enquiry form on our Contact page and we'll confirm your order directly. Online ordering is coming soon."
+      },
+      {
+        "q": "Do you offer pickup?",
+        "a": "Please contact Chiransh Foods for current availability. Pickup options will be announced soon."
+      },
+      {
+        "q": "Do you offer delivery?",
+        "a": "Please contact Chiransh Foods for current availability. Delivery options — including pickup, local delivery and delivery partners — will be announced soon."
+      },
+      {
+        "q": "How can I contact Chiransh Foods?",
+        "a": "WhatsApp is the quickest way to reach us — chat with us directly from any \"Order on WhatsApp\" button. You can also use the enquiry form on our Contact page. Phone and email details will be published soon."
+      }
+    ]
+  },
+  "gallery": {
+    "eyebrow_header": "Gallery",
+    "title_header_1": "The flavours, ",
+    "title_header_2": "up close",
+    "lede": "A look at our food, our ingredients and the care behind every plate. Styled brand imagery — real photographs will replace these as they're captured.",
+    "empty_title": "Our gallery is being plated.",
+    "empty_text": "Please check back soon.",
+    "captions": [
+      "Signature — Baroda-style Sev Usal",
+      "Signature — Tuvar Totha",
+      "The crunch of fresh sev",
+      "Fresh tuvar pods",
+      "Our spice palette",
+      "Finishing touches",
+      "Buttered pav, toasted golden",
+      "The Gujarati table",
+      "Slow-simmered usal",
+      "Totha, straight off the fire"
+    ],
+    "aria": {
+      "close": "Close image viewer",
+      "prev": "Previous image",
+      "next": "Next image"
+    }
+  },
+  "values": {
+    "vegetarian": {
+      "title": "100% Vegetarian",
+      "text": "Every dish we make is fully vegetarian — no exceptions, no shortcuts."
+    },
+    "authenticity": {
+      "title": "Baroda-style Authenticity",
+      "text": "Street-food recipes that stay true to the flavours of Gujarat."
+    },
+    "care": {
+      "title": "Home-style Care",
+      "text": "Prepared at home with clean, careful and consistent quality."
+    }
+  }
+}

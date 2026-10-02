@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
@@ -17,11 +18,15 @@ const GALLERY = [
   { src: `${IMG}/da7bd498a6ba6bcf1a798b19b9852a5c933f812e8c34dd3f232eca06200a0382.webp`, alt: "Hands sprinkling sev over a steaming bowl", caption: "Finishing touches" },
   { src: `${IMG}/0fcaf35923b615c8dcab00e8a9843eac3ba0e899512260c0ed9f3bbc8569f608.webp`, alt: "Buttered pav toasting on a griddle", caption: "Buttered pav, toasted golden" },
   { src: `${IMG}/f60e06ce5df687c2b2b455940b778d6a054b268564dceae3fc75de82cc31877d.webp`, alt: "Gujarati vegetarian spread on a wooden table", caption: "The Gujarati table" },
-  { src: `${IMG}/f90e834013eee3bf17d0af382c5a8ee5468771283e2dcd08da959245d239fd37.webp`, alt: "Spiced usal simmering in a pot", caption: "Slow-simmered usal" },
+  { src: `${IMG}/spiced_usal_simmering.png`, alt: "Spiced usal simmering in a pot", caption: "Slow-simmered usal" },
   { src: `${IMG}/bcf4d62101e67d8b5fbc90de6d671f52fc6c820f74b1b1a8cb6c4d9e9134792b.webp`, alt: "Close-up of tuvar totha with tempering", caption: "Totha, straight off the fire" },
 ];
 
 export default function Gallery() {
+  const { t } = useTranslation();
+  const captionsData = t("gallery.captions", { returnObjects: true });
+  const captions = Array.isArray(captionsData) ? captionsData : [];
+
   usePageMeta({
     title: "Gallery — Chiransh Foods | Gujarati Food, Spices & Kitchen",
     description:
@@ -60,13 +65,13 @@ export default function Gallery() {
         <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-28 sm:px-6 lg:px-8 lg:pb-24 lg:pt-40">
           <SectionHeading
             dark
-            eyebrow="Gallery"
+            eyebrow={t("gallery.eyebrow_header", "Gallery")}
             title={
               <>
-                The flavours, <em className="italic text-gold">up close</em>
+                {t("gallery.title_header_1", "The flavours, ")} <em className="italic text-gold">{t("gallery.title_header_2", "up close")}</em>
               </>
             }
-            lede="A look at our food, our ingredients and the care behind every plate. Styled brand imagery — real photographs will replace these as they're captured."
+            lede={t("gallery.lede", "A look at our food, our ingredients and the care behind every plate. Styled brand imagery — real photographs will replace these as they're captured.")}
           />
         </div>
       </header>
@@ -74,10 +79,10 @@ export default function Gallery() {
       {GALLERY.length === 0 ? (
         <div className="mx-auto max-w-3xl px-4 py-24 text-center" data-testid="gallery-empty-state">
           <p className="font-serif text-2xl font-semibold text-leaf">
-            Our gallery is being plated.
+            {t("gallery.empty_title", "Our gallery is being plated.")}
           </p>
           <p className="mt-2 text-sm text-stone-500">
-            Please check back soon.
+            {t("gallery.empty_text", "Please check back soon.")}
           </p>
         </div>
       ) : (
@@ -86,27 +91,30 @@ export default function Gallery() {
           data-testid="gallery-grid"
         >
           <div className="columns-2 gap-4 space-y-4 md:columns-3">
-            {GALLERY.map((g, i) => (
-              <Reveal key={g.src} delay={Math.min(i * 0.05, 0.25)}>
-                <button
-                  onClick={() => setActive(i)}
-                  data-testid={`gallery-item-${i}`}
-                  aria-label={`Open image: ${g.caption}`}
-                  className="group relative block w-full overflow-hidden rounded-2xl shadow-soft transition-shadow duration-300 hover:shadow-lift"
-                >
-                  <img
-                    src={g.src}
-                    alt={g.alt}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-leaf/85 to-transparent p-4 pt-10 text-left text-xs font-medium text-cream opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    {g.caption}
-                  </span>
-                </button>
-              </Reveal>
-            ))}
+            {GALLERY.map((g, i) => {
+              const translatedCaption = captions[i] || g.caption;
+              return (
+                <Reveal key={g.src} delay={Math.min(i * 0.05, 0.25)}>
+                  <button
+                    onClick={() => setActive(i)}
+                    data-testid={`gallery-item-${i}`}
+                    aria-label={`Open image: ${translatedCaption}`}
+                    className="group relative block w-full overflow-hidden rounded-2xl shadow-soft transition-shadow duration-300 hover:shadow-lift"
+                  >
+                    <img
+                      src={g.src}
+                      alt={translatedCaption}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                    <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-leaf/85 to-transparent p-4 pt-10 text-left text-xs font-medium text-cream opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      {translatedCaption}
+                    </span>
+                  </button>
+                </Reveal>
+              );
+            })}
           </div>
         </section>
       )}
@@ -169,7 +177,7 @@ export default function Gallery() {
                 className="max-h-[78vh] w-auto rounded-2xl object-contain shadow-lift"
               />
               <figcaption className="mt-4 text-center font-serif text-lg italic text-cream/85">
-                {GALLERY[active].caption}
+                {captions[active] || GALLERY[active].caption}
                 <span className="ml-3 font-display text-xs not-italic tracking-[0.2em] text-cream/50">
                   {active + 1} / {GALLERY.length}
                 </span>

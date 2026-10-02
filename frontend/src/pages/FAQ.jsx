@@ -1,50 +1,16 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 
-const FAQS = [
-  {
-    q: "Is Chiransh Foods fully vegetarian?",
-    a: "Yes. Every dish Chiransh Foods makes is 100% vegetarian. We do not offer any non-vegetarian products — and we never will.",
-  },
-  {
-    q: "What cuisine does Chiransh Foods specialise in?",
-    a: "We specialise in Gujarati cuisine and Gujarati street food, with fast food and Indian categories planned as our menu grows.",
-  },
-  {
-    q: "What is Baroda-style Sev Usal?",
-    a: "Sev Usal is a popular street-food specialty associated with Vadodara (Baroda) — a hearty, slow-simmered spiced pea curry served steaming hot and crowned with crunchy sev, onion and a squeeze of lemon. It is one of our signature dishes.",
-  },
-  {
-    q: "What is Tuvar Totha?",
-    a: "Tuvar Totha is a much-loved Gujarati snack/curry-style street food made with tuvar (pigeon peas). Comforting, hearty and full of homestyle character, it is one of our signature dishes.",
-  },
-  {
-    q: "Where do you serve?",
-    a: "Chiransh Foods is associated with Gujarat, India. Our exact service area is being finalised — please contact us for current availability.",
-  },
-  {
-    q: "How can I place an order?",
-    a: "The quickest way is WhatsApp — tap \"Order on WhatsApp\" anywhere on the site and send us a pre-filled message. You can also send your details through the enquiry form on our Contact page and we'll confirm your order directly. Online ordering is coming soon.",
-  },
-  {
-    q: "Do you offer pickup?",
-    a: "Please contact Chiransh Foods for current availability. Pickup options will be announced soon.",
-  },
-  {
-    q: "Do you offer delivery?",
-    a: "Please contact Chiransh Foods for current availability. Delivery options — including pickup, local delivery and delivery partners — will be announced soon.",
-  },
-  {
-    q: "How can I contact Chiransh Foods?",
-    a: "WhatsApp is the quickest way to reach us — chat with us directly from any \"Order on WhatsApp\" button. You can also use the enquiry form on our Contact page. Phone and email details will be published soon.",
-  },
-];
-
 export default function FAQ() {
+  const { t } = useTranslation();
+  const faqsData = t("faq.items", { returnObjects: true });
+  const faqs = Array.isArray(faqsData) ? faqsData : [];
+
   usePageMeta({
     title: "FAQ — Chiransh Foods | Gujarati Vegetarian Food",
     description:
@@ -52,7 +18,7 @@ export default function FAQ() {
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: FAQS.map((f) => ({
+      mainEntity: faqs.map((f) => ({
         "@type": "Question",
         name: f.q,
         acceptedAnswer: { "@type": "Answer", text: f.a },
@@ -72,13 +38,13 @@ export default function FAQ() {
         <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-28 sm:px-6 lg:px-8 lg:pb-24 lg:pt-40">
           <SectionHeading
             dark
-            eyebrow="FAQ"
+            eyebrow={t("faq.eyebrow_header", "FAQ")}
             title={
               <>
-                Questions, <em className="italic text-gold">answered</em>
+                {t("faq.title_header_1", "Questions, ")} <em className="italic text-gold">{t("faq.title_header_2", "answered")}</em>
               </>
             }
-            lede="Everything you need to know about Chiransh Foods — and if we've missed something, just ask."
+            lede={t("faq.lede", "Everything you need to know about Chiransh Foods — and if we've missed something, just ask.")}
           />
         </div>
       </header>
@@ -88,7 +54,7 @@ export default function FAQ() {
         data-testid="faq-section"
       >
         <div className="space-y-3">
-          {FAQS.map((f, i) => {
+          {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
               <Reveal key={f.q} delay={Math.min(i * 0.04, 0.2)}>
