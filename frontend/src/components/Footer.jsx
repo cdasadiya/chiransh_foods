@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Mail, MessageCircle, Phone, Youtube } from "lucide-react";
+import { Mail, MessageCircle, Phone } from "lucide-react";
+import { FaFacebook as Facebook, FaInstagram as Instagram, FaYoutube as Youtube } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import Logo from "./Logo";
 import { useSettings } from "@/context/SettingsContext";
