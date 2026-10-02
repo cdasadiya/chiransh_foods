@@ -186,7 +186,7 @@ export const FALLBACK_PRODUCTS = [
     "category": "Combos (Regular)",
     "description": "Sev usal and tuvar totha on one plate, with pav, onion and lemon. Serves 1. Regular recipe. Pick your spice level.",
     "short_description": "Sev usal and tuvar totha on one plate, with pav, onion and lemon.",
-    "image": `${IMG}/og-image.jpg`,
+    "image": `${IMG}/combo_plate_with_chutney.png`,
     "price": null,
     "availability": "available",
     "vegetarian": true,
