@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://chiranshfoods.com/sitemap.xml
+Sitemap: https://chiransh-foods.onrender.com/sitemap.xml

@@ -1,0 +1,12 @@
+# Matches the existing Render web service (build: yarn, start: yarn start)
+# at the repository root. `yarn` installs this package and builds frontend/dist
+# via postinstall. `yarn start` serves that build and the /api routes.
+services:
+  - type: web
+    name: chiransh-foods
+    runtime: node
+    buildCommand: yarn
+    startCommand: yarn start
+    envVars:
+      - key: NODE_VERSION
+        value: 22.14.0

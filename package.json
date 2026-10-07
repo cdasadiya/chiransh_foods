@@ -1,0 +1,13 @@
+{
+  "name": "chiransh-foods",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "postinstall": "NODE_ENV=development npm ci --prefix frontend && npm run build --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "start": "node server.mjs"
+  }
+}

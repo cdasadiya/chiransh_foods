@@ -16,8 +16,8 @@ This project is built using modern web development technologies to ensure a fast
 
 ### Frontend
 - **React 19**: Modern component-based UI.
-- **Vite 6**: Next-generation, lightning-fast frontend tooling.
-- **Tailwind CSS 3.4**: Utility-first CSS framework for rapid styling.
+- **Vite 8**: Next-generation, lightning-fast frontend tooling.
+- **Tailwind CSS 4**: Utility-first CSS framework for rapid styling.
 - **React Router Dom 7**: Declarative routing for single-page applications.
 - **Framer Motion**: Production-ready animation library.
 - **Lucide React**: Beautiful and consistent iconography.
@@ -35,8 +35,8 @@ Follow these instructions to get a copy of the project up and running on your lo
 ### Prerequisites
 
 Ensure you have the following installed on your system:
-- [Node.js](https://nodejs.org/) (v18 or higher recommended)
-- [Python](https://www.python.org/) (v3.8 or higher)
+- [Node.js](https://nodejs.org/) (v20.19 or newer, below 23; Render uses Node 22)
+- [Python](https://www.python.org/) (v3.10 or higher)
 
 ### Quick Start (Recommended)
 
@@ -49,9 +49,9 @@ chmod +x run.sh
 # Start both frontend and backend servers concurrently
 ./run.sh
 ```
-This script automatically sets up the python virtual environment, installs dependencies, and boots up both servers. 
+This script automatically sets up the python virtual environment, installs dependencies, and boots up both servers.
 - Frontend will be available at: `http://localhost:3000`
-- Backend API will be available at: `http://localhost:8000`
+- Backend API will be available at: `http://127.0.0.1:8001`
 
 ### Manual Installation
 
@@ -64,7 +64,7 @@ cd backend
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python main.py
+python -m uvicorn server:app --host 127.0.0.1 --port 8001
 ```
 
 #### 2. Start the Frontend
@@ -82,6 +82,14 @@ In the `frontend` directory, you can run:
 - `npm run dev`: Runs the app in development mode.
 - `npm run build`: Builds the app for production to the `dist` folder.
 - `npm run preview`: Locally preview the production build.
+
+## Deploy on Render
+
+The live site is a Node web service with the repository root as its root directory. Render runs `yarn` (build) and `yarn start` (start). There is no `package.json` inside a nested app root, so those commands have to live at the repository root.
+
+`yarn` installs the root package and, in `postinstall`, installs and builds `frontend/`. `yarn start` runs `server.mjs`, which listens on Render's `PORT`, serves `frontend/dist` (including client-side routes), and answers `/api` from `backend/data`.
+
+Node is pinned to 22 (`package.json` `engines`, and `NODE_VERSION` in `render.yaml`) so Render does not pick a newer major than this app is tested with.
 
 ## 🤝 Contributing
 Contributions, issues, and feature requests are welcome! Feel free to open a pull request or file an issue to improve the project.
