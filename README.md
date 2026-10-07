@@ -36,7 +36,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 Ensure you have the following installed on your system:
 - [Node.js](https://nodejs.org/) (v20.19 or newer, below 23; Render uses Node 22)
-- [Python](https://www.python.org/) (v3.10 or higher)
+- [Python](https://www.python.org/) (v3.10 or higher). All Python packages are pinned in the root [`requirements.txt`](requirements.txt) (API, tests, and helper scripts). The API-only subset is `backend/requirements.txt`.
 
 ### Quick Start (Recommended)
 
@@ -63,7 +63,7 @@ Open a terminal in the project root and run:
 cd backend
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+pip install -r requirements.txt          # API only; use ../requirements.txt for tests and scripts too
 python -m uvicorn server:app --host 127.0.0.1 --port 8001
 ```
 

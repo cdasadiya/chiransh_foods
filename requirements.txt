@@ -1,0 +1,47 @@
+# Chiransh Foods — full Python dependency set.
+# Install: python -m pip install -r requirements.txt
+#
+# The website UI is Node, not pip. Those packages are in frontend/package.json
+# (React 19, Vite 8, Tailwind CSS 4) and the root package.json start script.
+#
+# Resolved on Python 3.12 for:
+#   API     backend/server.py          FastAPI + Uvicorn
+#   Tests   backend/test_server.py     pytest + httpx
+#   Scripts scripts/crawl.py, capture.py   Playwright
+
+# API
+annotated-doc==0.0.5
+annotated-types==0.8.0
+anyio==4.15.1
+click==8.5.0
+fastapi==0.142.2
+h11==0.16.0
+httptools==0.8.0
+idna==3.20
+opentelemetry-api==1.45.1
+pydantic==2.13.5
+pydantic_core==2.46.5
+python-dotenv==1.2.4
+PyYAML==6.0.3
+starlette==1.7.0
+typing-inspection==0.4.4
+typing_extensions==4.16.0
+uvicorn==0.54.0
+uvloop==0.23.0
+watchfiles==1.3.0
+websockets==17.2
+
+# Tests
+certifi==2026.7.22
+httpcore==1.0.9
+httpx==0.28.1
+iniconfig==2.3.1
+packaging==26.3
+pluggy==1.6.0
+Pygments==2.21.0
+pytest==9.1.1
+
+# Helper scripts
+greenlet==3.5.6
+playwright==1.63.0
+pyee==13.0.1

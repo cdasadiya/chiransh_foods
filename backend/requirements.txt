@@ -1,2 +1,4 @@
-fastapi>=0.142.2
-uvicorn[standard]>=0.54.0
+# API runtime only. The full Python stack (API, tests, and Playwright scripts)
+# is pinned in the repository root requirements.txt.
+fastapi==0.142.2
+uvicorn[standard]==0.54.0
