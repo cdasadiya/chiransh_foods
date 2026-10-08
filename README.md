@@ -85,9 +85,9 @@ In the `frontend` directory, you can run:
 
 ## Deploy on Render
 
-The live site is a Node web service with the repository root as its root directory. Render runs `yarn` (build) and `yarn start` (start). There is no `package.json` inside a nested app root, so those commands have to live at the repository root.
+The live site is https://chiransh-foods.onrender.com. Merging into `main` publishes it. Render is connected to this GitHub repo and deploys that branch on every commit (`render.yaml`: `branch: main`, `autoDeployTrigger: commit`). There is no manual copy step in the Render dashboard.
 
-`yarn` installs the root package and, in `postinstall`, installs and builds `frontend/`. `yarn start` runs `server.mjs`, which listens on Render's `PORT`, serves `frontend/dist` (including client-side routes), and answers `/api` from `backend/data`.
+The service root is the repository root. Render runs `yarn` to build and `yarn start` to serve. `yarn` installs the root package and, in `postinstall`, installs and builds `frontend/`. `yarn start` runs `server.mjs`, which listens on Render's `PORT`, serves `frontend/dist` (including client-side routes), and answers `/api` from `backend/data`. Render checks `/api/health` before the new deploy goes live.
 
 Node is pinned to 22 (`package.json` `engines`, and `NODE_VERSION` in `render.yaml`) so Render does not pick a newer major than this app is tested with.
 
