@@ -3,7 +3,7 @@ import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { applySeoToHtml, renderSitemap } from "./frontend/src/lib/seo.js";
+import { applySeoToHtml, renderRobots, renderSitemap } from "./frontend/src/lib/seo.js";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const dist = path.join(root, "frontend", "dist");
@@ -226,9 +226,15 @@ const server = http.createServer(async (req, res) => {
       res.end("Method not allowed");
       return;
     }
-    if (pathname === "/sitemap.xml") {
-      const body = Buffer.from(renderSitemap(loadJson("products.json", [])));
-      res.writeHead(200, { "content-type": "application/xml; charset=utf-8", "content-length": body.length });
+    if (pathname === "/robots.txt" || pathname === "/sitemap.xml") {
+      const settings = loadJson("settings.json", {});
+      const body = Buffer.from(
+        pathname === "/robots.txt"
+          ? renderRobots(settings)
+          : renderSitemap(loadJson("products.json", []), undefined, settings),
+      );
+      const type = pathname === "/robots.txt" ? "text/plain; charset=utf-8" : "application/xml; charset=utf-8";
+      res.writeHead(200, { "content-type": type, "content-length": body.length });
       res.end(req.method === "HEAD" ? undefined : body);
       return;
     }
