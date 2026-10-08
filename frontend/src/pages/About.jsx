@@ -1,8 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
-import { getRouteSeo } from "@/lib/routeSeo";
+import { LocaleLink, useLocalizedSeo } from "@/lib/locale";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import VegMark from "@/components/VegMark";
@@ -13,7 +12,7 @@ const IMG =
 
 export default function About() {
   const { t } = useTranslation();
-  usePageMeta(getRouteSeo("/about"));
+  usePageMeta(useLocalizedSeo("/about"));
 
   return (
     <>
@@ -141,14 +140,14 @@ export default function About() {
                 <span className="inline-flex items-center gap-2 rounded-full border border-leaf/15 bg-ivory px-4 py-2 font-display text-xs font-semibold uppercase tracking-[0.2em] text-leaf">
                   <VegMark className="h-3.5 w-3.5" /> {t("about.veg_100", "100% Vegetarian")}
                 </span>
-                <Link
+                <LocaleLink
                   to="/menu"
                   data-testid="about-explore-menu-btn"
                   className="group inline-flex items-center gap-2 rounded-full bg-leaf px-6 py-3 font-display text-sm font-semibold text-cream transition-colors hover:bg-forest"
                 >
                   {t("about.explore_menu", "Explore the menu")}
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
+                </LocaleLink>
               </div>
             </Reveal>
           </div>

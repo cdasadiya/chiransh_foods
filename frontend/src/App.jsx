@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { LocaleSync } from "@/lib/locale";
 import { Toaster } from "@/components/ui/sonner";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -19,6 +20,22 @@ const Terms = lazy(() => import("@/pages/Terms"));
 const Refund = lazy(() => import("@/pages/Refund"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
+function siteRoutes() {
+  return [
+    <Route key="home" index element={<Home />} />,
+    <Route key="menu" path="menu" element={<Menu />} />,
+    <Route key="dish" path="menu/:slug" element={<ProductDetail />} />,
+    <Route key="about" path="about" element={<About />} />,
+    <Route key="gallery" path="gallery" element={<Gallery />} />,
+    <Route key="contact" path="contact" element={<Contact />} />,
+    <Route key="faq" path="faq" element={<FAQ />} />,
+    <Route key="privacy" path="privacy" element={<Privacy />} />,
+    <Route key="terms" path="terms" element={<Terms />} />,
+    <Route key="refund" path="refund" element={<Refund />} />,
+    <Route key="missing" path="*" element={<NotFound />} />,
+  ];
+}
+
 function App() {
   return (
     <ErrorBoundary>
@@ -32,21 +49,17 @@ function App() {
               >
                 Skip to content
               </a>
+              <LocaleSync />
               <Navbar />
               <main id="main-content" className="flex-1">
                 <Suspense fallback={<div className="min-h-[60vh]" aria-busy="true" />}>
                 <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/menu" element={<Menu />} />
-                  <Route path="/menu/:slug" element={<ProductDetail />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/gallery" element={<Gallery />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/faq" element={<FAQ />} />
-                  <Route path="/privacy" element={<Privacy />} />
-                  <Route path="/terms" element={<Terms />} />
-                  <Route path="/refund" element={<Refund />} />
-                  <Route path="*" element={<NotFound />} />
+                  <Route path="/gu" element={<Outlet />}>
+                    {siteRoutes()}
+                  </Route>
+                  <Route path="/" element={<Outlet />}>
+                    {siteRoutes()}
+                  </Route>
                 </Routes>
                 </Suspense>
               </main>

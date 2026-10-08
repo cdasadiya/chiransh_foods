@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
-import { getRouteSeo } from "@/lib/routeSeo";
+import { useLocalizedSeo } from "@/lib/locale";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 
@@ -12,7 +12,7 @@ export default function FAQ() {
   const faqsData = t("faq.items", { returnObjects: true });
   const faqs = Array.isArray(faqsData) ? faqsData : [];
 
-  usePageMeta(getRouteSeo("/faq"));
+  usePageMeta(useLocalizedSeo("/faq"));
 
   const [open, setOpen] = useState(0);
 

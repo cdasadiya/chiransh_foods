@@ -1,10 +1,10 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { ChevronRight, RefreshCw, Sparkles } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
 import { fetchProduct, fetchProducts } from "@/lib/api";
-import { getRouteSeo } from "@/lib/routeSeo";
+import { LocaleLink, useLocalizedSeo } from "@/lib/locale";
 import { priceLabel } from "@/lib/site";
 import NotFound from "@/pages/NotFound";
 import OrderButtons from "@/components/OrderButtons";
@@ -46,8 +46,8 @@ export default function ProductDetail() {
   const desc = product ? (isGu && product.gujarati_description ? product.gujarati_description : product.description) : "";
   const shortDesc = product ? (isGu && product.gujarati_short_description ? product.gujarati_short_description : product.short_description) : "";
 
-  const seo = getRouteSeo(`/menu/${slug || ""}`);
-  usePageMeta({ ...seo, noindex: Boolean(is404) || seo.noindex });
+  const seo = useLocalizedSeo(`/menu/${slug || ""}`);
+  usePageMeta({ ...seo, noindex: Boolean(is404) || seo.noindex, alternates: is404 ? [] : seo.alternates });
 
   if (is404) return <NotFound />;
 
@@ -101,17 +101,17 @@ export default function ProductDetail() {
       >
         <ol className="flex flex-wrap items-center gap-1.5 text-sm text-stone-500">
           <li>
-            <Link to="/" className="transition-colors hover:text-leaf">
+            <LocaleLink to="/" className="transition-colors hover:text-leaf">
               {t("nav.home", "Home")}
-            </Link>
+            </LocaleLink>
           </li>
           <li aria-hidden="true">
             <ChevronRight className="h-3.5 w-3.5" />
           </li>
           <li>
-            <Link to="/menu" className="transition-colors hover:text-leaf">
+            <LocaleLink to="/menu" className="transition-colors hover:text-leaf">
               {t("nav.menu", "Menu")}
-            </Link>
+            </LocaleLink>
           </li>
           <li aria-hidden="true">
             <ChevronRight className="h-3.5 w-3.5" />

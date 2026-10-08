@@ -1,9 +1,9 @@
 import LegalPage from "./Legal";
 import usePageMeta from "@/hooks/usePageMeta";
-import { getRouteSeo } from "@/lib/routeSeo";
+import { useLocalizedSeo } from "@/lib/locale";
 
 export default function Terms() {
-  usePageMeta(getRouteSeo("/terms"));
+  usePageMeta(useLocalizedSeo("/terms"));
 
   return (
     <LegalPage

@@ -1,7 +1,8 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
 import { getRouteSeo } from "@/lib/routeSeo";
+import { LocaleLink } from "@/lib/locale";
 import Reveal from "@/components/Reveal";
 import { LogoMark } from "@/components/Logo";
 
@@ -35,21 +36,21 @@ export default function NotFound() {
             food is.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link
+            <LocaleLink
               to="/menu"
               data-testid="notfound-return-menu-btn"
               className="group inline-flex items-center gap-2 rounded-full bg-leaf px-7 py-3.5 font-display text-sm font-semibold text-cream shadow-soft transition-colors hover:bg-forest"
             >
               Return to Menu
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <Link
+            </LocaleLink>
+            <LocaleLink
               to="/"
               data-testid="notfound-return-home-btn"
               className="inline-flex items-center gap-2 rounded-full border border-leaf/25 px-7 py-3.5 font-display text-sm font-semibold text-leaf transition-colors hover:border-leaf hover:bg-ivory"
             >
               Back to Home
-            </Link>
+            </LocaleLink>
           </div>
         </Reveal>
       </div>

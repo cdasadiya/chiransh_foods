@@ -1,136 +1,400 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://chiransh-foods.onrender.com/</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/baroda-style-sev-usal</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/baroda-style-sev-usal" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/baroda-style-sev-usal" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/baroda-style-sev-usal" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/baroda-style-sev-usal</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/baroda-style-sev-usal" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/baroda-style-sev-usal" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/baroda-style-sev-usal" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/sev-usal-with-pav</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/sev-usal-with-pav" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/sev-usal-with-pav" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/sev-usal-with-pav" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/sev-usal-with-pav</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/sev-usal-with-pav" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/sev-usal-with-pav" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/sev-usal-with-pav" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/sev-usal-take-home-pack</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/sev-usal-take-home-pack" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/sev-usal-take-home-pack" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/sev-usal-take-home-pack" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/sev-usal-take-home-pack</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/sev-usal-take-home-pack" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/sev-usal-take-home-pack" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/sev-usal-take-home-pack" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/tuvar-totha</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/tuvar-totha" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/tuvar-totha" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/tuvar-totha" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/tuvar-totha</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/tuvar-totha" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/tuvar-totha" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/tuvar-totha" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/tuvar-totha-with-pav</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/tuvar-totha-with-pav" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/tuvar-totha-with-pav" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/tuvar-totha-with-pav" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/tuvar-totha-with-pav</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/tuvar-totha-with-pav" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/tuvar-totha-with-pav" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/tuvar-totha-with-pav" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/sev-usal-tuvar-totha-combo-plate</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/sev-usal-tuvar-totha-combo-plate" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/sev-usal-tuvar-totha-combo-plate" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/sev-usal-tuvar-totha-combo-plate" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/sev-usal-tuvar-totha-combo-plate</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/sev-usal-tuvar-totha-combo-plate" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/sev-usal-tuvar-totha-combo-plate" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/sev-usal-tuvar-totha-combo-plate" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/jain-sev-usal</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/jain-sev-usal" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/jain-sev-usal" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/jain-sev-usal" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/jain-sev-usal</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/jain-sev-usal" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/jain-sev-usal" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/jain-sev-usal" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/jain-tuvar-totha</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/jain-tuvar-totha" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/jain-tuvar-totha" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/jain-tuvar-totha" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/jain-tuvar-totha</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/jain-tuvar-totha" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/jain-tuvar-totha" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/jain-tuvar-totha" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/swaminarayan-sev-usal</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/swaminarayan-sev-usal" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/swaminarayan-sev-usal" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/swaminarayan-sev-usal" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/swaminarayan-sev-usal</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/swaminarayan-sev-usal" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/swaminarayan-sev-usal" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/swaminarayan-sev-usal" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/swaminarayan-tuvar-totha</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/swaminarayan-tuvar-totha" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/swaminarayan-tuvar-totha" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/swaminarayan-tuvar-totha" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/swaminarayan-tuvar-totha</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/swaminarayan-tuvar-totha" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/swaminarayan-tuvar-totha" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/swaminarayan-tuvar-totha" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/sev-usal-family-party-pack</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/sev-usal-family-party-pack" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/sev-usal-family-party-pack" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/sev-usal-family-party-pack" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/sev-usal-family-party-pack</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/sev-usal-family-party-pack" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/sev-usal-family-party-pack" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/sev-usal-family-party-pack" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/tuvar-totha-family-party-pack</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/tuvar-totha-family-party-pack" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/tuvar-totha-family-party-pack" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/tuvar-totha-family-party-pack" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/tuvar-totha-family-party-pack</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/tuvar-totha-family-party-pack" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/tuvar-totha-family-party-pack" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/tuvar-totha-family-party-pack" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/pav-2-pcs</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/pav-2-pcs" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/pav-2-pcs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/pav-2-pcs" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/pav-2-pcs</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/pav-2-pcs" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/pav-2-pcs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/pav-2-pcs" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/butter-pav-2-pcs</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/butter-pav-2-pcs" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/butter-pav-2-pcs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/butter-pav-2-pcs" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/butter-pav-2-pcs</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/butter-pav-2-pcs" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/butter-pav-2-pcs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/butter-pav-2-pcs" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/masala-chaas</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/masala-chaas" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/masala-chaas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/masala-chaas" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/masala-chaas</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/masala-chaas" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/masala-chaas" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/masala-chaas" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/menu/packaged-drinking-water</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/packaged-drinking-water" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/packaged-drinking-water" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/packaged-drinking-water" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/menu/packaged-drinking-water</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/menu/packaged-drinking-water" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/menu/packaged-drinking-water" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/menu/packaged-drinking-water" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/about</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/about" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/about" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/about</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/about" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/about" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/gallery</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/gallery" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/gallery" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/gallery" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/gallery</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/gallery" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/gallery" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/gallery" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/contact</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/contact" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/contact" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/contact</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/contact" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/contact" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/faq</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/faq" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/faq" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/faq</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/faq" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/faq" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/privacy</loc>

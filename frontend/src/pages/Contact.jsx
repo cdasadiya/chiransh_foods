@@ -11,7 +11,7 @@ import {
   Send,
 } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
-import { getRouteSeo } from "@/lib/routeSeo";
+import { useLocalizedSeo } from "@/lib/locale";
 import { fetchProducts, submitEnquiry } from "@/lib/api";
 import { FALLBACK_PRODUCTS, whatsappUrl } from "@/lib/site";
 import { useTranslation } from "react-i18next";
@@ -33,7 +33,7 @@ const inputCls =
   "w-full rounded-xl border border-leaf/15 bg-ivory px-4 py-3 text-sm text-charcoal placeholder:text-stone-400 transition focus:border-saffron focus:outline-none focus:ring-2 focus:ring-saffron/30";
 
 export default function Contact() {
-  usePageMeta(getRouteSeo("/contact"));
+  usePageMeta(useLocalizedSeo("/contact"));
 
   const { t } = useTranslation();
   const { settings } = useSettings();

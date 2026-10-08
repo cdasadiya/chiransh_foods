@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { LocaleLink } from "@/lib/locale";
 import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
@@ -14,7 +14,7 @@ export default function ProductCard({ product, index = 0, dataTestId }) {
   const shortDesc = isGu && product.gujarati_short_description ? product.gujarati_short_description : product.short_description;
   return (
     <Reveal delay={Math.min(index * 0.08, 0.3)} className="h-full">
-      <Link
+      <LocaleLink
         to={`/menu/${product.slug}`}
         data-testid={dataTestId || `product-card-${product.slug}`}
         className="group flex h-full flex-col overflow-hidden rounded-2xl border border-leaf/10 bg-ivory shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
@@ -59,7 +59,7 @@ export default function ProductCard({ product, index = 0, dataTestId }) {
             </span>
           </div>
         </div>
-      </Link>
+      </LocaleLink>
     </Reveal>
   );
 }
