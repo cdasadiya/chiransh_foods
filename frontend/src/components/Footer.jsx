@@ -24,7 +24,7 @@ const LEGAL = [
 export default function Footer() {
   const { t } = useTranslation();
   const { settings } = useSettings();
-  const phone = settings?.contact?.phone;
+  const phone = settings?.contact?.phone_display || settings?.contact?.phone;
   const email = settings?.contact?.email;
   const wa = whatsappUrl(settings);
 
@@ -35,7 +35,7 @@ export default function Footer() {
   ].filter((s) => s.url);
 
   const contactRows = [
-    { label: "Phone", value: phone, href: phone ? `tel:${phone}` : null, Icon: Phone, testId: "footer-phone-link" },
+    { label: "Phone", value: phone, href: settings?.contact?.phone ? `tel:${String(settings.contact.phone).replace(/\s/g, "")}` : null, Icon: Phone, testId: "footer-phone-link" },
     { label: "WhatsApp", value: wa ? "Chat with us" : null, href: wa, Icon: MessageCircle, testId: "footer-whatsapp-link" },
     { label: "Email", value: email, href: email ? `mailto:${email}` : null, Icon: Mail, testId: "footer-email-link" },
   ];

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { LocaleLink } from "@/lib/locale";
 import { ArrowRight, MessageCircle, Phone } from "lucide-react";
 import { useSettings } from "@/context/SettingsContext";
@@ -11,6 +12,7 @@ export default function OrderButtons({
   align = "left",
   testPrefix = "order",
 }) {
+  const { t } = useTranslation();
   const { settings } = useSettings();
   const wa = whatsappUrl(settings, productName);
   const phone = settings?.contact?.phone;
@@ -26,16 +28,16 @@ export default function OrderButtons({
           data-testid={`${testPrefix}-whatsapp-btn`}
           className={`${base} bg-forest text-cream hover:bg-leaf hover:shadow-soft`}
         >
-          <MessageCircle className="h-4 w-4" /> Order on WhatsApp
+          <MessageCircle className="h-4 w-4" /> {t("order.whatsapp", "Order on WhatsApp")}
         </a>
       )}
       {phone && (
         <a
-          href={`tel:${phone}`}
+          href={`tel:${String(phone).replace(/\s/g, "")}`}
           data-testid={`${testPrefix}-call-btn`}
           className={`${base} border border-leaf/20 bg-ivory text-leaf hover:border-leaf`}
         >
-          <Phone className="h-4 w-4" /> Call to Order
+          <Phone className="h-4 w-4" /> {t("order.call", "Call to Order")}
         </a>
       )}
       <LocaleLink
@@ -47,7 +49,7 @@ export default function OrderButtons({
             : "bg-saffron text-cream shadow-soft hover:bg-saffron-deep"
         }`}
       >
-        Contact to Order <ArrowRight className="h-4 w-4" />
+        {t("order.contact", "Contact to Order")} <ArrowRight className="h-4 w-4" />
       </LocaleLink>
     </div>
   );

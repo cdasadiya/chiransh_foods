@@ -44,20 +44,29 @@ export default function Contact() {
   const products = productsData?.length ? productsData : FALLBACK_PRODUCTS;
 
   const waContact = whatsappUrl(settings);
+  const phoneDisplay = settings?.contact?.phone_display || settings?.contact?.phone || null;
+  const phoneHref = settings?.contact?.phone
+    ? `tel:${String(settings.contact.phone).replace(/\s/g, "")}`
+    : null;
+  const areas = Array.isArray(settings?.location?.areas) ? settings.location.areas.filter(Boolean) : [];
+  const hoursOpen = Boolean(settings?.business_hours?.opens && settings?.business_hours?.closes);
   const contactRows = [
     {
+      id: "phone",
       Icon: Phone,
       label: t("contact.lbl_phone_val", "Phone"),
-      value: settings?.contact?.phone || null,
-      href: settings?.contact?.phone ? `tel:${settings.contact.phone}` : null,
+      value: phoneDisplay,
+      href: phoneHref,
     },
     {
+      id: "whatsapp",
       Icon: MessageCircle,
       label: t("contact.lbl_whatsapp_val", "WhatsApp"),
-      value: waContact ? t("contact.val_chat", "Chat with us") : null,
+      value: waContact ? phoneDisplay || t("contact.val_chat", "Chat with us") : null,
       href: waContact,
     },
     {
+      id: "email",
       Icon: Mail,
       label: t("contact.lbl_email_val", "Email"),
       value: settings?.contact?.email || null,
@@ -381,7 +390,7 @@ export default function Contact() {
                 {t("contact.info_contact", "Contact")}
               </h2>
               <ul className="mt-4 space-y-3">
-                {contactRows.map(({ Icon, label, value, href }) => (
+                {contactRows.map(({ id, Icon, label, value, href }) => (
                   <li key={label} className="flex items-center gap-3 text-sm">
                     <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-leaf/5 text-saffron-deep">
                       <Icon className="h-4 w-4" />
@@ -400,7 +409,7 @@ export default function Contact() {
                               : undefined
                           }
                           className="font-medium text-charcoal transition-colors hover:text-saffron-deep"
-                          data-testid={`contact-info-${label.toLowerCase()}`}
+                          data-testid={`contact-info-${id}`}
                         >
                           {value}
                         </a>
@@ -436,19 +445,38 @@ export default function Contact() {
                   </span>
                   <span>
                     <span className="block text-xs uppercase tracking-[0.15em] text-stone-400">
-                      {t("contact.lbl_service_area", "Service area")}
+                      {t("contact.lbl_city", "City")}
                     </span>
-                    <span
-                      className="font-medium text-charcoal"
-                      data-testid="contact-info-service-area"
-                    >
-                      {settings?.location?.service_area || "Gujarat, India"}
+                    <span className="font-medium text-charcoal" data-testid="contact-info-city">
+                      {[settings?.location?.city, settings?.location?.state, settings?.location?.country]
+                        .filter(Boolean)
+                        .join(", ") || settings?.location?.service_area || "Gujarat, India"}
                     </span>
                   </span>
                 </li>
               </ul>
-              <p className="mt-4 border-t border-leaf/10 pt-4 text-xs italic leading-relaxed text-stone-500">
-                {t("contact.empty_location", "Exact location and map details will be published soon.")}
+              {areas.length > 0 && (
+                <div className="mt-4">
+                  <p className="text-xs uppercase tracking-[0.15em] text-stone-400">
+                    {t("contact.lbl_areas", "Nearest areas")}
+                  </p>
+                  <ul className="mt-3 flex flex-wrap gap-2" data-testid="contact-info-areas">
+                    {areas.map((area) => (
+                      <li
+                        key={area}
+                        className="rounded-full border border-leaf/15 bg-cream px-3 py-1 text-xs font-medium text-leaf"
+                      >
+                        {area}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <p className="mt-4 border-t border-leaf/10 pt-4 text-xs leading-relaxed text-stone-600">
+                {t(
+                  "contact.pickup_text",
+                  "Pickup is by phone call only. Call before you reach the location, especially for a morning order. A street address is not published.",
+                )}
               </p>
             </div>
           </Reveal>
@@ -469,18 +497,39 @@ export default function Contact() {
                   >
                     <span className="capitalize text-stone-600">{t(`contact.days.${day}`, day)}</span>
                     <span
-                      className="italic text-stone-400"
+                      className={hoursOpen ? "font-medium text-charcoal" : "italic text-stone-400"}
                       data-testid={`contact-hours-${day}`}
                     >
-                      {settings?.business_hours?.[day] || t("contact.val_tba", "To be announced")}
+                      {hoursOpen
+                        ? t("contact.hours_daily", "10:00 AM – 11:00 PM")
+                        : settings?.business_hours?.[day] || t("contact.val_tba", "To be announced")}
                     </span>
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 flex items-start gap-2 text-xs italic leading-relaxed text-stone-500">
+              <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-stone-600">
                 <Clock className="mt-0.5 h-3.5 w-3.5 shrink-0" />
                 {t("contact.hours_note")}
               </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <div
+              data-testid="contact-info-card-notes"
+              className="rounded-3xl border border-leaf/10 bg-ivory p-7 shadow-soft"
+            >
+              <h2 className="font-serif text-xl font-semibold text-leaf">
+                {t("contact.notes_title", "Before you order")}
+              </h2>
+              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-stone-600">
+                {(Array.isArray(t("contact.order_notes", { returnObjects: true }))
+                  ? t("contact.order_notes", { returnObjects: true })
+                  : []
+                ).map((note) => (
+                  <li key={note}>{note}</li>
+                ))}
+              </ul>
             </div>
           </Reveal>
 
