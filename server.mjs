@@ -3,7 +3,7 @@ import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { applySeoToHtml } from "./frontend/src/lib/seo.js";
+import { applySeoToHtml, renderSitemap } from "./frontend/src/lib/seo.js";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const dist = path.join(root, "frontend", "dist");
@@ -223,6 +223,12 @@ const server = http.createServer(async (req, res) => {
     if (req.method !== "GET" && req.method !== "HEAD") {
       res.writeHead(405);
       res.end("Method not allowed");
+      return;
+    }
+    if (pathname === "/sitemap.xml") {
+      const body = Buffer.from(renderSitemap(loadJson("products.json", [])));
+      res.writeHead(200, { "content-type": "application/xml; charset=utf-8", "content-length": body.length });
+      res.end(req.method === "HEAD" ? undefined : body);
       return;
     }
     serveStatic(res, pathname, req.method);

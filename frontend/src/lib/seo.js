@@ -246,3 +246,67 @@ export function applySeoToHtml(html, pathname, data) {
   );
   return next.replace("</head>", `    ${renderSeoTags(seo)}\n  </head>`);
 }
+
+// Date the public pages were last reviewed. Bump this when page copy or the menu changes.
+// Do not set it from the server clock — a fresh timestamp on every request makes lastmod untrustworthy.
+export const SITEMAP_LASTMOD = "2026-10-08";
+
+const STATIC_SITEMAP_PAGES = [
+  { path: "/", changefreq: "weekly", priority: "1.0" },
+  { path: "/menu", changefreq: "weekly", priority: "0.9" },
+  { path: "/about", changefreq: "monthly", priority: "0.7" },
+  { path: "/gallery", changefreq: "monthly", priority: "0.6" },
+  { path: "/contact", changefreq: "monthly", priority: "0.8" },
+  { path: "/faq", changefreq: "monthly", priority: "0.6" },
+  { path: "/privacy", changefreq: "yearly", priority: "0.3" },
+  { path: "/terms", changefreq: "yearly", priority: "0.3" },
+  { path: "/refund", changefreq: "yearly", priority: "0.3" },
+];
+
+function dishPriority(product) {
+  const category = String(product?.category || "");
+  if (category.startsWith("Extras") || category === "Beverages") return "0.5";
+  if (product?.badge === "Signature" || category.startsWith("Combos")) return "0.8";
+  return "0.7";
+}
+
+export function sitemapEntries(products, lastmod = SITEMAP_LASTMOD) {
+  const dishes = (Array.isArray(products) ? products : [])
+    .filter((product) => product && typeof product.slug === "string" && product.slug)
+    .sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))
+    .map((product) => ({
+      path: `/menu/${product.slug}`,
+      changefreq: "monthly",
+      priority: dishPriority(product),
+      lastmod: product.updated_on || lastmod,
+    }));
+  const [home, menu, ...rest] = STATIC_SITEMAP_PAGES;
+  return [home, menu, ...dishes, ...rest].map((entry) => ({
+    loc: canonicalUrl(entry.path),
+    lastmod: entry.lastmod || lastmod,
+    changefreq: entry.changefreq,
+    priority: entry.priority,
+  }));
+}
+
+function escapeXml(value) {
+  return escapeHtml(value);
+}
+
+export function renderSitemap(products, lastmod = SITEMAP_LASTMOD) {
+  const urls = sitemapEntries(products, lastmod)
+    .map(
+      (entry) => `  <url>
+    <loc>${escapeXml(entry.loc)}</loc>
+    <lastmod>${escapeXml(entry.lastmod)}</lastmod>
+    <changefreq>${escapeXml(entry.changefreq)}</changefreq>
+    <priority>${escapeXml(entry.priority)}</priority>
+  </url>`,
+    )
+    .join("\n");
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>
+`;
+}
