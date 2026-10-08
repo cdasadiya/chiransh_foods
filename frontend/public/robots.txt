@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://chiransh-foods.onrender.com/sitemap.xml
+
