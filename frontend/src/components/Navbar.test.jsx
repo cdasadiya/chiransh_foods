@@ -15,10 +15,10 @@ function renderNav(path = "/") {
 }
 
 describe("Navbar", () => {
-  it("links the current page to English, Gujarati, and Hindi", () => {
+  it("links the current page to English and Gujarati", () => {
     renderNav("/menu");
     expect(screen.getByRole("link", { name: "English" }).getAttribute("href")).toBe("/menu");
     expect(screen.getByRole("link", { name: "ગુજરાતી" }).getAttribute("href")).toBe("/gu/menu");
-    expect(screen.getByRole("link", { name: "हिन्दी" }).getAttribute("href")).toBe("/hi/menu");
+    expect(screen.queryByRole("link", { name: "हिन्दी" })).toBeNull();
   });
 });

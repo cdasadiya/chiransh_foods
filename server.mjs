@@ -68,7 +68,6 @@ function seoData() {
     settings: loadJson("settings.json", {}),
     faqs: loadFaq("en"),
     faqsGu: loadFaq("gu"),
-    faqsHi: loadFaq("hi"),
   };
 }
 

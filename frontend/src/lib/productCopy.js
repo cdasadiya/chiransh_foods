@@ -6,7 +6,7 @@ function bag(name, description, shortDescription) {
   };
 }
 
-/** Localized dish copy. Legacy gujarati_* / hindi_* fields still work. */
+/** Localized dish copy. Legacy gujarati_* fields still work. */
 export function productCopy(product, lang) {
   if (!product || typeof product !== "object") return bag("", "", "");
   const localized = product.copy?.[lang];
@@ -18,13 +18,6 @@ export function productCopy(product, lang) {
       product.gujarati_name || product.name,
       product.gujarati_description || product.description,
       product.gujarati_short_description || product.gujarati_description || product.short_description,
-    );
-  }
-  if (lang === "hi") {
-    return bag(
-      product.hindi_name || product.name,
-      product.hindi_description || product.description,
-      product.hindi_short_description || product.hindi_description || product.short_description,
     );
   }
   return bag(product.name, product.description, product.short_description);
@@ -39,7 +32,7 @@ export function productNames(product, lang) {
 }
 
 export function productSearchText(product) {
-  return ["en", "gu", "hi"]
+  return ["en", "gu"]
     .map((lang) => {
       const copy = productCopy(product, lang);
       return `${copy.name} ${copy.short_description} ${copy.description}`;

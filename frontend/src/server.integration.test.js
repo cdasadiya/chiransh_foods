@@ -28,14 +28,18 @@ describe("production server", () => {
     expect(fs.existsSync(dist), "run the frontend build before this test").toBe(true);
     await withServer(async (port) => {
       const origin = `http://127.0.0.1:${port}`;
-      const home = await fetch(`${origin}/hi`);
+      const home = await fetch(`${origin}/gu`);
       const html = await home.text();
       expect(home.status).toBe(200);
       expect(home.headers.get("content-security-policy")).toContain("default-src 'self'");
       expect(home.headers.get("x-content-type-options")).toBe("nosniff");
       expect(home.headers.get("cache-control")).toBe("no-cache");
-      expect(html).toContain('lang="hi"');
-      expect(html).toContain('hreflang="gu"');
+      expect(html).toContain('lang="gu"');
+      expect(html).toContain('hreflang="en"');
+      expect(html).not.toContain('hreflang="hi"');
+
+      const hindi = await fetch(`${origin}/hi`);
+      expect(hindi.status).toBe(404);
 
       const missing = await fetch(`${origin}/this-route-should-404`);
       expect(missing.status).toBe(404);

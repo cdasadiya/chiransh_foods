@@ -74,7 +74,7 @@ export default function usePageMeta({
     upsertMeta("property", "og:type", type);
     upsertMeta("property", "og:url", url);
     upsertMeta("property", "og:site_name", SITE_NAME);
-    const localeMap = { gu: "gu_IN", hi: "hi_IN", en: "en_IN" };
+    const localeMap = { gu: "gu_IN", en: "en_IN" };
     upsertMeta("property", "og:locale", ogLocale || localeMap[lang] || "en_IN");
     upsertMeta("property", "og:image", absUrl(image || DEFAULT_OG_IMAGE));
 

@@ -3,12 +3,10 @@ import { initReactI18next } from "react-i18next";
 
 import enTranslations from "./locales/en/translation.json";
 import guTranslations from "./locales/gu/translation.json";
-import hiTranslations from "./locales/hi/translation.json";
 
 function initialLanguage() {
   if (typeof window === "undefined") return "en";
-  const match = window.location.pathname.match(/^\/(gu|hi)(\/|$)/);
-  return match ? match[1] : "en";
+  return /^\/gu(\/|$)/.test(window.location.pathname) ? "gu" : "en";
 }
 
 i18n
@@ -20,9 +18,6 @@ i18n
       },
       gu: {
         translation: guTranslations
-      },
-      hi: {
-        translation: hiTranslations
       }
     },
     lng: initialLanguage(),

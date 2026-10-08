@@ -8,7 +8,6 @@ const DEFAULT_OG_IMAGE = "/images/og-image.jpg";
 export const LOCALES = [
   { code: "en", prefix: "", htmlLang: "en", ogLocale: "en_IN", label: "English", short: "EN" },
   { code: "gu", prefix: "/gu", htmlLang: "gu", ogLocale: "gu_IN", label: "ગુજરાતી", short: "GU" },
-  { code: "hi", prefix: "/hi", htmlLang: "hi", ogLocale: "hi_IN", label: "हिन्दी", short: "HI" },
 ];
 
 const PREFIXED = LOCALES.filter((locale) => locale.prefix).sort((a, b) => b.prefix.length - a.prefix.length);
@@ -232,38 +231,6 @@ const SEO = {
     refundTitle: "રિફંડ / રદ નીતિ — ચિરાંશ ફૂડ્સ",
     refundDescription: "ચિરાંશ ફૂડ્સમાં ઓર્ડરમાં ફેરફાર, રદ અને રિફંડ કેવી રીતે સંભાળવામાં આવે છે.",
   },
-  hi: {
-    homeTitle: "चिरांश फूड्स | अहमदाबाद में असली गुजराती शाकाहारी खाना",
-    siteDescription:
-      "चिरांश फूड्स अहमदाबाद में 100% शाकाहारी गुजराती खाना परोसता है — बड़ौदा स्टाइल सेव उसल और तूवर टोठा, पिकअप के लिए।",
-    menuTitle: "मेनू — चिरांश फूड्स | अहमदाबाद का गुजराती स्ट्रीट फूड",
-    menuDescription:
-      "अहमदाबाद में चिरांश फूड्स का मेनू देखें — सेव उसल, तूवर टोठा, कॉम्बो, जैन और स्वामीनारायण व्यंजन, फैमिली पैक और पेय।",
-    menuList: "चिरांश फूड्स मेनू",
-    homeName: "होम",
-    menuName: "मेनू",
-    brand: "चिरांश फूड्स",
-    notFoundTitle: "पेज नहीं मिला — चिरांश फूड्स",
-    notFoundDescription: "यह पेज मेनू में नहीं है। चिरांश फूड्स के मेनू पर वापस जाएँ।",
-    productTitle: "{name} — चिरांश फूड्स",
-    productDescription: "{short} {name} चिरांश फूड्स की अहमदाबाद की 100% शाकाहारी डिश है।",
-    aboutTitle: "हमारे बारे में — चिरांश फूड्स | अहमदाबाद",
-    aboutDescription:
-      "चिरांश फूड्स अहमदाबाद का घरेलू 100% शाकाहारी गुजराती फूड ब्रांड है — गुजरात के स्ट्रीट फूड का स्वाद आपकी थाली तक लाता है।",
-    galleryTitle: "गैलरी — चिरांश फूड्स | गुजराती खाना और रसोई",
-    galleryDescription: "अहमदाबाद के चिरांश फूड्स के अंदर एक नज़र — खास व्यंजन, ताज़ी सामग्री और हर थाली के पीछे की देखभाल।",
-    contactTitle: "संपर्क और ऑर्डर — चिरांश फूड्स | अहमदाबाद",
-    contactDescription:
-      "अहमदाबाद में चिरांश फूड्स का ऑर्डर करें। पिकअप सिर्फ फोन कॉल से, रोज़ सुबह 10 से रात 11 बजे तक। कॉल या WhatsApp +91 91063 54619।",
-    faqTitle: "सवाल — चिरांश फूड्स | अहमदाबाद",
-    faqDescription: "अहमदाबाद के चिरांश फूड्स के बारे में सवाल — शाकाहारी गुजराती व्यंजन, सेव उसल, तूवर टोठा और ऑर्डर।",
-    privacyTitle: "गोपनीयता नीति — चिरांश फूड्स",
-    privacyDescription: "चिरांश फूड्स पूछताछ फॉर्म से मिली जानकारी कैसे इकट्ठा करता है, इस्तेमाल करता है और सुरक्षित रखता है।",
-    termsTitle: "नियम और शर्तें — चिरांश फूड्स",
-    termsDescription: "चिरांश फूड्स की वेबसाइट इस्तेमाल करते समय और ऑर्डर की पूछताछ करते समय लागू होने वाले नियम।",
-    refundTitle: "रिफंड / रद्द नीति — चिरांश फूड्स",
-    refundDescription: "चिरांश फूड्स में ऑर्डर में बदलाव, रद्दीकरण और रिफंड कैसे संभाले जाते हैं।",
-  },
 };
 
 function text(lang, key) {
@@ -275,7 +242,7 @@ function fill(template, vars) {
 }
 
 function faqsFor(lang, data) {
-  const preferred = lang === "gu" ? data?.faqsGu : lang === "hi" ? data?.faqsHi : data?.faqs;
+  const preferred = lang === "gu" ? data?.faqsGu : data?.faqs;
   if (Array.isArray(preferred) && preferred.length) return preferred;
   return Array.isArray(data?.faqs) ? data.faqs : [];
 }
