@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
 import { getRouteSeo } from "@/lib/routeSeo";
@@ -8,6 +9,7 @@ import { LogoMark } from "@/components/Logo";
 
 export default function NotFound() {
   const { pathname } = useLocation();
+  const { t } = useTranslation();
   usePageMeta(getRouteSeo(pathname));
 
   return (
@@ -29,11 +31,10 @@ export default function NotFound() {
             404
           </p>
           <h1 className="mt-4 font-serif text-3xl font-semibold text-leaf sm:text-4xl">
-            Looks like this plate is empty.
+            {t("notfound.title")}
           </h1>
           <p className="mx-auto mt-3 max-w-sm text-base leading-relaxed text-stone-600">
-            The page you're looking for isn't on the menu — but plenty of good
-            food is.
+            {t("notfound.body")}
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <LocaleLink
@@ -41,7 +42,7 @@ export default function NotFound() {
               data-testid="notfound-return-menu-btn"
               className="group inline-flex items-center gap-2 rounded-full bg-leaf px-7 py-3.5 font-display text-sm font-semibold text-cream shadow-soft transition-colors hover:bg-forest"
             >
-              Return to Menu
+              {t("notfound.menu")}
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </LocaleLink>
             <LocaleLink
@@ -49,7 +50,7 @@ export default function NotFound() {
               data-testid="notfound-return-home-btn"
               className="inline-flex items-center gap-2 rounded-full border border-leaf/25 px-7 py-3.5 font-display text-sm font-semibold text-leaf transition-colors hover:border-leaf hover:bg-ivory"
             >
-              Back to Home
+              {t("notfound.home")}
             </LocaleLink>
           </div>
         </Reveal>

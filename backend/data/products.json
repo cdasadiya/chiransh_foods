@@ -6,7 +6,7 @@
     "category": "Sev Usal (Regular)",
     "description": "Spicy Baroda-style usal topped with crunchy sev. Made in our home kitchen in Ahmedabad. Regular recipe. For a no-onion, no-garlic version, see Jain & Swaminarayan.",
     "short_description": "Vadodara's beloved street-food legend — slow-simmered spiced usal crowned with a generous heap of crunchy sev.",
-    "image": "/images/sev_usal_with_chutney.png",
+    "image": "/images/sev_usal_with_chutney.webp",
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -16,7 +16,10 @@
     "ingredients": [],
     "serving_info": "",
     "gujarati_description": "તીખું અને ચટપટું બરોડા સ્ટાઇલ ઉસળ, સાથે ક્રન્ચી સેવ. અમદાવાદમાં અમારા રસોડામાં બનેલું. રેગ્યુલર રેસીપી. જૈન અને સ્વામિનારાયણ માટે અલગ વિકલ્પ ઉપલબ્ધ છે.",
-    "gujarati_short_description": "વડોદરાનું પ્રખ્યાત સ્ટ્રીટ-ફૂડ — ધીમા તાપે પકવેલું મસાલેદાર ઉસળ અને ક્રન્ચી સેવ."
+    "gujarati_short_description": "વડોદરાનું પ્રખ્યાત સ્ટ્રીટ-ફૂડ — ધીમા તાપે પકવેલું મસાલેદાર ઉસળ અને ક્રન્ચી સેવ.",
+    "hindi_name": "बड़ौदा स्टाइल सेव उसल",
+    "hindi_description": "तीखा बड़ौदा स्टाइल उसल, ऊपर कुरकुरी सेव। अहमदाबाद की हमारी रसोई में बना। रेगुलर रेसिपी। बिना प्याज़-लहसुन के लिए जैन और स्वामीनारायण देखें।",
+    "hindi_short_description": "वडोदरा का प्यारा स्ट्रीट फूड — धीमी आँच का मसालेदार उसल और ढेर सारी कुरकुरी सेव।"
   },
   {
     "name": "Sev Usal with Pav",
@@ -25,7 +28,7 @@
     "category": "Sev Usal (Regular)",
     "description": "Baroda-style sev usal served with soft pav, onion and lemon. Regular recipe. Pick your spice level.",
     "short_description": "Baroda-style sev usal served with soft pav, onion and lemon.",
-    "image": "/images/sev_usal_with_chutney.png",
+    "image": "/images/sev_usal_with_chutney.webp",
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -35,7 +38,10 @@
     "ingredients": [],
     "serving_info": "",
     "gujarati_description": "બરોડા સ્ટાઇલ સેવ ઉસળ સાથે નરમ પાઉં, ડુંગળી અને લીંબુ. રેગ્યુલર રેસીપી. તમારી પસંદ મુજબ તીખાશ.",
-    "gujarati_short_description": "બરોડા સ્ટાઇલ સેવ ઉસળ સાથે નરમ પાઉં, ડુંગળી અને લીંબુ."
+    "gujarati_short_description": "બરોડા સ્ટાઇલ સેવ ઉસળ સાથે નરમ પાઉં, ડુંગળી અને લીંબુ.",
+    "hindi_name": "सेव उसल पाव के साथ",
+    "hindi_description": "बड़ौदा स्टाइल सेव उसल, नरम पाव, प्याज़ और नींबू के साथ। रेगुलर रेसिपी। तीखापन अपनी पसंद का चुनें।",
+    "hindi_short_description": "बड़ौदा स्टाइल सेव उसल, नरम पाव, प्याज़ और नींबू के साथ।"
   },
   {
     "name": "Sev Usal Take-Home Pack",
@@ -44,7 +50,7 @@
     "category": "Sev Usal (Regular)",
     "description": "Sev usal packed to take home, with the sev packed separately so it stays crunchy. Pav, onion-coriander and lemon on the side. Regular recipe. Pick your spice level.",
     "short_description": "Sev usal packed to take home, with the sev packed separately so it stays crunchy.",
-    "image": "/images/sev_usal_with_chutney.png",
+    "image": "/images/sev_usal_with_chutney.webp",
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -54,7 +60,10 @@
     "ingredients": [],
     "serving_info": "",
     "gujarati_description": "સેવ ઉસળ ટેક-હોમ પેક, જેમાં સેવ અલગથી પેક કરવામાં આવે છે જેથી તે ક્રન્ચી રહે. સાથે પાઉં, ડુંગળી-ધાણા અને લીંબુ. રેગ્યુલર રેસીપી.",
-    "gujarati_short_description": "ઘરે લઈ જવા માટે સેવ ઉસળ પેક, સેવ અલગથી પેક કરવામાં આવે છે જેથી તે ક્રન્ચી રહે."
+    "gujarati_short_description": "ઘરે લઈ જવા માટે સેવ ઉસળ પેક, સેવ અલગથી પેક કરવામાં આવે છે જેથી તે ક્રન્ચી રહે.",
+    "hindi_name": "सेव उसल टेक-होम पैक",
+    "hindi_description": "घर ले जाने का सेव उसल। सेव अलग पैक होती है ताकि कुरकुरी रहे। साथ में पाव, प्याज़-धनिया और नींबू। रेगुलर रेसिपी।",
+    "hindi_short_description": "घर ले जाने का सेव उसल, सेव अलग पैक ताकि कुरकुरी रहे।"
   },
   {
     "name": "Tuvar Totha",
@@ -63,7 +72,7 @@
     "category": "Tuvar Totha (Regular)",
     "description": "Gujarati tuvar totha: dried tuvar cooked in a spicy masala gravy. Made in our home kitchen in Ahmedabad. Regular recipe. For a no-onion, no-garlic version, see Jain & Swaminarayan.",
     "short_description": "A rustic, heartwarming Gujarati street-style tuvar preparation — bold flavour, homestyle comfort.",
-    "image": "/images/tuvar_totha_with_chutney.png",
+    "image": "/images/tuvar_totha_with_chutney.webp",
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -73,7 +82,10 @@
     "ingredients": [],
     "serving_info": "",
     "gujarati_description": "મહેસાણાની શિયાળાની ખાસ વાનગી. તુવેરના દાણાને લીલી ડુંગળી, લસણ અને મસાલા સાથે ધીમા તાપે રાંધવામાં આવે છે. રેગ્યુલર રેસીપી. જૈન અને સ્વામિનારાયણ માટે અલગ વિકલ્પ ઉપલબ્ધ છે.",
-    "gujarati_short_description": "ઉત્તર ગુજરાતની શિયાળાની પ્રખ્યાત વાનગી — મસાલેદાર અને સ્વાદિષ્ટ તુવેર ટોઠા."
+    "gujarati_short_description": "ઉત્તર ગુજરાતની શિયાળાની પ્રખ્યાત વાનગી — મસાલેદાર અને સ્વાદિષ્ટ તુવેર ટોઠા.",
+    "hindi_name": "तूवर टोठा",
+    "hindi_description": "गुजराती तूवर टोठा: सूखी तूवर मसालेदार ग्रेवी में। अहमदाबाद की रसोई में बना। रेगुलर रेसिपी। बिना प्याज़-लहसुन के लिए जैन और स्वामीनारायण देखें।",
+    "hindi_short_description": "देहाती, सुकूनभरा गुजराती तूवर — तीखा स्वाद, घर जैसा आराम।"
   },
   {
     "name": "Tuvar Totha with Pav",
@@ -82,7 +94,7 @@
     "category": "Tuvar Totha (Regular)",
     "description": "Spicy Gujarati tuvar totha served with soft pav, onion and lemon. Regular recipe. Pick your spice level.",
     "short_description": "Spicy Gujarati tuvar totha served with soft pav, onion and lemon.",
-    "image": "/images/tuvar_totha_with_chutney.png",
+    "image": "/images/tuvar_totha_with_chutney.webp",
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -92,7 +104,10 @@
     "ingredients": [],
     "serving_info": "",
     "gujarati_description": "મસાલેદાર તુવેર ટોઠા સાથે ૨ નરમ પાઉં, લીલી ડુંગળી અને લીંબુ. રેગ્યુલર રેસીપી. તમારી પસંદ મુજબ તીખાશ.",
-    "gujarati_short_description": "મસાલેદાર તુવેર ટોઠા સાથે નરમ પાઉં, ડુંગળી અને લીંબુ."
+    "gujarati_short_description": "મસાલેદાર તુવેર ટોઠા સાથે નરમ પાઉં, ડુંગળી અને લીંબુ.",
+    "hindi_name": "तूवर टोठा पाव के साथ",
+    "hindi_description": "तीखा गुजराती तूवर टोठा, नरम पाव, प्याज़ और नींबू के साथ। रेगुलर रेसिपी। तीखापन चुनें।",
+    "hindi_short_description": "तीखा गुजराती तूवर टोठा, नरम पाव, प्याज़ और नींबू के साथ।"
   },
   {
     "name": "Sev Usal and Tuvar Totha Combo Plate",
@@ -101,7 +116,7 @@
     "category": "Combos (Regular)",
     "description": "Sev usal and tuvar totha on one plate, with pav, onion and lemon. Serves 1. Regular recipe. Pick your spice level.",
     "short_description": "Sev usal and tuvar totha on one plate, with pav, onion and lemon.",
-    "image": "/images/combo_plate_with_chutney.png",
+    "image": "/images/combo_plate_with_chutney.webp",
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -111,7 +126,10 @@
     "ingredients": [],
     "serving_info": "",
     "gujarati_description": "સેવ ઉસળ અને તુવેર ટોઠા એક જ પ્લેટમાં, સાથે પાઉં, ડુંગળી અને લીંબુ. ૧ વ્યક્તિ માટે. રેગ્યુલર રેસીપી.",
-    "gujarati_short_description": "સેવ ઉસળ અને તુવેર ટોઠા એક જ પ્લેટમાં, સાથે પાઉં, ડુંગળી અને લીંબુ."
+    "gujarati_short_description": "સેવ ઉસળ અને તુવેર ટોઠા એક જ પ્લેટમાં, સાથે પાઉં, ડુંગળી અને લીંબુ.",
+    "hindi_name": "सेव उसल और तूवर टोठा कॉम्बो प्लेट",
+    "hindi_description": "एक प्लेट में सेव उसल और तूवर टोठा, पाव, प्याज़ और नींबू के साथ। एक व्यक्ति के लिए। रेगुलर रेसिपी।",
+    "hindi_short_description": "एक प्लेट में सेव उसल और तूवर टोठा, पाव, प्याज़ और नींबू के साथ।"
   },
   {
     "name": "Jain Sev Usal",
@@ -120,7 +138,7 @@
     "category": "Jain & Swaminarayan",
     "description": "Baroda-style sev usal made Jain style: no onion, no garlic and no root vegetables. Topped with crunchy sev, with lemon on the side. Served without pav. Pick your spice level.",
     "short_description": "Baroda-style sev usal made Jain style: no onion, no garlic and no root vegetables.",
-    "image": "/images/jain_sev_usal.png",
+    "image": "/images/jain_sev_usal.webp",
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -130,7 +148,10 @@
     "ingredients": [],
     "serving_info": "",
     "gujarati_description": "બરોડા સ્ટાઇલ સેવ ઉસળ જૈન રીત મુજબ: ડુંગળી, લસણ કે કંદમૂળ વગર. ઉપરથી ક્રન્ચી સેવ અને લીંબુ. પાઉં વગર પીરસવામાં આવે છે. તમારી પસંદ મુજબ તીખાશ.",
-    "gujarati_short_description": "બરોડા સ્ટાઇલ સેવ ઉસળ જૈન રીત મુજબ: ડુંગળી, લસણ કે કંદમૂળ વગર."
+    "gujarati_short_description": "બરોડા સ્ટાઇલ સેવ ઉસળ જૈન રીત મુજબ: ડુંગળી, લસણ કે કંદમૂળ વગર.",
+    "hindi_name": "जैन सेव उसल",
+    "hindi_description": "बड़ौदा स्टाइल सेव उसल जैन तरीके से: बिना प्याज़, लहसुन और कंदमूल। ऊपर कुरकुरी सेव, साथ में नींबू। पाव के बिना।",
+    "hindi_short_description": "बड़ौदा स्टाइल सेव उसल जैन तरीके से: बिना प्याज़, लहसुन और कंदमूल।"
   },
   {
     "name": "Jain Tuvar Totha",
@@ -139,7 +160,7 @@
     "category": "Jain & Swaminarayan",
     "description": "Gujarati tuvar totha made Jain style: no onion, no garlic and no root vegetables, in a spicy masala gravy. Served without pav. Pick your spice level.",
     "short_description": "Gujarati tuvar totha made Jain style: no onion, no garlic and no root vegetables.",
-    "image": "/images/jain_tuvar_totha.png",
+    "image": "/images/jain_tuvar_totha.webp",
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -149,7 +170,10 @@
     "ingredients": [],
     "serving_info": "",
     "gujarati_description": "મહેસાણાના તુવેર ટોઠા જૈન રીત મુજબ: ડુંગળી, લસણ કે કંદમૂળ વગર. જાડી અને સ્વાદિષ્ટ ગ્રેવી. પાઉં વગર પીરસવામાં આવે છે.",
-    "gujarati_short_description": "મહેસાણાના તુવેર ટોઠા જૈન રીત મુજબ: ડુંગળી, લસણ કે કંદમૂળ વગર."
+    "gujarati_short_description": "મહેસાણાના તુવેર ટોઠા જૈન રીત મુજબ: ડુંગળી, લસણ કે કંદમૂળ વગર.",
+    "hindi_name": "जैन तूवर टोठा",
+    "hindi_description": "गुजराती तूवर टोठा जैन तरीके से: बिना प्याज़, लहसुन और कंदमूल, मसालेदार ग्रेवी में। पाव के बिना।",
+    "hindi_short_description": "गुजराती तूवर टोठा जैन तरीके से: बिना प्याज़, लहसुन और कंदमूल।"
   },
   {
     "name": "Swaminarayan Sev Usal",
@@ -158,7 +182,7 @@
     "category": "Jain & Swaminarayan",
     "description": "Baroda-style sev usal made Swaminarayan style: no onion and no garlic. Topped with crunchy sev, with lemon on the side. Served without pav. Pick your spice level.",
     "short_description": "Baroda-style sev usal made Swaminarayan style: no onion and no garlic.",
-    "image": "/images/jain_sev_usal.png",
+    "image": "/images/jain_sev_usal.webp",
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -168,7 +192,10 @@
     "ingredients": [],
     "serving_info": "",
     "gujarati_description": "બરોડા સ્ટાઇલ સેવ ઉસળ સ્વામિનારાયણ રીત મુજબ: ડુંગળી અને લસણ વગર. ઉપરથી ક્રન્ચી સેવ અને લીંબુ. પાઉં વગર પીરસવામાં આવે છે.",
-    "gujarati_short_description": "બરોડા સ્ટાઇલ સેવ ઉસળ સ્વામિનારાયણ રીત મુજબ: ડુંગળી અને લસણ વગર."
+    "gujarati_short_description": "બરોડા સ્ટાઇલ સેવ ઉસળ સ્વામિનારાયણ રીત મુજબ: ડુંગળી અને લસણ વગર.",
+    "hindi_name": "स्वामीनारायण सेव उसल",
+    "hindi_description": "बड़ौदा स्टाइल सेव उसल स्वामीनारायण तरीके से: बिना प्याज़ और लहसुन। ऊपर कुरकुरी सेव और नींबू। पाव के बिना।",
+    "hindi_short_description": "बड़ौदा स्टाइल सेव उसल स्वामीनारायण तरीके से: बिना प्याज़ और लहसुन।"
   },
   {
     "name": "Swaminarayan Tuvar Totha",
@@ -177,7 +204,7 @@
     "category": "Jain & Swaminarayan",
     "description": "Gujarati tuvar totha made Swaminarayan style: no onion and no garlic, in a spicy masala gravy. Served without pav. Pick your spice level.",
     "short_description": "Gujarati tuvar totha made Swaminarayan style: no onion and no garlic.",
-    "image": "/images/jain_tuvar_totha.png",
+    "image": "/images/jain_tuvar_totha.webp",
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -187,7 +214,10 @@
     "ingredients": [],
     "serving_info": "",
     "gujarati_description": "મહેસાણાના તુવેર ટોઠા સ્વામિનારાયણ રીત મુજબ: ડુંગળી અને લસણ વગર. જાડી અને સ્વાદિષ્ટ ગ્રેવી. પાઉં વગર પીરસવામાં આવે છે.",
-    "gujarati_short_description": "મહેસાણાના તુવેર ટોઠા સ્વામિનારાયણ રીત મુજબ: ડુંગળી અને લસણ વગર."
+    "gujarati_short_description": "મહેસાણાના તુવેર ટોઠા સ્વામિનારાયણ રીત મુજબ: ડુંગળી અને લસણ વગર.",
+    "hindi_name": "स्वामीनारायण तूवर टोठा",
+    "hindi_description": "गुजराती तूवर टोठा स्वामीनारायण तरीके से: बिना प्याज़ और लहसुन, मसालेदार ग्रेवी में। पाव के बिना।",
+    "hindi_short_description": "गुजराती तूवर टोठा स्वामीनारायण तरीके से: बिना प्याज़ और लहसुन।"
   },
   {
     "name": "Sev Usal Family and Party Pack",
@@ -196,7 +226,7 @@
     "category": "Family & Party Packs (Regular)",
     "description": "Sev usal in family and party sizes, with the sev packed separately so it stays crunchy. Pav, onion and lemon on the side. Regular recipe. Pick the size and spice level.",
     "short_description": "Sev usal in family and party sizes, with the sev packed separately so it stays crunchy.",
-    "image": "/images/sev_usal_with_chutney.png",
+    "image": "/images/sev_usal_with_chutney.webp",
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -206,7 +236,10 @@
     "ingredients": [],
     "serving_info": "",
     "gujarati_description": "ફેમિલી અને પાર્ટી સાઇઝમાં સેવ ઉસળ, સેવ અલગથી પેક કરવામાં આવે છે જેથી તે ક્રન્ચી રહે. સાથે પાઉં, ડુંગળી અને લીંબુ. રેગ્યુલર રેસીપી.",
-    "gujarati_short_description": "ફેમિલી અને પાર્ટી સાઇઝમાં સેવ ઉસળ, સેવ અલગથી પેક કરવામાં આવે છે."
+    "gujarati_short_description": "ફેમિલી અને પાર્ટી સાઇઝમાં સેવ ઉસળ, સેવ અલગથી પેક કરવામાં આવે છે.",
+    "hindi_name": "सेव उसल फ़ैमिली और पार्टी पैक",
+    "hindi_description": "फ़ैमिली और पार्टी साइज़ में सेव उसल। सेव अलग पैक ताकि कुरकुरी रहे। साथ में पाव, प्याज़ और नींबू। रेगुलर रेसिपी।",
+    "hindi_short_description": "फ़ैमिली और पार्टी साइज़ में सेव उसल, सेव अलग पैक ताकि कुरकुरी रहे।"
   },
   {
     "name": "Tuvar Totha Family and Party Pack",
@@ -215,7 +248,7 @@
     "category": "Family & Party Packs (Regular)",
     "description": "Gujarati tuvar totha in family and party sizes, with pav, onion and lemon on the side. Regular recipe. Pick the size and spice level.",
     "short_description": "Gujarati tuvar totha in family and party sizes, with pav, onion and lemon on the side.",
-    "image": "/images/tuvar_totha_with_chutney.png",
+    "image": "/images/tuvar_totha_with_chutney.webp",
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -225,7 +258,10 @@
     "ingredients": [],
     "serving_info": "",
     "gujarati_description": "ફેમિલી અને પાર્ટી સાઇઝમાં તુવેર ટોઠા. સાથે પાઉં, લીલી ડુંગળી અને લીંબુ. રેગ્યુલર રેસીપી.",
-    "gujarati_short_description": "ફેમિલી અને પાર્ટી સાઇઝમાં તુવેર ટોઠા, શિયાળાની પાર્ટીઓ માટે ઉત્તમ."
+    "gujarati_short_description": "ફેમિલી અને પાર્ટી સાઇઝમાં તુવેર ટોઠા, શિયાળાની પાર્ટીઓ માટે ઉત્તમ.",
+    "hindi_name": "तूवर टोठा फ़ैमिली और पार्टी पैक",
+    "hindi_description": "फ़ैमिली और पार्टी साइज़ में गुजराती तूवर टोठा, पाव, प्याज़ और नींबू के साथ। रेगुलर रेसिपी।",
+    "hindi_short_description": "फ़ैमिली और पार्टी साइज़ में गुजराती तूवर टोठा, पाव, प्याज़ और नींबू के साथ।"
   },
   {
     "name": "Pav (2 Pcs)",
@@ -242,7 +278,10 @@
     "sort_order": 13,
     "badge": "",
     "ingredients": [],
-    "serving_info": ""
+    "serving_info": "",
+    "hindi_name": "पाव (2 पीस)",
+    "hindi_description": "सेव उसल या तूवर टोठा के साथ दो नरम पाव।",
+    "hindi_short_description": "सेव उसल या तूवर टोठा के साथ दो नरम पाव।"
   },
   {
     "name": "Butter Pav (2 Pcs)",
@@ -259,7 +298,10 @@
     "sort_order": 14,
     "badge": "",
     "ingredients": [],
-    "serving_info": ""
+    "serving_info": "",
+    "hindi_name": "बटर पाव (2 पीस)",
+    "hindi_description": "मक्खन से टोस्ट किए दो नरम पाव।",
+    "hindi_short_description": "मक्खन से टोस्ट किए दो नरम पाव।"
   },
   {
     "name": "Masala Chaas",
@@ -268,7 +310,7 @@
     "category": "Beverages",
     "description": "Spiced Gujarati buttermilk, [200 ml].",
     "short_description": "Spiced Gujarati buttermilk.",
-    "image": "/images/masala_chaas.png",
+    "image": "/images/masala_chaas.webp",
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -278,7 +320,10 @@
     "ingredients": [],
     "serving_info": "",
     "gujarati_description": "ઠંડી અને મસાલેદાર છાશ, તીખાશને સંતુલિત કરવા માટે ઉત્તમ.",
-    "gujarati_short_description": "ઠંડી અને મસાલેદાર છાશ."
+    "gujarati_short_description": "ઠંડી અને મસાલેદાર છાશ.",
+    "hindi_name": "मसाला छाछ",
+    "hindi_description": "मसालेदार गुजराती छाछ, 200 मि.ली.",
+    "hindi_short_description": "मसालेदार गुजराती छाछ।"
   },
   {
     "name": "Packaged Drinking Water",
@@ -287,7 +332,7 @@
     "category": "Beverages",
     "description": "Sealed bottle of packaged drinking water, [500 ml / 1 L].",
     "short_description": "Sealed bottle of packaged drinking water.",
-    "image": "/images/packaged_drinking_water.png",
+    "image": "/images/packaged_drinking_water.webp",
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -297,6 +342,9 @@
     "ingredients": [],
     "serving_info": "",
     "gujarati_description": "૫૦૦ મિલી પેકેજ્ડ પીવાનું પાણી.",
-    "gujarati_short_description": "૫૦૦ મિલી પેકેજ્ડ પીવાનું પાણી."
+    "gujarati_short_description": "૫૦૦ મિલી પેકેજ્ડ પીવાનું પાણી.",
+    "hindi_name": "पैकेज्ड पीने का पानी",
+    "hindi_description": "सीलबंद पैकेज्ड पीने का पानी, 500 मि.ली. / 1 लीटर।",
+    "hindi_short_description": "सीलबंद पैकेज्ड पीने का पानी।"
   }
 ]

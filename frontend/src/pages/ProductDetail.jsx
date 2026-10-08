@@ -6,6 +6,8 @@ import usePageMeta from "@/hooks/usePageMeta";
 import { fetchProduct, fetchProducts } from "@/lib/api";
 import { LocaleLink, useLocalizedSeo } from "@/lib/locale";
 import { priceLabel } from "@/lib/site";
+import { productNames } from "@/lib/productCopy";
+import FoodImage from "@/components/FoodImage";
 import NotFound from "@/pages/NotFound";
 import OrderButtons from "@/components/OrderButtons";
 import ProductCard from "@/components/ProductCard";
@@ -22,7 +24,6 @@ const AVAILABILITY = {
 export default function ProductDetail() {
   const { slug } = useParams();
   const { t, i18n } = useTranslation();
-  const isGu = i18n.language === "gu";
   const {
     data: product,
     isLoading,
@@ -41,10 +42,11 @@ export default function ProductDetail() {
 
   const is404 = isError && error?.response?.status === 404;
 
-  const mainName = product ? (isGu && product.gujarati_name ? product.gujarati_name : product.name) : "";
-  const secondaryName = product ? (isGu && product.gujarati_name ? product.name : product.gujarati_name) : "";
-  const desc = product ? (isGu && product.gujarati_description ? product.gujarati_description : product.description) : "";
-  const shortDesc = product ? (isGu && product.gujarati_short_description ? product.gujarati_short_description : product.short_description) : "";
+  const names = product ? productNames(product, i18n.language) : null;
+  const mainName = names?.name || "";
+  const secondaryName = names?.secondary || "";
+  const desc = names?.description || "";
+  const shortDesc = names?.short_description || "";
 
   const seo = useLocalizedSeo(`/menu/${slug || ""}`);
   usePageMeta({ ...seo, noindex: Boolean(is404) || seo.noindex, alternates: is404 ? [] : seo.alternates });
@@ -70,17 +72,17 @@ export default function ProductDetail() {
     return (
       <div className="mx-auto max-w-3xl px-4 pb-24 pt-32 text-center sm:px-6" data-testid="product-error-state">
         <p className="font-serif text-3xl font-semibold text-leaf">
-          We couldn't load this dish.
+          {t("product.load_error")}
         </p>
         <p className="mt-3 text-sm text-stone-500">
-          Please check your connection and try again.
+          {t("product.load_error_detail")}
         </p>
         <button
           onClick={() => refetch()}
           data-testid="product-retry-btn"
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-leaf px-6 py-3 font-display text-sm font-semibold text-cream transition-colors hover:bg-forest"
+          className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-leaf px-6 py-3 font-display text-sm font-semibold text-cream transition-colors hover:bg-forest"
         >
-          <RefreshCw className="h-4 w-4" /> Try again
+          <RefreshCw className="h-4 w-4" /> {t("product.try_again")}
         </button>
       </div>
     );
@@ -95,7 +97,7 @@ export default function ProductDetail() {
   return (
     <>
       <nav
-        aria-label="Breadcrumb"
+        aria-label={t("a11y.breadcrumb")}
         className="mx-auto max-w-7xl px-4 pt-24 sm:px-6 lg:px-8 lg:pt-28"
         data-testid="product-breadcrumb"
       >
@@ -132,11 +134,12 @@ export default function ProductDetail() {
             aria-hidden="true"
           />
           <div className="relative overflow-hidden rounded-3xl shadow-lift">
-            <img
+            <FoodImage
               src={product.image}
               alt={`${mainName} — ${shortDesc}`}
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="aspect-[4/3] w-full object-cover"
-              fetchPriority="high"
             />
           </div>
         </Reveal>
@@ -146,14 +149,14 @@ export default function ProductDetail() {
             <div className="flex flex-wrap items-center gap-3">
               {product.badge && (
                 <span className="rounded-full bg-leaf/5 px-3 py-1 text-[11px] font-display font-semibold uppercase tracking-[0.15em] text-saffron-deep">
-                  {product.badge}
+                  {t(`menu.badges.${product.badge}`, product.badge)}
                 </span>
               )}
               <span
                 className={`rounded-full border px-3 py-1 text-[11px] font-display font-semibold uppercase tracking-[0.15em] ${avail.cls}`}
                 data-testid="product-availability"
               >
-                {avail.label}
+                {t(`product.${product.availability}`, avail.label)}
               </span>
               {product.vegetarian && <VegMark className="h-5 w-5" />}
             </div>
@@ -162,7 +165,7 @@ export default function ProductDetail() {
               {mainName}
             </h1>
             {secondaryName && (
-              <p className="font-guj mt-2 text-2xl text-saffron-deep" lang={isGu ? "en" : "gu"}>
+              <p className="font-guj mt-2 text-2xl text-saffron-deep" lang={i18n.language === "en" ? "gu" : "en"}>
                 {secondaryName}
               </p>
             )}
@@ -177,7 +180,7 @@ export default function ProductDetail() {
                   {t("menu.price", "Price")}
                 </p>
                 <p className="mt-0.5 font-display text-base font-semibold text-leaf" data-testid="product-detail-price">
-                  {priceLabel(product.price)}
+                  {product.price == null || product.price === "" ? t("menu.price_contact") : priceLabel(product.price)}
                 </p>
               </div>
               <div>

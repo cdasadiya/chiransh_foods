@@ -11,6 +11,8 @@ import {
   FALLBACK_PRODUCTS,
   whatsappUrl,
 } from "@/lib/site";
+import { productNames } from "@/lib/productCopy";
+import FoodImage from "@/components/FoodImage";
 import Marquee from "@/components/Marquee";
 import OrderButtons from "@/components/OrderButtons";
 import Reveal from "@/components/Reveal";
@@ -86,7 +88,7 @@ function Hero() {
   const { t } = useTranslation();
   const ref = useRef(null);
   const { settings } = useSettings();
-  const wa = whatsappUrl(settings);
+  const wa = whatsappUrl(settings, null, t("order.whatsapp_general"));
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -175,11 +177,12 @@ function Hero() {
               transition={{ duration: 1.1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="relative overflow-hidden rounded-b-3xl rounded-t-[999px] shadow-lift"
             >
-              <img
+              <FoodImage
                 src={FALLBACK_PRODUCTS[0].image}
-                alt="Baroda-style Sev Usal — spiced pea curry crowned with crunchy sev"
+                alt={t("home.hero.image_alt")}
+                priority
+                sizes="(max-width: 1024px) 100vw, 42vw"
                 className="aspect-[4/5] w-full object-cover"
-                fetchPriority="high"
               />
             </motion.div>
 
@@ -192,11 +195,10 @@ function Hero() {
                 data-testid="hero-floating-tuvar-link"
                 className="flex items-center gap-3 rounded-2xl border border-leaf/10 bg-ivory/95 p-3 pr-5 shadow-lift backdrop-blur transition-transform duration-300 hover:-translate-y-1"
               >
-                <img
+                <FoodImage
                   src={FALLBACK_PRODUCTS[1].image}
-                  alt="Tuvar Totha served in a brass handi"
-                  loading="lazy"
-                  decoding="async"
+                  alt={t("home.hero.float_alt")}
+                  sizes="56px"
                   className="h-14 w-14 rounded-xl object-cover"
                 />
                 <span>
@@ -218,35 +220,31 @@ function Hero() {
 
 function SignatureBento({ products }) {
   const { t, i18n } = useTranslation();
-  const isGu = i18n.language === "gu";
   const usal =
     products.find((p) => p.slug === "baroda-style-sev-usal") || products[0];
   const totha =
     products.find((p) => p.slug === "tuvar-totha") || products[1] || products[0];
 
   const BigCard = ({ product, testId }) => {
-    const mainName = isGu && product.gujarati_name ? product.gujarati_name : product.name;
-    const secondaryName = isGu && product.gujarati_name ? product.name : product.gujarati_name;
-    const shortDesc = isGu && product.gujarati_short_description ? product.gujarati_short_description : product.short_description;
+    const { name: mainName, short_description: shortDesc, secondary: secondaryName } = productNames(product, i18n.language);
     
     return (
     <LocaleLink
       to={`/menu/${product.slug}`}
       data-testid={testId}
       className="group relative flex h-full min-h-[420px] flex-col justify-end overflow-hidden rounded-3xl shadow-soft"
-      aria-label={`${mainName} — view details`}
+      aria-label={t("product.view_details", { name: mainName })}
     >
-      <img
+      <FoodImage
         src={product.image}
-        alt={`${product.name} — ${product.short_description}`}
-        loading="lazy"
-        decoding="async"
+        alt={`${mainName} — ${shortDesc}`}
+        sizes="(max-width: 1024px) 100vw, 50vw"
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-leaf/95 via-leaf/35 to-transparent" />
       <div className="relative p-7 md:p-9">
         <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-leaf/40 px-3 py-1 text-[11px] font-display font-semibold uppercase tracking-[0.2em] text-gold backdrop-blur">
-          <UtensilsCrossed className="h-3 w-3" /> {product.badge || "Signature"}
+          <UtensilsCrossed className="h-3 w-3" /> {product.badge ? t(`menu.badges.${product.badge}`, product.badge) : t("product.badge_fallback")}
         </span>
         <h3 className="mt-4 font-serif text-3xl font-semibold text-cream md:text-4xl">
           {mainName}
@@ -307,7 +305,7 @@ function StorySnapshot() {
           />
           <img
             src="/images/da7bd498a6ba6bcf1a798b19b9852a5c933f812e8c34dd3f232eca06200a0382.webp"
-            alt="Finishing touches — sprinkling crunchy sev over a steaming bowl"
+            alt={t("home.story.image_alt")}
             loading="lazy"
             decoding="async"
             className="relative aspect-[4/3] w-full rounded-3xl object-cover shadow-lift"

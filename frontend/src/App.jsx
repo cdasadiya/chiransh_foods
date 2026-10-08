@@ -1,6 +1,8 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { LocaleSync } from "@/lib/locale";
+import { LOCALES } from "@/lib/seo";
 import { Toaster } from "@/components/ui/sonner";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -37,6 +39,7 @@ function siteRoutes() {
 }
 
 function App() {
+  const { t } = useTranslation();
   return (
     <ErrorBoundary>
       <SettingsProvider>
@@ -47,16 +50,18 @@ function App() {
                 href="#main-content"
                 className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-leaf focus:px-4 focus:py-2 focus:text-sm focus:text-cream"
               >
-                Skip to content
+                {t("a11y.skip")}
               </a>
               <LocaleSync />
               <Navbar />
-              <main id="main-content" className="flex-1">
-                <Suspense fallback={<div className="min-h-[60vh]" aria-busy="true" />}>
+              <main id="main-content" className="flex-1 pt-[env(safe-area-inset-top)]">
+                <Suspense fallback={<div className="min-h-[60vh]" aria-busy="true"><span className="sr-only">{t("a11y.loading")}</span></div>}>
                 <Routes>
-                  <Route path="/gu" element={<Outlet />}>
-                    {siteRoutes()}
-                  </Route>
+                  {LOCALES.filter((locale) => locale.prefix).map((locale) => (
+                    <Route key={locale.code} path={locale.prefix} element={<Outlet />}>
+                      {siteRoutes()}
+                    </Route>
+                  ))}
                   <Route path="/" element={<Outlet />}>
                     {siteRoutes()}
                   </Route>

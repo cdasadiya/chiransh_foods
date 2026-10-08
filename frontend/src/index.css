@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@custom-variant hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @slot;
+    }
+  }
+}
+
 @theme {
   --color-leaf: #142D21;
   --color-forest: #1A3A2A;
@@ -31,9 +39,9 @@
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
 
-  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-serif: "Cormorant Garamond", "Noto Serif Gujarati", serif;
-  --font-display: "Outfit", "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Noto Sans Devanagari", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Noto Serif Gujarati", "Noto Sans Devanagari", serif;
+  --font-display: "Outfit", "Plus Jakarta Sans", "Noto Sans Devanagari", sans-serif;
   --font-guj: "Noto Serif Gujarati", "Cormorant Garamond", serif;
 
   --radius-lg: var(--radius);
@@ -166,6 +174,22 @@ html.lenis body {
 
 .lenis.lenis-stopped {
   overflow: hidden;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+a,
+button,
+summary {
+  touch-action: manipulation;
+}
+
+input,
+select,
+textarea {
+  font-size: 1rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
