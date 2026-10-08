@@ -5,7 +5,7 @@ Welcome to **Chiransh Foods**, an authentic Gujarati vegetarian street food appl
 ## 🌟 Features
 
 - **Authentic Menu**: Browse Baroda-style street food including Sev Usal, Tuvar Totha, and more.
-- **Multilingual Support**: Fully localized in English and Gujarati (`i18next`).
+- **Multilingual Support**: English pages stay on the normal URLs. Gujarati pages use the same path under `/gu`. The language button switches the address.
 - **Responsive & Accessible**: Beautifully designed UI that works seamlessly across all devices.
 - **Dynamic Content**: Data-driven UI fetching products seamlessly from the backend API.
 - **Premium Aesthetics**: Elegant design with smooth transitions and animations.
@@ -26,7 +26,7 @@ This project is built using modern web development technologies to ensure a fast
 ### Backend (API)
 - **FastAPI**: High-performance Python web framework for building APIs.
 - **Uvicorn**: Lightning-fast ASGI server.
-- **Python 3**: For reliable data serving.
+- **Python 3.10+**: For reliable data serving.
 
 ## 🚀 Getting Started
 
@@ -40,16 +40,20 @@ Ensure you have the following installed on your system:
 
 ### Quick Start (Recommended)
 
-The easiest way to start both the frontend and backend servers is by using the provided bash script from the root directory:
+The easiest way to start both the frontend and backend servers is from the repository root:
 
 ```bash
-# Make the script executable
+# Linux or macOS
 chmod +x run.sh
-
-# Start both frontend and backend servers concurrently
 ./run.sh
 ```
-This script automatically sets up the python virtual environment, installs dependencies, and boots up both servers.
+
+```bat
+REM Windows
+run.bat
+```
+
+The script sets up the Python virtual environment, installs dependencies, and starts both servers.
 - Frontend will be available at: `http://localhost:3000`
 - Backend API will be available at: `http://127.0.0.1:8001`
 
@@ -77,11 +81,24 @@ npm run dev
 
 ## 📜 Available Scripts
 
-In the `frontend` directory, you can run:
+From the repository root, the same commands Render uses are:
+
+- `yarn` or `npm install`: Installs dependencies and builds `frontend/dist`.
+- `yarn start` or `npm start`: Serves that build with `server.mjs`, including page SEO tags and `/api`.
+
+In the `frontend` directory:
 
 - `npm run dev`: Runs the app in development mode.
 - `npm run build`: Builds the app for production to the `dist` folder.
-- `npm run preview`: Locally preview the production build.
+- `npm run preview`: Serves the built files only. It does not inject the production SEO tags or the API. Use `yarn start` from the repository root for that.
+
+## Public site details
+
+Editable public facts live in [`backend/data/settings.json`](backend/data/settings.json): Ahmedabad, the pickup areas, daily hours, the phone and WhatsApp number, and the canonical host `https://chiransh-foods.onrender.com`. Email and the Google Maps link are still empty.
+
+The contact form stores enquiries in `backend/data/enquiries.json`. That file is gitignored.
+
+The canonical host, sitemap, and `robots.txt` use the Render address. `chiranshfoods.com` is not the live site.
 
 ## Deploy on Render
 
