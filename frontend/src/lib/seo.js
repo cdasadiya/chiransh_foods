@@ -54,6 +54,40 @@ function socialLinks(settings) {
   return [social.instagram, social.facebook, social.youtube].filter((url) => typeof url === "string" && url);
 }
 
+function localBusinessFields(settings) {
+  const phone = settings?.contact?.phone;
+  const city = settings?.location?.city;
+  const areas = Array.isArray(settings?.location?.areas) ? settings.location.areas.filter(Boolean) : [];
+  const hours = settings?.business_hours || {};
+  const fields = {};
+  if (typeof phone === "string" && phone) fields.telephone = phone.replace(/\s/g, "");
+  if (city) {
+    fields.address = {
+      "@type": "PostalAddress",
+      addressLocality: city,
+      addressRegion: settings?.location?.state || "Gujarat",
+      addressCountry: "IN",
+    };
+  }
+  if (areas.length) {
+    fields.areaServed = areas.map((name) => ({
+      "@type": "Place",
+      name: city ? `${name}, ${city}` : name,
+    }));
+  }
+  if (hours.opens && hours.closes) {
+    fields.openingHoursSpecification = [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        opens: hours.opens,
+        closes: hours.closes,
+      },
+    ];
+  }
+  return fields;
+}
+
 function breadcrumb(items) {
   return {
     "@type": "BreadcrumbList",
@@ -118,6 +152,7 @@ export function getPageSeo(pathname, data) {
 
   if (path === "/") {
     const description = isGu ? GU_SITE_DESCRIPTION : SITE_DESCRIPTION;
+    const business = localBusinessFields(settings);
     return page({
       lang,
       title: isGu ? "ચિરાંશ ફૂડ્સ | અસલ ગુજરાતી શાકાહારી ભોજન" : "Chiransh Foods | Authentic Gujarati Vegetarian Food",
@@ -132,7 +167,12 @@ export function getPageSeo(pathname, data) {
         image: absoluteAsset(DEFAULT_OG_IMAGE),
         servesCuisine: ["Gujarati", "Indian", "Street Food"],
         inLanguage: isGu ? "gu" : "en",
-        areaServed: { "@type": "AdministrativeArea", name: area },
+        areaServed: business.areaServed || { "@type": "AdministrativeArea", name: area },
+        ...(business.telephone ? { telephone: business.telephone } : {}),
+        ...(business.address ? { address: business.address } : {}),
+        ...(business.openingHoursSpecification
+          ? { openingHoursSpecification: business.openingHoursSpecification }
+          : {}),
         sameAs: socialLinks(settings),
       },
     });
@@ -227,10 +267,10 @@ export function getPageSeo(pathname, data) {
         : "A look inside Chiransh Foods — our signature Gujarati dishes, fresh ingredients, hand-ground spices and the care behind every plate.",
     },
     "/contact": {
-      title: isGu ? "સંપર્ક અને ઓર્ડર — ચિરાંશ ફૂડ્સ | ગુજરાતમાં ગુજરાતી ભોજન" : "Contact & Order — Chiransh Foods | Gujarati Food in Gujarat",
+      title: isGu ? "સંપર્ક અને ઓર્ડર — ચિરાંશ ફૂડ્સ | અમદાવાદ" : "Contact & Order — Chiransh Foods | Ahmedabad",
       description: isGu
-        ? "અસલ ગુજરાતી સ્ટ્રીટ ફૂડ — બરોડા સ્ટાઇલ સેવ ઉસળ, તુવેર ટોઠા અને વધુ — ઓર્ડર કરવા ચિરાંશ ફૂડ્સનો સંપર્ક કરો. પૂછપરછ મોકલો, અમે જવાબ આપીશું."
-        : "Contact Chiransh Foods to order authentic Gujarati street food — Baroda-style Sev Usal, Tuvar Totha and more. Send us an order enquiry and we'll get back to you.",
+        ? "અમદાવાદમાં ચિરાંશ ફૂડ્સનો ઓર્ડર કરો. પિકઅપ ફક્ત ફોન કોલથી, દરરોજ સવારે ૧૦ થી રાત્રે ૧૧. કોલ અથવા WhatsApp +91 91063 54619."
+        : "Order Chiransh Foods in Ahmedabad. Pickup is by phone call, daily 10:00 AM to 11:00 PM IST. Call or WhatsApp +91 91063 54619.",
     },
     "/faq": {
       title: isGu ? "પ્રશ્નો — ચિરાંશ ફૂડ્સ | ગુજરાતી શાકાહારી ભોજન" : "FAQ — Chiransh Foods | Gujarati Vegetarian Food",

@@ -87,6 +87,11 @@
     "copyright": "© 2026 Chiransh Foods · Gujarat, India",
     "tagline": "100% Vegetarian · Made with care"
   },
+  "order": {
+    "whatsapp": "Order on WhatsApp",
+    "call": "Call to Order",
+    "contact": "Contact to Order"
+  },
   "menu": {
     "header": {
       "eyebrow": "The Menu",
@@ -190,12 +195,24 @@
     "val_tba": "To be announced",
     "empty_contact": "Phone, WhatsApp and email details will be published soon.",
     "info_location": "Location & Service Area",
+    "lbl_city": "City",
+    "lbl_areas": "Nearest areas",
     "lbl_service_area": "Service area",
+    "pickup_text": "Pickup is by phone call only. Call before you reach the location, especially for a morning order. A street address is not published.",
     "empty_location": "Exact location and map details will be published soon.",
     "info_hours": "Business Hours",
-    "hours_note": "Please contact Chiransh Foods for current availability.",
-    "map_title": "Location details coming soon",
-    "map_text": "Serving Gujarat, India. A map and pickup details will be published once our public location is confirmed.",
+    "hours_daily": "10:00 AM – 11:00 PM",
+    "hours_note": "Open daily, 10:00 AM to 11:00 PM IST. For any other plan, call or WhatsApp +91 91063 54619.",
+    "notes_title": "Before you order",
+    "order_notes": [
+      "Orders are placed on WhatsApp Business.",
+      "Call before you arrive for a morning order.",
+      "Place family pack orders in advance by phone or WhatsApp.",
+      "Party orders and family pack orders are available.",
+      "Jain and Swaminarayan orders are available."
+    ],
+    "map_title": "Map link coming soon",
+    "map_text": "We serve the Ahmedabad areas listed above. A Google Maps link will be added later.",
     "days": {
       "monday": "monday",
       "tuesday": "tuesday",
@@ -232,23 +249,23 @@
       },
       {
         "q": "Where do you serve?",
-        "a": "Chiransh Foods is associated with Gujarat, India. Our exact service area is being finalised — please contact us for current availability."
+        "a": "We serve Ahmedabad, Gujarat. Pickup by phone call is available in New Ranip, Ranip, Nirnay Nagar, Chandlodiya, Chandkheda, Vandemataram, New Vadaj, Jagat Pur, Godrej Garden City and Charodi. A street address is not published."
       },
       {
         "q": "How can I place an order?",
-        "a": "The quickest way is WhatsApp — tap \"Order on WhatsApp\" anywhere on the site and send us a pre-filled message. You can also send your details through the enquiry form on our Contact page and we'll confirm your order directly. Online ordering is coming soon."
+        "a": "Order on WhatsApp Business at wa.me/919106354619, or call +91 91063 54619. We are open daily from 10:00 AM to 11:00 PM IST. Family pack and party orders should be placed in advance. Jain and Swaminarayan orders are available. You can also send an enquiry from the Contact page."
       },
       {
         "q": "Do you offer pickup?",
-        "a": "Please contact Chiransh Foods for current availability. Pickup options will be announced soon."
+        "a": "Yes. Pickup is by phone call only. Call +91 91063 54619 before you arrive, especially for a morning order. We are open daily from 10:00 AM to 11:00 PM IST."
       },
       {
         "q": "Do you offer delivery?",
-        "a": "Please contact Chiransh Foods for current availability. Delivery options — including pickup, local delivery and delivery partners — will be announced soon."
+        "a": "Delivery is not listed yet. Call or WhatsApp +91 91063 54619 to ask. Pickup by phone call is available in the Ahmedabad areas we serve."
       },
       {
         "q": "How can I contact Chiransh Foods?",
-        "a": "WhatsApp is the quickest way to reach us — chat with us directly from any \"Order on WhatsApp\" button. You can also use the enquiry form on our Contact page. Phone and email details will be published soon."
+        "a": "Call or WhatsApp +91 91063 54619. WhatsApp Business is at wa.me/919106354619. Email will be added later. You can also use the enquiry form on the Contact page."
       }
     ]
   },
