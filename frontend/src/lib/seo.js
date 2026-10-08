@@ -13,8 +13,16 @@ export function normalizePath(pathname) {
   return raw.replace(/\/+$/, "");
 }
 
-export function canonicalUrl(pathname) {
-  return `${CANONICAL_ORIGIN}${normalizePath(pathname)}`;
+export function resolveCanonicalOrigin(settings) {
+  const raw = typeof settings?.domain?.canonical_base === "string"
+    ? settings.domain.canonical_base.trim().replace(/\/+$/, "")
+    : "";
+  if (/^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(raw)) return raw;
+  return CANONICAL_ORIGIN;
+}
+
+export function canonicalUrl(pathname, origin = CANONICAL_ORIGIN) {
+  return `${origin}${normalizePath(pathname)}`;
 }
 
 export function splitLocale(pathname) {
@@ -32,21 +40,21 @@ export function localePath(pathname, lang) {
 
 const LEGAL_PATHS = new Set(["/privacy", "/terms", "/refund"]);
 
-export function hreflangAlternates(pathname) {
+export function hreflangAlternates(pathname, origin = CANONICAL_ORIGIN) {
   const { path } = splitLocale(pathname);
   if (LEGAL_PATHS.has(path)) return [];
   return [
-    { hreflang: "en", href: canonicalUrl(localePath(path, "en")) },
-    { hreflang: "gu", href: canonicalUrl(localePath(path, "gu")) },
-    { hreflang: "x-default", href: canonicalUrl(localePath(path, "en")) },
+    { hreflang: "en", href: canonicalUrl(localePath(path, "en"), origin) },
+    { hreflang: "gu", href: canonicalUrl(localePath(path, "gu"), origin) },
+    { hreflang: "x-default", href: canonicalUrl(localePath(path, "en"), origin) },
   ];
 }
 
-export function absoluteAsset(pathname) {
-  if (!pathname) return `${CANONICAL_ORIGIN}${DEFAULT_OG_IMAGE}`;
+export function absoluteAsset(pathname, origin = CANONICAL_ORIGIN) {
+  if (!pathname) return `${origin}${DEFAULT_OG_IMAGE}`;
   if (/^https?:\/\//i.test(pathname)) return pathname;
   const path = pathname.startsWith("/") ? pathname : `/${pathname}`;
-  return `${CANONICAL_ORIGIN}${path}`;
+  return `${origin}${path}`;
 }
 
 function socialLinks(settings) {
@@ -88,14 +96,14 @@ function localBusinessFields(settings) {
   return fields;
 }
 
-function breadcrumb(items) {
+function breadcrumb(items, origin = CANONICAL_ORIGIN) {
   return {
     "@type": "BreadcrumbList",
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      ...(item.path ? { item: canonicalUrl(item.path) } : {}),
+      ...(item.path ? { item: canonicalUrl(item.path, origin) } : {}),
     })),
   };
 }
@@ -115,18 +123,19 @@ function page({
   lang = "en",
   canonicalPath,
   alternates,
+  origin = CANONICAL_ORIGIN,
 }) {
   return {
     title,
     description,
-    canonical: canonicalUrl(canonicalPath || path),
-    image: absoluteAsset(image),
+    canonical: canonicalUrl(canonicalPath || path, origin),
+    image: absoluteAsset(image, origin),
     type,
     jsonLd,
     noindex,
     lang,
     ogLocale: lang === "gu" ? "gu_IN" : "en_IN",
-    alternates: alternates ?? (noindex ? [] : hreflangAlternates(path)),
+    alternates: alternates ?? (noindex ? [] : hreflangAlternates(path, origin)),
   };
 }
 
@@ -141,6 +150,7 @@ export function getPageSeo(pathname, data) {
   const localized = (bare) => localePath(bare, lang);
   const products = Array.isArray(data?.products) ? data.products : [];
   const settings = data?.settings || {};
+  const origin = resolveCanonicalOrigin(settings);
   const faqs = lang === "gu"
     ? (Array.isArray(data?.faqsGu) && data.faqsGu.length ? data.faqsGu : data?.faqs)
     : data?.faqs;
@@ -153,7 +163,7 @@ export function getPageSeo(pathname, data) {
   if (path === "/") {
     const description = isGu ? GU_SITE_DESCRIPTION : SITE_DESCRIPTION;
     const business = localBusinessFields(settings);
-    return page({
+    return page({ origin,
       lang,
       title: isGu ? "ચિરાંશ ફૂડ્સ | અસલ ગુજરાતી શાકાહારી ભોજન" : "Chiransh Foods | Authentic Gujarati Vegetarian Food",
       description,
@@ -163,8 +173,8 @@ export function getPageSeo(pathname, data) {
         "@type": "FoodEstablishment",
         name: isGu ? "ચિરાંશ ફૂડ્સ" : SITE_NAME,
         description,
-        url: canonicalUrl(localized("/")),
-        image: absoluteAsset(DEFAULT_OG_IMAGE),
+        url: canonicalUrl(localized("/"), origin),
+        image: absoluteAsset(DEFAULT_OG_IMAGE, origin),
         servesCuisine: ["Gujarati", "Indian", "Street Food"],
         inLanguage: isGu ? "gu" : "en",
         areaServed: business.areaServed || { "@type": "AdministrativeArea", name: area },
@@ -180,7 +190,7 @@ export function getPageSeo(pathname, data) {
 
   if (path === "/menu") {
     const sorted = [...products].sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
-    return page({
+    return page({ origin,
       lang,
       title: isGu ? "મેનૂ — ચિરાંશ ફૂડ્સ | ગુજરાતી સ્ટ્રીટ ફૂડ" : "Menu — Chiransh Foods | Gujarati Street Food & More",
       description: isGu ? GU_MENU_DESCRIPTION : MENU_DESCRIPTION,
@@ -193,13 +203,13 @@ export function getPageSeo(pathname, data) {
             "@type": "ListItem",
             position: index + 1,
             name: isGu && product.gujarati_name ? product.gujarati_name : product.name,
-            url: canonicalUrl(localized(`/menu/${product.slug}`)),
+            url: canonicalUrl(localized(`/menu/${product.slug}`), origin),
           })),
         },
         breadcrumb([
           { name: homeName, path: localized("/") },
           { name: menuName, path: localized("/menu") },
-        ]),
+        ], origin),
       ]),
     });
   }
@@ -209,7 +219,7 @@ export function getPageSeo(pathname, data) {
     const product = products.find((item) => item.slug === slug);
     const here = localized(path);
     if (!product) {
-      return page({
+      return page({ origin,
         lang,
         title: isGu ? "પાનું મળ્યું નથી — ચિરાંશ ફૂડ્સ" : "Page not found — Chiransh Foods",
         description: isGu
@@ -227,7 +237,7 @@ export function getPageSeo(pathname, data) {
     const description = isGu
       ? `${shortDesc} ${name} ચિરાંશ ફૂડ્સની ૧૦૦% શાકાહારી વાનગી છે.`
       : `${shortDesc} ${product.name} is a 100% vegetarian ${String(product.category || "Gujarati").toLowerCase()} dish by Chiransh Foods, Gujarat.`;
-    return page({
+    return page({ origin,
       lang,
       title: isGu ? `${name} — ચિરાંશ ફૂડ્સ` : `${product.name}${secondary} — Chiransh Foods`,
       description,
@@ -238,7 +248,7 @@ export function getPageSeo(pathname, data) {
         {
           "@type": "Product",
           name,
-          image: [absoluteAsset(product.image)],
+          image: [absoluteAsset(product.image, origin)],
           description: (isGu ? product.gujarati_description : product.description) || shortDesc,
           category: product.category,
           inLanguage: isGu ? "gu" : "en",
@@ -248,7 +258,7 @@ export function getPageSeo(pathname, data) {
           { name: homeName, path: localized("/") },
           { name: menuName, path: localized("/menu") },
           { name, path: localized(`/menu/${product.slug}`) },
-        ]),
+        ], origin),
       ]),
     });
   }
@@ -312,7 +322,7 @@ export function getPageSeo(pathname, data) {
   if (found) {
     const here = localized(path);
     if (LEGAL_PATHS.has(path)) {
-      return page({
+      return page({ origin,
         ...found,
         lang,
         path: here,
@@ -321,10 +331,10 @@ export function getPageSeo(pathname, data) {
         alternates: [],
       });
     }
-    return page({ ...found, lang, path: here });
+    return page({ origin, ...found, lang, path: here });
   }
 
-  return page({
+  return page({ origin,
     lang,
     title: isGu ? "પાનું મળ્યું નથી — ચિરાંશ ફૂડ્સ" : "Page not found — Chiransh Foods",
     description: isGu
@@ -411,7 +421,8 @@ function dishPriority(product) {
   return "0.7";
 }
 
-export function sitemapEntries(products, lastmod = SITEMAP_LASTMOD) {
+export function sitemapEntries(products, lastmod = SITEMAP_LASTMOD, settings) {
+  const origin = resolveCanonicalOrigin(settings);
   const dishes = (Array.isArray(products) ? products : [])
     .filter((product) => product && typeof product.slug === "string" && product.slug)
     .sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))
@@ -423,10 +434,10 @@ export function sitemapEntries(products, lastmod = SITEMAP_LASTMOD) {
     }));
   const [home, menu, ...rest] = STATIC_SITEMAP_PAGES;
   return [home, menu, ...dishes, ...rest].flatMap((entry) => {
-    const alternates = hreflangAlternates(entry.path);
+    const alternates = hreflangAlternates(entry.path, origin);
     const langs = LEGAL_PATHS.has(entry.path) ? ["en"] : ["en", "gu"];
     return langs.map((lang) => ({
-      loc: canonicalUrl(localePath(entry.path, lang)),
+      loc: canonicalUrl(localePath(entry.path, lang), origin),
       lastmod: entry.lastmod || lastmod,
       changefreq: entry.changefreq,
       priority: entry.priority,
@@ -439,8 +450,19 @@ function escapeXml(value) {
   return escapeHtml(value);
 }
 
-export function renderSitemap(products, lastmod = SITEMAP_LASTMOD) {
-  const urls = sitemapEntries(products, lastmod)
+export function renderRobots(settings) {
+  const origin = resolveCanonicalOrigin(settings);
+  return `User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: ${origin}/sitemap.xml
+
+`;
+}
+
+export function renderSitemap(products, lastmod = SITEMAP_LASTMOD, settings) {
+  const urls = sitemapEntries(products, lastmod, settings)
     .map((entry) => {
       const links = (entry.alternates || [])
         .map(

@@ -99,7 +99,7 @@ export const FALLBACK_SETTINGS = {
     google_search_console: null,
     meta_pixel_id: null,
   },
-  domain: { canonical_base: null },
+  domain: { canonical_base: "https://chiransh-foods.onrender.com" },
 };
 
 const IMG = "/images";
