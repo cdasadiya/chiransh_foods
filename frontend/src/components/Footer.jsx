@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { LocaleLink } from "@/lib/locale";
 import { Mail, MessageCircle, Phone } from "lucide-react";
 import { FaFacebook as Facebook, FaInstagram as Instagram, FaYoutube as Youtube } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
@@ -75,13 +75,13 @@ export default function Footer() {
             <ul className="mt-5 space-y-3">
               {EXPLORE.map((l) => (
                 <li key={l.to}>
-                  <Link
+                  <LocaleLink
                     to={l.to}
                     data-testid={`footer-${l.label.toLowerCase()}-link`}
                     className="text-sm text-cream/75 transition-colors hover:text-cream"
                   >
                     {t(`nav.${l.to.slice(1) || 'home'}`, l.label)}
-                  </Link>
+                  </LocaleLink>
                 </li>
               ))}
             </ul>
@@ -94,13 +94,13 @@ export default function Footer() {
             <ul className="mt-5 space-y-3">
               {LEGAL.map((l) => (
                 <li key={l.to}>
-                  <Link
+                  <LocaleLink
                     to={l.to}
                     data-testid={`footer-legal-${l.label.toLowerCase().split(" ")[0]}-link`}
                     className="text-sm text-cream/75 transition-colors hover:text-cream"
                   >
                     {t(`footer.${l.to.slice(1).split('/')[0]}`, l.label)}
-                  </Link>
+                  </LocaleLink>
                 </li>
               ))}
             </ul>

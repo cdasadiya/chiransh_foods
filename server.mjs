@@ -176,12 +176,13 @@ function seoData() {
   return {
     products: loadJson("products.json", []),
     settings: loadJson("settings.json", {}),
-    faqs: loadJsonFromFrontend(),
+    faqs: loadFaq("en"),
+    faqsGu: loadFaq("gu"),
   };
 }
 
-function loadJsonFromFrontend() {
-  const file = path.join(root, "frontend", "src", "locales", "en", "translation.json");
+function loadFaq(lang) {
+  const file = path.join(root, "frontend", "src", "locales", lang, "translation.json");
   if (!fs.existsSync(file)) return [];
   const data = JSON.parse(fs.readFileSync(file, "utf8"));
   return Array.isArray(data?.faq?.items) ? data.faq.items : [];

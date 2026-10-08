@@ -17,6 +17,31 @@ export function canonicalUrl(pathname) {
   return `${CANONICAL_ORIGIN}${normalizePath(pathname)}`;
 }
 
+export function splitLocale(pathname) {
+  const path = normalizePath(pathname);
+  if (path === "/gu") return { lang: "gu", path: "/" };
+  if (path.startsWith("/gu/")) return { lang: "gu", path: normalizePath(path.slice(3)) };
+  return { lang: "en", path };
+}
+
+export function localePath(pathname, lang) {
+  const bare = splitLocale(pathname).path;
+  if (lang === "gu") return bare === "/" ? "/gu" : `/gu${bare}`;
+  return bare;
+}
+
+const LEGAL_PATHS = new Set(["/privacy", "/terms", "/refund"]);
+
+export function hreflangAlternates(pathname) {
+  const { path } = splitLocale(pathname);
+  if (LEGAL_PATHS.has(path)) return [];
+  return [
+    { hreflang: "en", href: canonicalUrl(localePath(path, "en")) },
+    { hreflang: "gu", href: canonicalUrl(localePath(path, "gu")) },
+    { hreflang: "x-default", href: canonicalUrl(localePath(path, "en")) },
+  ];
+}
+
 export function absoluteAsset(pathname) {
   if (!pathname) return `${CANONICAL_ORIGIN}${DEFAULT_OG_IMAGE}`;
   if (/^https?:\/\//i.test(pathname)) return pathname;
@@ -45,38 +70,68 @@ function graph(nodes) {
   return { "@context": "https://schema.org", "@graph": nodes };
 }
 
-function page({ title, description, path, image, type = "website", jsonLd, noindex = false }) {
+function page({
+  title,
+  description,
+  path,
+  image,
+  type = "website",
+  jsonLd,
+  noindex = false,
+  lang = "en",
+  canonicalPath,
+  alternates,
+}) {
   return {
     title,
     description,
-    canonical: canonicalUrl(path),
+    canonical: canonicalUrl(canonicalPath || path),
     image: absoluteAsset(image),
     type,
     jsonLd,
     noindex,
+    lang,
+    ogLocale: lang === "gu" ? "gu_IN" : "en_IN",
+    alternates: alternates ?? (noindex ? [] : hreflangAlternates(path)),
   };
 }
 
+const GU_SITE_DESCRIPTION =
+  "ચિરાંશ ફૂડ્સ ગુજરાત, ભારતની ૧૦૦% શાકાહારી ગુજરાતી ફૂડ બ્રાન્ડ છે — બરોડા સ્ટાઇલ સેવ ઉસળ અને તુવેર ટોઠા જેવી અસલ સ્ટ્રીટ-ફૂડ વાનગીઓ પીરસે છે.";
+
+const GU_MENU_DESCRIPTION =
+  "ચિરાંશ ફૂડ્સનું મેનૂ જુઓ — ૧૦૦% શાકાહારી ગુજરાતી ભોજન: સેવ ઉસળ, તુવેર ટોઠા, કોમ્બો, જૈન અને સ્વામિનારાયણ વાનગીઓ, ફેમિલી પેક અને પીણાં.";
+
 export function getPageSeo(pathname, data) {
-  const path = normalizePath(pathname);
+  const { lang, path } = splitLocale(pathname);
+  const localized = (bare) => localePath(bare, lang);
   const products = Array.isArray(data?.products) ? data.products : [];
   const settings = data?.settings || {};
-  const faqs = Array.isArray(data?.faqs) ? data.faqs : [];
+  const faqs = lang === "gu"
+    ? (Array.isArray(data?.faqsGu) && data.faqsGu.length ? data.faqsGu : data?.faqs)
+    : data?.faqs;
+  const faqItems = Array.isArray(faqs) ? faqs : [];
   const area = settings?.location?.service_area || settings?.location?.state || "Gujarat, India";
+  const isGu = lang === "gu";
+  const homeName = isGu ? "હોમ" : "Home";
+  const menuName = isGu ? "મેનુ" : "Menu";
 
   if (path === "/") {
+    const description = isGu ? GU_SITE_DESCRIPTION : SITE_DESCRIPTION;
     return page({
-      title: "Chiransh Foods | Authentic Gujarati Vegetarian Food",
-      description: SITE_DESCRIPTION,
-      path,
+      lang,
+      title: isGu ? "ચિરાંશ ફૂડ્સ | અસલ ગુજરાતી શાકાહારી ભોજન" : "Chiransh Foods | Authentic Gujarati Vegetarian Food",
+      description,
+      path: localized("/"),
       jsonLd: {
         "@context": "https://schema.org",
         "@type": "FoodEstablishment",
-        name: SITE_NAME,
-        description: SITE_DESCRIPTION,
-        url: canonicalUrl("/"),
+        name: isGu ? "ચિરાંશ ફૂડ્સ" : SITE_NAME,
+        description,
+        url: canonicalUrl(localized("/")),
         image: absoluteAsset(DEFAULT_OG_IMAGE),
         servesCuisine: ["Gujarati", "Indian", "Street Food"],
+        inLanguage: isGu ? "gu" : "en",
         areaServed: { "@type": "AdministrativeArea", name: area },
         sameAs: socialLinks(settings),
       },
@@ -86,23 +141,24 @@ export function getPageSeo(pathname, data) {
   if (path === "/menu") {
     const sorted = [...products].sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
     return page({
-      title: "Menu — Chiransh Foods | Gujarati Street Food & More",
-      description: MENU_DESCRIPTION,
-      path,
+      lang,
+      title: isGu ? "મેનૂ — ચિરાંશ ફૂડ્સ | ગુજરાતી સ્ટ્રીટ ફૂડ" : "Menu — Chiransh Foods | Gujarati Street Food & More",
+      description: isGu ? GU_MENU_DESCRIPTION : MENU_DESCRIPTION,
+      path: localized("/menu"),
       jsonLd: graph([
         {
           "@type": "ItemList",
-          name: "Chiransh Foods menu",
+          name: isGu ? "ચિરાંશ ફૂડ્સ મેનૂ" : "Chiransh Foods menu",
           itemListElement: sorted.map((product, index) => ({
             "@type": "ListItem",
             position: index + 1,
-            name: product.name,
-            url: canonicalUrl(`/menu/${product.slug}`),
+            name: isGu && product.gujarati_name ? product.gujarati_name : product.name,
+            url: canonicalUrl(localized(`/menu/${product.slug}`)),
           })),
         },
         breadcrumb([
-          { name: "Home", path: "/" },
-          { name: "Menu", path: "/menu" },
+          { name: homeName, path: localized("/") },
+          { name: menuName, path: localized("/menu") },
         ]),
       ]),
     });
@@ -111,35 +167,47 @@ export function getPageSeo(pathname, data) {
   if (path.startsWith("/menu/")) {
     const slug = decodeURIComponent(path.slice("/menu/".length));
     const product = products.find((item) => item.slug === slug);
+    const here = localized(path);
     if (!product) {
       return page({
-        title: "Page not found — Chiransh Foods",
-        description: "Looks like this plate is empty. Return to the Chiransh Foods menu.",
-        path,
+        lang,
+        title: isGu ? "પાનું મળ્યું નથી — ચિરાંશ ફૂડ્સ" : "Page not found — Chiransh Foods",
+        description: isGu
+          ? "આ પાનું મેનૂમાં નથી. ચિરાંશ ફૂડ્સના મેનૂ પર પાછા જાઓ."
+          : "Looks like this plate is empty. Return to the Chiransh Foods menu.",
+        path: here,
         noindex: true,
       });
     }
-    const secondary = product.gujarati_name ? ` (${product.gujarati_name})` : "";
-    const shortDesc = product.short_description || product.description || "";
+    const name = isGu && product.gujarati_name ? product.gujarati_name : product.name;
+    const secondary = !isGu && product.gujarati_name ? ` (${product.gujarati_name})` : "";
+    const shortDesc = isGu
+      ? product.gujarati_short_description || product.gujarati_description || product.short_description || ""
+      : product.short_description || product.description || "";
+    const description = isGu
+      ? `${shortDesc} ${name} ચિરાંશ ફૂડ્સની ૧૦૦% શાકાહારી વાનગી છે.`
+      : `${shortDesc} ${product.name} is a 100% vegetarian ${String(product.category || "Gujarati").toLowerCase()} dish by Chiransh Foods, Gujarat.`;
     return page({
-      title: `${product.name}${secondary} — Chiransh Foods`,
-      description: `${shortDesc} ${product.name} is a 100% vegetarian ${String(product.category || "Gujarati").toLowerCase()} dish by Chiransh Foods, Gujarat.`,
-      path,
+      lang,
+      title: isGu ? `${name} — ચિરાંશ ફૂડ્સ` : `${product.name}${secondary} — Chiransh Foods`,
+      description,
+      path: localized(`/menu/${product.slug}`),
       image: product.image,
       type: "product",
       jsonLd: graph([
         {
           "@type": "Product",
-          name: product.name,
+          name,
           image: [absoluteAsset(product.image)],
-          description: product.description || shortDesc,
+          description: (isGu ? product.gujarati_description : product.description) || shortDesc,
           category: product.category,
-          brand: { "@type": "Organization", name: SITE_NAME },
+          inLanguage: isGu ? "gu" : "en",
+          brand: { "@type": "Organization", name: isGu ? "ચિરાંશ ફૂડ્સ" : SITE_NAME },
         },
         breadcrumb([
-          { name: "Home", path: "/" },
-          { name: "Menu", path: "/menu" },
-          { name: product.name, path: `/menu/${product.slug}` },
+          { name: homeName, path: localized("/") },
+          { name: menuName, path: localized("/menu") },
+          { name, path: localized(`/menu/${product.slug}`) },
         ]),
       ]),
     });
@@ -147,28 +215,33 @@ export function getPageSeo(pathname, data) {
 
   const staticPages = {
     "/about": {
-      title: "About Us — Chiransh Foods | Our Gujarati Food Story",
-      description:
-        "Chiransh Foods is a home-grown, 100% vegetarian Gujarati food brand from Gujarat, India — bringing the authentic flavours of Gujarat's street-food culture to your table.",
+      title: isGu ? "અમારા વિશે — ચિરાંશ ફૂડ્સ | ગુજરાતી ફૂડની વાર્તા" : "About Us — Chiransh Foods | Our Gujarati Food Story",
+      description: isGu
+        ? "ચિરાંશ ફૂડ્સ ગુજરાત, ભારતની ઘરગથ્થુ ૧૦૦% શાકાહારી ગુજરાતી ફૂડ બ્રાન્ડ છે — ગુજરાતની સ્ટ્રીટ-ફૂડ સંસ્કૃતિના અસલ સ્વાદ તમારા ટેબલ સુધી લાવે છે."
+        : "Chiransh Foods is a home-grown, 100% vegetarian Gujarati food brand from Gujarat, India — bringing the authentic flavours of Gujarat's street-food culture to your table.",
     },
     "/gallery": {
-      title: "Gallery — Chiransh Foods | Gujarati Food, Spices & Kitchen",
-      description:
-        "A look inside Chiransh Foods — our signature Gujarati dishes, fresh ingredients, hand-ground spices and the care behind every plate.",
+      title: isGu ? "ગેલેરી — ચિરાંશ ફૂડ્સ | ગુજરાતી ભોજન, મસાલા અને રસોડું" : "Gallery — Chiransh Foods | Gujarati Food, Spices & Kitchen",
+      description: isGu
+        ? "ચિરાંશ ફૂડ્સની અંદર એક નજર — અમારી ખાસ ગુજરાતી વાનગીઓ, તાજી સામગ્રી, હાથથી દળેલા મસાલા અને દરેક થાળી પાછળની કાળજી."
+        : "A look inside Chiransh Foods — our signature Gujarati dishes, fresh ingredients, hand-ground spices and the care behind every plate.",
     },
     "/contact": {
-      title: "Contact & Order — Chiransh Foods | Gujarati Food in Gujarat",
-      description:
-        "Contact Chiransh Foods to order authentic Gujarati street food — Baroda-style Sev Usal, Tuvar Totha and more. Send us an order enquiry and we'll get back to you.",
+      title: isGu ? "સંપર્ક અને ઓર્ડર — ચિરાંશ ફૂડ્સ | ગુજરાતમાં ગુજરાતી ભોજન" : "Contact & Order — Chiransh Foods | Gujarati Food in Gujarat",
+      description: isGu
+        ? "અસલ ગુજરાતી સ્ટ્રીટ ફૂડ — બરોડા સ્ટાઇલ સેવ ઉસળ, તુવેર ટોઠા અને વધુ — ઓર્ડર કરવા ચિરાંશ ફૂડ્સનો સંપર્ક કરો. પૂછપરછ મોકલો, અમે જવાબ આપીશું."
+        : "Contact Chiransh Foods to order authentic Gujarati street food — Baroda-style Sev Usal, Tuvar Totha and more. Send us an order enquiry and we'll get back to you.",
     },
     "/faq": {
-      title: "FAQ — Chiransh Foods | Gujarati Vegetarian Food",
-      description:
-        "Frequently asked questions about Chiransh Foods — our 100% vegetarian Gujarati dishes, Baroda-style Sev Usal, Tuvar Totha, ordering and availability.",
+      title: isGu ? "પ્રશ્નો — ચિરાંશ ફૂડ્સ | ગુજરાતી શાકાહારી ભોજન" : "FAQ — Chiransh Foods | Gujarati Vegetarian Food",
+      description: isGu
+        ? "ચિરાંશ ફૂડ્સ વિશે વારંવાર પૂછાતા પ્રશ્નો — ૧૦૦% શાકાહારી ગુજરાતી વાનગીઓ, બરોડા સ્ટાઇલ સેવ ઉસળ, તુવેર ટોઠા, ઓર્ડર અને ઉપલબ્ધતા."
+        : "Frequently asked questions about Chiransh Foods — our 100% vegetarian Gujarati dishes, Baroda-style Sev Usal, Tuvar Totha, ordering and availability.",
       jsonLd: {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        mainEntity: faqs.map((item) => ({
+        inLanguage: isGu ? "gu" : "en",
+        mainEntity: faqItems.map((item) => ({
           "@type": "Question",
           name: item.q,
           acceptedAnswer: { "@type": "Answer", text: item.a },
@@ -176,26 +249,48 @@ export function getPageSeo(pathname, data) {
       },
     },
     "/privacy": {
-      title: "Privacy Policy — Chiransh Foods",
-      description: "How Chiransh Foods collects, uses and protects the information you share through our enquiry form.",
+      title: isGu ? "ગોપનીયતા નીતિ — ચિરાંશ ફૂડ્સ" : "Privacy Policy — Chiransh Foods",
+      description: isGu
+        ? "ચિરાંશ ફૂડ્સ પૂછપરછ ફોર્મ દ્વારા મળેલી માહિતી કેવી રીતે એકત્ર કરે છે, વાપરે છે અને સુરક્ષિત રાખે છે."
+        : "How Chiransh Foods collects, uses and protects the information you share through our enquiry form.",
     },
     "/terms": {
-      title: "Terms & Conditions — Chiransh Foods",
-      description: "The terms that apply when you use the Chiransh Foods website and place order enquiries with us.",
+      title: isGu ? "સેવાની શરતો — ચિરાંશ ફૂડ્સ" : "Terms & Conditions — Chiransh Foods",
+      description: isGu
+        ? "ચિરાંશ ફૂડ્સની વેબસાઇટ વાપરતી વખતે અને ઓર્ડરની પૂછપરછ કરતી વખતે લાગુ પડતી શરતો."
+        : "The terms that apply when you use the Chiransh Foods website and place order enquiries with us.",
     },
     "/refund": {
-      title: "Refund / Cancellation Policy — Chiransh Foods",
-      description: "How order changes, cancellations and refunds are handled at Chiransh Foods.",
+      title: isGu ? "રિફંડ / રદ નીતિ — ચિરાંશ ફૂડ્સ" : "Refund / Cancellation Policy — Chiransh Foods",
+      description: isGu
+        ? "ચિરાંશ ફૂડ્સમાં ઓર્ડરમાં ફેરફાર, રદ અને રિફંડ કેવી રીતે સંભાળવામાં આવે છે."
+        : "How order changes, cancellations and refunds are handled at Chiransh Foods.",
     },
   };
 
   const found = staticPages[path];
-  if (found) return page({ ...found, path });
+  if (found) {
+    const here = localized(path);
+    if (LEGAL_PATHS.has(path)) {
+      return page({
+        ...found,
+        lang,
+        path: here,
+        canonicalPath: path,
+        noindex: isGu,
+        alternates: [],
+      });
+    }
+    return page({ ...found, lang, path: here });
+  }
 
   return page({
-    title: "Page not found — Chiransh Foods",
-    description: "Looks like this plate is empty. Return to the Chiransh Foods menu.",
-    path,
+    lang,
+    title: isGu ? "પાનું મળ્યું નથી — ચિરાંશ ફૂડ્સ" : "Page not found — Chiransh Foods",
+    description: isGu
+      ? "આ પાનું મેનૂમાં નથી. ચિરાંશ ફૂડ્સના મેનૂ પર પાછા જાઓ."
+      : "Looks like this plate is empty. Return to the Chiransh Foods menu.",
+    path: localized(path),
     noindex: true,
   });
 }
@@ -217,8 +312,12 @@ export function renderSeoTags(seo) {
   const json = seo.jsonLd
     ? `<script type="application/ld+json">${JSON.stringify(seo.jsonLd).replace(/</g, "\\u003c")}</script>`
     : "";
+  const alternates = (seo.alternates || [])
+    .map((alt) => `<link rel="alternate" hreflang="${escapeHtml(alt.hreflang)}" href="${escapeHtml(alt.href)}" />`)
+    .join("\n    ");
   return [
     `<link rel="canonical" href="${escapeHtml(seo.canonical)}" />`,
+    alternates,
     meta("name", "robots", seo.noindex ? "noindex, follow" : "index, follow"),
     meta("property", "og:title", seo.title),
     meta("property", "og:description", seo.description),
@@ -226,7 +325,7 @@ export function renderSeoTags(seo) {
     meta("property", "og:url", seo.canonical),
     meta("property", "og:site_name", SITE_NAME),
     meta("property", "og:image", seo.image),
-    meta("property", "og:locale", "en_IN"),
+    meta("property", "og:locale", seo.ogLocale || "en_IN"),
     meta("name", "twitter:card", "summary_large_image"),
     meta("name", "twitter:title", seo.title),
     meta("name", "twitter:description", seo.description),
@@ -239,7 +338,9 @@ export function renderSeoTags(seo) {
 
 export function applySeoToHtml(html, pathname, data) {
   const seo = getPageSeo(pathname, data);
-  let next = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(seo.title)}</title>`);
+  const lang = seo.lang === "gu" ? "gu" : "en";
+  let next = html.replace(/<html lang="[^"]*">/i, `<html lang="${lang}">`);
+  next = next.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(seo.title)}</title>`);
   next = next.replace(
     /<meta\s+name="description"[\s\S]*?>/i,
     `<meta name="description" content="${escapeHtml(seo.description)}" />`,
@@ -281,12 +382,17 @@ export function sitemapEntries(products, lastmod = SITEMAP_LASTMOD) {
       lastmod: product.updated_on || lastmod,
     }));
   const [home, menu, ...rest] = STATIC_SITEMAP_PAGES;
-  return [home, menu, ...dishes, ...rest].map((entry) => ({
-    loc: canonicalUrl(entry.path),
-    lastmod: entry.lastmod || lastmod,
-    changefreq: entry.changefreq,
-    priority: entry.priority,
-  }));
+  return [home, menu, ...dishes, ...rest].flatMap((entry) => {
+    const alternates = hreflangAlternates(entry.path);
+    const langs = LEGAL_PATHS.has(entry.path) ? ["en"] : ["en", "gu"];
+    return langs.map((lang) => ({
+      loc: canonicalUrl(localePath(entry.path, lang)),
+      lastmod: entry.lastmod || lastmod,
+      changefreq: entry.changefreq,
+      priority: entry.priority,
+      alternates,
+    }));
+  });
 }
 
 function escapeXml(value) {
@@ -295,17 +401,23 @@ function escapeXml(value) {
 
 export function renderSitemap(products, lastmod = SITEMAP_LASTMOD) {
   const urls = sitemapEntries(products, lastmod)
-    .map(
-      (entry) => `  <url>
+    .map((entry) => {
+      const links = (entry.alternates || [])
+        .map(
+          (alt) =>
+            `    <xhtml:link rel="alternate" hreflang="${escapeXml(alt.hreflang)}" href="${escapeXml(alt.href)}" />`,
+        )
+        .join("\n");
+      return `  <url>
     <loc>${escapeXml(entry.loc)}</loc>
     <lastmod>${escapeXml(entry.lastmod)}</lastmod>
     <changefreq>${escapeXml(entry.changefreq)}</changefreq>
     <priority>${escapeXml(entry.priority)}</priority>
-  </url>`,
-    )
+${links ? `${links}\n` : ""}  </url>`;
+    })
     .join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urls}
 </urlset>
 `;

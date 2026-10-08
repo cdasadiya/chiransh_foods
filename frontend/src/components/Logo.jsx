@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { LocaleLink } from "@/lib/locale";
 
 export function LogoMark({ className = "h-10 w-10" }) {
   return (
@@ -30,7 +30,7 @@ export function LogoMark({ className = "h-10 w-10" }) {
 
 export default function Logo({ light = false }) {
   return (
-    <Link
+    <LocaleLink
       to="/"
       data-testid="logo-link"
       aria-label="Chiransh Foods — Home"
@@ -53,6 +53,6 @@ export default function Logo({ light = false }) {
           Foods
         </span>
       </span>
-    </Link>
+    </LocaleLink>
   );
 }

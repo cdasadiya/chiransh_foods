@@ -23,6 +23,24 @@ function upsertLink(rel, href) {
   el.setAttribute("href", href);
 }
 
+function syncAlternates(alternates) {
+  const items = Array.isArray(alternates) ? alternates : [];
+  const wanted = new Set(items.map((item) => item.hreflang));
+  document.head.querySelectorAll('link[rel="alternate"][hreflang]').forEach((el) => {
+    if (!wanted.has(el.getAttribute("hreflang"))) el.remove();
+  });
+  items.forEach((item) => {
+    let el = document.head.querySelector(`link[rel="alternate"][hreflang="${item.hreflang}"]`);
+    if (!el) {
+      el = document.createElement("link");
+      el.setAttribute("rel", "alternate");
+      el.setAttribute("hreflang", item.hreflang);
+      document.head.appendChild(el);
+    }
+    el.setAttribute("href", item.href);
+  });
+}
+
 /**
  * Per-page SEO: title, description, canonical, Open Graph, Twitter card, JSON-LD.
  */
@@ -34,22 +52,29 @@ export default function usePageMeta({
   jsonLd,
   noindex = false,
   canonical,
+  lang,
+  ogLocale,
+  alternates,
 }) {
   const jsonLdKey = jsonLd ? JSON.stringify(jsonLd) : "";
+  const alternatesKey = JSON.stringify(alternates || []);
 
   useEffect(() => {
     document.title = title;
+    if (lang) document.documentElement.lang = lang;
     const url = canonical || canonicalUrl(window.location.pathname);
 
     upsertMeta("name", "description", description);
     upsertMeta("name", "robots", noindex ? "noindex, follow" : "index, follow");
     upsertLink("canonical", url);
+    syncAlternates(alternates);
 
     upsertMeta("property", "og:title", title);
     upsertMeta("property", "og:description", description);
     upsertMeta("property", "og:type", type);
     upsertMeta("property", "og:url", url);
     upsertMeta("property", "og:site_name", SITE_NAME);
+    upsertMeta("property", "og:locale", ogLocale || (lang === "gu" ? "gu_IN" : "en_IN"));
     upsertMeta("property", "og:image", absUrl(image || DEFAULT_OG_IMAGE));
 
     upsertMeta("name", "twitter:card", "summary_large_image");
@@ -67,5 +92,5 @@ export default function usePageMeta({
       script.textContent = JSON.stringify(jsonLd);
       document.head.appendChild(script);
     }
-  }, [title, description, image, type, noindex, canonical, jsonLdKey, jsonLd]);
+  }, [title, description, image, type, noindex, canonical, lang, ogLocale, alternatesKey, alternates, jsonLdKey, jsonLd]);
 }

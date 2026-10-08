@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { LocaleLink } from "@/lib/locale";
 import { ArrowRight, MessageCircle, Phone } from "lucide-react";
 import { useSettings } from "@/context/SettingsContext";
 import { whatsappUrl } from "@/lib/site";
@@ -38,7 +38,7 @@ export default function OrderButtons({
           <Phone className="h-4 w-4" /> Call to Order
         </a>
       )}
-      <Link
+      <LocaleLink
         to="/contact"
         data-testid={`${testPrefix}-contact-btn`}
         className={`${base} ${
@@ -48,7 +48,7 @@ export default function OrderButtons({
         }`}
       >
         Contact to Order <ArrowRight className="h-4 w-4" />
-      </Link>
+      </LocaleLink>
     </div>
   );
 }

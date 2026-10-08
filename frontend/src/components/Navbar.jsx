@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu as MenuIcon, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import Logo from "./Logo";
 import { useSettings } from "@/context/SettingsContext";
 import { whatsappUrl } from "@/lib/site";
+import { LocaleLink, useLocale } from "@/lib/locale";
+import { localePath, splitLocale } from "@/lib/seo";
 
 const LINKS = [
   { label: "Home", to: "/" },
@@ -16,10 +18,12 @@ const LINKS = [
 ];
 
 export default function Navbar() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const { lang } = useLocale();
   const { settings } = useSettings();
   const wa = whatsappUrl(settings);
 
@@ -31,11 +35,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const orderHref = wa || "/contact";
+  const orderHref = wa || localePath("/contact", lang);
   const orderLabel = wa ? t("nav.order_whatsapp", "Order on WhatsApp") : t("home.cta_button");
   const externalProps = wa ? { target: "_blank", rel: "noopener noreferrer" } : {};
-  const isActive = (to) =>
-    to === "/" ? pathname === "/" : pathname.startsWith(to);
+  const barePath = splitLocale(pathname).path;
+  const isActive = (to) => (to === "/" ? barePath === "/" : barePath === to || barePath.startsWith(`${to}/`));
+  const switchLanguage = () => navigate(localePath(pathname, lang === "en" ? "gu" : "en"));
 
   return (
     <>
@@ -53,7 +58,7 @@ export default function Navbar() {
             <ul className="hidden items-center gap-8 lg:flex">
               {LINKS.map((l) => (
                 <li key={l.to}>
-                  <Link
+                  <LocaleLink
                     to={l.to}
                     data-testid={`nav-${l.label.toLowerCase()}-link`}
                     className={`font-display text-sm font-semibold tracking-wide transition-colors ${
@@ -66,17 +71,17 @@ export default function Navbar() {
                         isActive(l.to) ? "w-full" : "w-0"
                       }`}
                     />
-                  </Link>
+                  </LocaleLink>
                 </li>
               ))}
             </ul>
             <div className="flex items-center gap-3">
               <button
-                onClick={() => i18n.changeLanguage(i18n.language === "en" ? "gu" : "en")}
+                onClick={switchLanguage}
                 className="hidden sm:inline-flex items-center justify-center font-display text-sm font-semibold text-leaf px-3 py-1.5 border border-leaf rounded-full hover:bg-leaf hover:text-cream transition-colors"
                 title="Toggle Language"
               >
-                {i18n.language === "en" ? "GU" : "EN"}
+                {lang === "en" ? "GU" : "EN"}
               </button>
               <a
                 href={orderHref}
@@ -124,10 +129,10 @@ export default function Navbar() {
             <ul className="mt-10 flex flex-col">
               <li className="mb-4 flex justify-center">
                 <button
-                  onClick={() => { i18n.changeLanguage(i18n.language === "en" ? "gu" : "en"); setOpen(false); }}
+                  onClick={() => { switchLanguage(); setOpen(false); }}
                   className="inline-flex items-center justify-center font-display text-sm font-semibold text-cream px-4 py-2 border border-cream rounded-full hover:bg-cream hover:text-leaf transition-colors"
                 >
-                  {i18n.language === "en" ? "Switch to Gujarati" : "Switch to English"}
+                  {lang === "en" ? "Switch to Gujarati" : "Switch to English"}
                 </button>
               </li>
               {LINKS.map((l, i) => (
@@ -137,13 +142,13 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.08 + i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <Link
+                  <LocaleLink
                     to={l.to}
                     data-testid={`nav-mobile-${l.label.toLowerCase()}-link`}
                     className="block border-b border-cream/10 py-4 font-serif text-3xl font-medium text-cream"
                   >
                     {t(`nav.${l.label.toLowerCase()}`)}
-                  </Link>
+                  </LocaleLink>
                 </motion.li>
               ))}
             </ul>

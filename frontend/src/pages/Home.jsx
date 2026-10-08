@@ -1,10 +1,9 @@
 import { useRef } from "react";
-import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, MessageCircle, UtensilsCrossed } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
-import { getRouteSeo } from "@/lib/routeSeo";
+import { LocaleLink, useLocalizedSeo } from "@/lib/locale";
 import { fetchProducts } from "@/lib/api";
 import { useSettings } from "@/context/SettingsContext";
 import { useTranslation } from "react-i18next";
@@ -134,14 +133,14 @@ function Hero() {
 
           <Reveal delay={0.7} y={20}>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link
+              <LocaleLink
                 to="/menu"
                 data-testid="hero-explore-menu-btn"
                 className="group inline-flex items-center gap-2 rounded-full bg-leaf px-7 py-3.5 font-display text-sm font-semibold text-cream shadow-soft transition-all duration-300 hover:bg-forest"
               >
                 {t("home.hero.explore_menu")}
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
+              </LocaleLink>
               {wa ? (
                 <a
                   href={wa}
@@ -153,13 +152,13 @@ function Hero() {
                   <MessageCircle className="h-4 w-4" /> {t("home.hero.order_whatsapp")}
                 </a>
               ) : (
-                <Link
+                <LocaleLink
                   to="/contact"
                   data-testid="hero-contact-order-btn"
                   className="inline-flex items-center gap-2 rounded-full border border-leaf/25 px-7 py-3.5 font-display text-sm font-semibold text-leaf transition-colors duration-300 hover:border-leaf hover:bg-ivory"
                 >
                   {t("home.hero.contact_order")}
-                </Link>
+                </LocaleLink>
               )}
             </div>
           </Reveal>
@@ -188,7 +187,7 @@ function Hero() {
               delay={0.9}
               className="absolute -left-4 bottom-10 hidden sm:block md:-left-10"
             >
-              <Link
+              <LocaleLink
                 to="/menu/tuvar-totha"
                 data-testid="hero-floating-tuvar-link"
                 className="flex items-center gap-3 rounded-2xl border border-leaf/10 bg-ivory/95 p-3 pr-5 shadow-lift backdrop-blur transition-transform duration-300 hover:-translate-y-1"
@@ -208,7 +207,7 @@ function Hero() {
                     {t("home.signature.view_dish")} <ArrowRight className="h-3 w-3" />
                   </span>
                 </span>
-              </Link>
+              </LocaleLink>
             </Reveal>
           </motion.div>
         </div>
@@ -231,7 +230,7 @@ function SignatureBento({ products }) {
     const shortDesc = isGu && product.gujarati_short_description ? product.gujarati_short_description : product.short_description;
     
     return (
-    <Link
+    <LocaleLink
       to={`/menu/${product.slug}`}
       data-testid={testId}
       className="group relative flex h-full min-h-[420px] flex-col justify-end overflow-hidden rounded-3xl shadow-soft"
@@ -262,7 +261,7 @@ function SignatureBento({ products }) {
           {t("home.signature.view_dish")} <ArrowRight className="h-4 w-4" />
         </span>
       </div>
-    </Link>
+    </LocaleLink>
   )};
 
   return (
@@ -331,7 +330,7 @@ function StorySnapshot() {
             <p className="mt-4 text-base leading-relaxed text-stone-600">
               {t("home.story.p2")}
             </p>
-            <Link
+            <LocaleLink
               to="/about"
               data-testid="home-read-story-btn"
               className="group mt-7 inline-flex items-center gap-2 font-display text-sm font-semibold text-leaf"
@@ -340,7 +339,7 @@ function StorySnapshot() {
                 {t("home.story.read_story")}
               </span>
               <ArrowRight className="h-4 w-4 text-saffron-deep transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+            </LocaleLink>
           </Reveal>
         </div>
       </div>
@@ -392,7 +391,7 @@ function MenuPreview() {
       <div className="mt-12 grid gap-6 md:grid-cols-3">
         {categories.map((c, i) => (
           <Reveal key={c.slug} delay={i * 0.08} className="h-full">
-            <Link
+            <LocaleLink
               to="/menu"
               data-testid={`menu-preview-${c.slug}`}
               className={`group flex h-full flex-col rounded-3xl border p-7 transition-all duration-300 hover:-translate-y-1 ${
@@ -419,18 +418,18 @@ function MenuPreview() {
               <p className="mt-2 text-sm leading-relaxed text-stone-600">
                 {c.note}
               </p>
-            </Link>
+            </LocaleLink>
           </Reveal>
         ))}
       </div>
       <Reveal delay={0.2} className="mt-10 text-center">
-        <Link
+        <LocaleLink
           to="/menu"
           data-testid="home-view-full-menu-btn"
           className="inline-flex items-center gap-2 rounded-full bg-saffron px-8 py-3.5 font-display text-sm font-semibold text-cream shadow-soft transition-all duration-300 hover:bg-saffron-deep"
         >
           {t("home.menu_preview.view_full")} <ArrowRight className="h-4 w-4" />
-        </Link>
+        </LocaleLink>
       </Reveal>
     </section>
   );
@@ -485,7 +484,7 @@ export default function Home() {
   const translatedMarquee = t("home.marquee", { returnObjects: true });
   const actualMarqueeItems = Array.isArray(translatedMarquee) ? translatedMarquee : MARQUEE_ITEMS;
 
-  usePageMeta(getRouteSeo("/"));
+  usePageMeta(useLocalizedSeo("/"));
 
   return (
     <>

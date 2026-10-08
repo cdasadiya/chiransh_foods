@@ -15,7 +15,7 @@ i18n
         translation: guTranslations
       }
     },
-    lng: "en", // default language
+    lng: typeof window !== "undefined" && /^\/gu(\/|$)/.test(window.location.pathname) ? "gu" : "en",
     fallbackLng: "en",
     interpolation: {
       escapeValue: false // react already safes from xss

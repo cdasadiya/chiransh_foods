@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
-import { getRouteSeo } from "@/lib/routeSeo";
+import { useLocalizedSeo } from "@/lib/locale";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 
@@ -28,7 +28,7 @@ export default function Gallery() {
   const captionsData = t("gallery.captions", { returnObjects: true });
   const captions = Array.isArray(captionsData) ? captionsData : [];
 
-  usePageMeta(getRouteSeo("/gallery"));
+  usePageMeta(useLocalizedSeo("/gallery"));
 
   const [active, setActive] = useState(null);
 
