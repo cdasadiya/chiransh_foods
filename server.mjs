@@ -3,6 +3,7 @@ import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { applySeoToHtml } from "./frontend/src/lib/seo.js";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const dist = path.join(root, "frontend", "dist");
@@ -171,7 +172,22 @@ async function handleApi(req, res, pathname) {
   sendJson(res, 404, { detail: "Not found" });
 }
 
-function serveStatic(res, pathname) {
+function seoData() {
+  return {
+    products: loadJson("products.json", []),
+    settings: loadJson("settings.json", {}),
+    faqs: loadJsonFromFrontend(),
+  };
+}
+
+function loadJsonFromFrontend() {
+  const file = path.join(root, "frontend", "src", "locales", "en", "translation.json");
+  if (!fs.existsSync(file)) return [];
+  const data = JSON.parse(fs.readFileSync(file, "utf8"));
+  return Array.isArray(data?.faq?.items) ? data.faq.items : [];
+}
+
+function serveStatic(res, pathname, method) {
   const relative = decodeURIComponent(pathname.split("?")[0]).replace(/^\/+/, "");
   const candidate = path.resolve(dist, relative);
   if (candidate !== dist && !candidate.startsWith(dist + path.sep)) {
@@ -182,10 +198,13 @@ function serveStatic(res, pathname) {
   let file = candidate;
   if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, "index.html");
   if (!fs.existsSync(file) || !fs.statSync(file).isFile()) file = path.join(dist, "index.html");
-  const data = fs.readFileSync(file);
-  const type = TYPES[path.extname(file).toLowerCase()] || "application/octet-stream";
+  const isHtml = path.basename(file) === "index.html";
+  const data = isHtml
+    ? Buffer.from(applySeoToHtml(fs.readFileSync(file, "utf8"), pathname, seoData()))
+    : fs.readFileSync(file);
+  const type = isHtml ? "text/html; charset=utf-8" : TYPES[path.extname(file).toLowerCase()] || "application/octet-stream";
   res.writeHead(200, { "content-type": type, "content-length": data.length });
-  res.end(data);
+  res.end(method === "HEAD" ? undefined : data);
 }
 
 if (!fs.existsSync(path.join(dist, "index.html"))) {
@@ -206,7 +225,7 @@ const server = http.createServer(async (req, res) => {
       res.end("Method not allowed");
       return;
     }
-    serveStatic(res, pathname);
+    serveStatic(res, pathname, req.method);
   } catch (err) {
     const status = err.status || 500;
     sendJson(res, status, { detail: status === 500 ? "Internal server error" : err.message });

@@ -1,12 +1,9 @@
 import LegalPage from "./Legal";
 import usePageMeta from "@/hooks/usePageMeta";
+import { getRouteSeo } from "@/lib/routeSeo";
 
 export default function Refund() {
-  usePageMeta({
-    title: "Refund / Cancellation Policy — Chiransh Foods",
-    description:
-      "How order changes, cancellations and refunds are handled at Chiransh Foods.",
-  });
+  usePageMeta(getRouteSeo("/refund"));
 
   return (
     <LegalPage

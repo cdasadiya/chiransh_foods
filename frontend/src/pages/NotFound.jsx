@@ -1,15 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
+import { getRouteSeo } from "@/lib/routeSeo";
 import Reveal from "@/components/Reveal";
 import { LogoMark } from "@/components/Logo";
 
 export default function NotFound() {
-  usePageMeta({
-    title: "Page not found — Chiransh Foods",
-    description: "Looks like this plate is empty. Return to the Chiransh Foods menu.",
-    noindex: true,
-  });
+  const { pathname } = useLocation();
+  usePageMeta(getRouteSeo(pathname));
 
   return (
     <section

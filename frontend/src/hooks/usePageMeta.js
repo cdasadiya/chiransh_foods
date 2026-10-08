@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { DEFAULT_OG_IMAGE, SITE_NAME, absUrl } from "@/lib/site";
+import { canonicalUrl } from "@/lib/seo";
 
 function upsertMeta(attr, key, content) {
   if (!content) return;
@@ -32,12 +33,13 @@ export default function usePageMeta({
   type = "website",
   jsonLd,
   noindex = false,
+  canonical,
 }) {
   const jsonLdKey = jsonLd ? JSON.stringify(jsonLd) : "";
 
   useEffect(() => {
     document.title = title;
-    const url = window.location.href;
+    const url = canonical || canonicalUrl(window.location.pathname);
 
     upsertMeta("name", "description", description);
     upsertMeta("name", "robots", noindex ? "noindex, follow" : "index, follow");
@@ -65,5 +67,5 @@ export default function usePageMeta({
       script.textContent = JSON.stringify(jsonLd);
       document.head.appendChild(script);
     }
-  }, [title, description, image, type, noindex, jsonLdKey, jsonLd]);
+  }, [title, description, image, type, noindex, canonical, jsonLdKey, jsonLd]);
 }

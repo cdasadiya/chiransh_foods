@@ -4,13 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, MessageCircle, UtensilsCrossed } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
+import { getRouteSeo } from "@/lib/routeSeo";
 import { fetchProducts } from "@/lib/api";
 import { useSettings } from "@/context/SettingsContext";
 import { useTranslation } from "react-i18next";
 import {
   FALLBACK_PRODUCTS,
-  SITE_NAME,
-  SITE_DESCRIPTION,
   whatsappUrl,
 } from "@/lib/site";
 import Marquee from "@/components/Marquee";
@@ -486,19 +485,7 @@ export default function Home() {
   const translatedMarquee = t("home.marquee", { returnObjects: true });
   const actualMarqueeItems = Array.isArray(translatedMarquee) ? translatedMarquee : MARQUEE_ITEMS;
 
-  usePageMeta({
-    title: "Chiransh Foods | Authentic Gujarati Vegetarian Food",
-    description: SITE_DESCRIPTION,
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      name: SITE_NAME,
-      description: SITE_DESCRIPTION,
-      servesCuisine: ["Gujarati", "Indian", "Street Food"],
-      areaServed: { "@type": "State", name: "Gujarat, India" },
-      url: window.location.origin,
-    },
-  });
+  usePageMeta(getRouteSeo("/"));
 
   return (
     <>
