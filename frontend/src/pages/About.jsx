@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
+import { getRouteSeo } from "@/lib/routeSeo";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import VegMark from "@/components/VegMark";
@@ -12,11 +13,7 @@ const IMG =
 
 export default function About() {
   const { t } = useTranslation();
-  usePageMeta({
-    title: "About Us — Chiransh Foods | Our Gujarati Food Story",
-    description:
-      "Chiransh Foods is a home-grown, 100% vegetarian Gujarati food brand from Gujarat, India — bringing the authentic flavours of Gujarat's street-food culture to your table.",
-  });
+  usePageMeta(getRouteSeo("/about"));
 
   return (
     <>

@@ -10,6 +10,7 @@ export default defineConfig({
   resolve: { alias: { "@": path.resolve(import.meta.dirname, "src") } },
   server: {
     port: 3000,
+    fs: { allow: [path.resolve(import.meta.dirname, "..")] },
     proxy: {
       "/api": { target: process.env.API_PROXY_TARGET || "http://127.0.0.1:8001", changeOrigin: true },
     },

@@ -1,12 +1,9 @@
 import LegalPage from "./Legal";
 import usePageMeta from "@/hooks/usePageMeta";
+import { getRouteSeo } from "@/lib/routeSeo";
 
 export default function Terms() {
-  usePageMeta({
-    title: "Terms & Conditions — Chiransh Foods",
-    description:
-      "The terms that apply when you use the Chiransh Foods website and place order enquiries with us.",
-  });
+  usePageMeta(getRouteSeo("/terms"));
 
   return (
     <LegalPage

@@ -1,12 +1,9 @@
 import LegalPage from "./Legal";
 import usePageMeta from "@/hooks/usePageMeta";
+import { getRouteSeo } from "@/lib/routeSeo";
 
 export default function Privacy() {
-  usePageMeta({
-    title: "Privacy Policy — Chiransh Foods",
-    description:
-      "How Chiransh Foods collects, uses and protects the information you share through our enquiry form.",
-  });
+  usePageMeta(getRouteSeo("/privacy"));
 
   return (
     <LegalPage

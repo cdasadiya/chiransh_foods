@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
+import { getRouteSeo } from "@/lib/routeSeo";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 
@@ -11,20 +12,7 @@ export default function FAQ() {
   const faqsData = t("faq.items", { returnObjects: true });
   const faqs = Array.isArray(faqsData) ? faqsData : [];
 
-  usePageMeta({
-    title: "FAQ — Chiransh Foods | Gujarati Vegetarian Food",
-    description:
-      "Frequently asked questions about Chiransh Foods — our 100% vegetarian Gujarati dishes, Baroda-style Sev Usal, Tuvar Totha, ordering and availability.",
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: faqs.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    },
-  });
+  usePageMeta(getRouteSeo("/faq"));
 
   const [open, setOpen] = useState(0);
 

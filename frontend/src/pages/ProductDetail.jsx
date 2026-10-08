@@ -4,7 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { ChevronRight, RefreshCw, Sparkles } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
 import { fetchProduct, fetchProducts } from "@/lib/api";
-import { absUrl, priceLabel, SITE_NAME } from "@/lib/site";
+import { getRouteSeo } from "@/lib/routeSeo";
+import { priceLabel } from "@/lib/site";
 import NotFound from "@/pages/NotFound";
 import OrderButtons from "@/components/OrderButtons";
 import ProductCard from "@/components/ProductCard";
@@ -45,39 +46,8 @@ export default function ProductDetail() {
   const desc = product ? (isGu && product.gujarati_description ? product.gujarati_description : product.description) : "";
   const shortDesc = product ? (isGu && product.gujarati_short_description ? product.gujarati_short_description : product.short_description) : "";
 
-  usePageMeta({
-    title: product
-      ? `${mainName} (${secondaryName}) — Chiransh Foods`
-      : "Product — Chiransh Foods",
-    description: product
-      ? `${shortDesc} ${product.name} is a 100% vegetarian ${product.category.toLowerCase()} dish by Chiransh Foods, Gujarat.`
-      : "Discover authentic Gujarati vegetarian dishes by Chiransh Foods.",
-    type: "product",
-    image: product?.image,
-    noindex: is404 || isLoading,
-    jsonLd: product
-      ? [
-          {
-            "@context": "https://schema.org",
-            "@type": "Product",
-            name: mainName,
-            image: [absUrl(product.image)],
-            description: desc || shortDesc,
-            category: product.category,
-            brand: { "@type": "Organization", name: SITE_NAME },
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: `${window.location.origin}/` },
-              { "@type": "ListItem", position: 2, name: "Menu", item: `${window.location.origin}/menu` },
-              { "@type": "ListItem", position: 3, name: mainName },
-            ],
-          },
-        ]
-      : undefined,
-  });
+  const seo = getRouteSeo(`/menu/${slug || ""}`);
+  usePageMeta({ ...seo, noindex: Boolean(is404) || seo.noindex });
 
   if (is404) return <NotFound />;
 

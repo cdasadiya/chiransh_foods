@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Search, RefreshCw } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
+import { getRouteSeo } from "@/lib/routeSeo";
 import { fetchProducts } from "@/lib/api";
 import { CATEGORY_NOTES, MENU_CATEGORIES } from "@/lib/site";
 import { useTranslation } from "react-i18next";
@@ -11,11 +12,7 @@ import SectionHeading from "@/components/SectionHeading";
 export default function Menu() {
   const { t, i18n } = useTranslation();
   const isGu = i18n.language === "gu";
-  usePageMeta({
-    title: "Menu — Chiransh Foods | Gujarati Street Food & More",
-    description:
-      "Explore the Chiransh Foods menu — authentic 100% vegetarian Gujarati street food: Baroda-style Sev Usal (સેવ ઉસળ), Tuvar Totha, and more dishes coming soon.",
-  });
+  usePageMeta(getRouteSeo("/menu"));
 
   const {
     data,
