@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import Logo from "./Logo";
 import { useSettings } from "@/context/SettingsContext";
 import { whatsappUrl } from "@/lib/site";
-import { LocaleLink, useLocale } from "@/lib/locale";
+import { LocaleLink, localizedHref, useLocale } from "@/lib/locale";
 import { LOCALES, localePath, splitLocale } from "@/lib/seo";
 import useDialog from "@/hooks/useDialog";
 
@@ -19,7 +19,7 @@ const LINKS = [
 
 function LanguageLinks({ light = false, onNavigate }) {
   const { t } = useTranslation();
-  const { pathname } = useLocation();
+  const { pathname, search, hash } = useLocation();
   const { lang } = useLocale();
   return (
     <div role="group" aria-label={t("a11y.language")} className="flex items-center gap-1">
@@ -28,7 +28,7 @@ function LanguageLinks({ light = false, onNavigate }) {
         return (
           <Link
             key={locale.code}
-            to={localePath(pathname, locale.code)}
+            to={localizedHref(`${pathname}${search}${hash}`, locale.code)}
             hrefLang={locale.htmlLang}
             lang={locale.htmlLang}
             aria-current={active ? "page" : undefined}

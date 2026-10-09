@@ -19,15 +19,27 @@ export function absUrl(u) {
   }
 }
 
+export const BULK_CATEGORY = "Family & Bulk Orders";
+
 export const MENU_CATEGORIES = [
   "Sev Usal (Regular)",
   "Tuvar Totha (Regular)",
   "Combos (Regular)",
   "Jain & Swaminarayan",
   "Family & Party Packs (Regular)",
+  BULK_CATEGORY,
   "Extras (Regular)",
   "Beverages"
 ];
+
+export const INSTRUCTION_CATEGORIES = [
+  "Family & Party Packs (Regular)",
+  BULK_CATEGORY,
+];
+
+export function showsBulkInstructions(category) {
+  return INSTRUCTION_CATEGORIES.includes(category);
+}
 
 export const CATEGORY_NOTES = {
   "Sev Usal (Regular)": "Our signature Baroda-style street food legend.",
@@ -35,6 +47,7 @@ export const CATEGORY_NOTES = {
   "Combos (Regular)": "The best of both worlds on a single plate.",
   "Jain & Swaminarayan": "Separate recipes made with strict adherence to Jain and Swaminarayan rules (no onion, no garlic, no root veg).",
   "Family & Party Packs (Regular)": "Larger packs for home and gatherings.",
+  [BULK_CATEGORY]: "Advance orders for 5 to 200 persons. Book by call or WhatsApp.",
   "Extras (Regular)": "Add-ons and sides to complete your meal.",
   "Beverages": "Refreshing drinks to pair with spicy flavors."
 };
@@ -404,6 +417,120 @@ export const FALLBACK_PRODUCTS = [
     "serving_info": "",
     "gujarati_description": "૫૦૦ મિલી પેકેજ્ડ પીવાનું પાણી.",
     "gujarati_short_description": "૫૦૦ મિલી પેકેજ્ડ પીવાનું પાણી."
+  },
+  {
+    "name": "Bhaji Pav",
+    "gujarati_name": "ભાજી પાવ",
+    "slug": "bhaji-pav",
+    "category": BULK_CATEGORY,
+    "description": "Soft buttered pav with a spiced vegetable bhaji, prepared fresh for advance orders.",
+    "short_description": "Soft buttered pav with a spiced vegetable bhaji, prepared fresh for advance orders.",
+    "image": `${IMG}/bhaji_pav.webp`,
+    "price": null,
+    "availability": "available",
+    "vegetarian": true,
+    "featured": false,
+    "sort_order": 17,
+    "badge": "Advance order",
+    "ingredients": [],
+    "serving_info": "",
+    "gujarati_description": "મસાલેદાર શાકની ભાજી સાથે બટરવાળા નરમ પાવ, અગાઉથી ઓર્ડર માટે તાજું તૈયાર.",
+    "gujarati_short_description": "મસાલેદાર શાકની ભાજી સાથે બટરવાળા નરમ પાવ, અગાઉથી ઓર્ડર માટે તાજું તૈયાર."
+  },
+  {
+    "name": "Khada Pav Bhaji",
+    "gujarati_name": "ખાડા પાવ ભાજી",
+    "slug": "khada-pav-bhaji",
+    "category": BULK_CATEGORY,
+    "description": "Chunky vegetable bhaji, kept in pieces rather than mashed, served with pav.",
+    "short_description": "Chunky vegetable bhaji, kept in pieces rather than mashed, served with pav.",
+    "image": `${IMG}/khada_pav_bhaji.webp`,
+    "price": null,
+    "availability": "available",
+    "vegetarian": true,
+    "featured": false,
+    "sort_order": 18,
+    "badge": "Advance order",
+    "ingredients": [],
+    "serving_info": "",
+    "gujarati_description": "કચડ્યા વગર ટુકડામાં રાંધેલી શાકની ભાજી, પાવ સાથે.",
+    "gujarati_short_description": "કચડ્યા વગર ટુકડામાં રાંધેલી શાકની ભાજી, પાવ સાથે."
+  },
+  {
+    "name": "Masala Pav",
+    "gujarati_name": "મસાલા પાવ",
+    "slug": "masala-pav",
+    "category": BULK_CATEGORY,
+    "description": "Pav tossed with a spicy masala, a street-style snack for gatherings.",
+    "short_description": "Pav tossed with a spicy masala, a street-style snack for gatherings.",
+    "image": `${IMG}/masala_pav.webp`,
+    "price": null,
+    "availability": "available",
+    "vegetarian": true,
+    "featured": false,
+    "sort_order": 19,
+    "badge": "Advance order",
+    "ingredients": [],
+    "serving_info": "",
+    "gujarati_description": "મસાલામાં લપેટેલા તીખા પાવ, મેળાવડા માટે સ્ટ્રીટ-સ્ટાઇલ નાસ્તો.",
+    "gujarati_short_description": "મસાલામાં લપેટેલા તીખા પાવ, મેળાવડા માટે સ્ટ્રીટ-સ્ટાઇલ નાસ્તો."
+  },
+  {
+    "name": "Pulav",
+    "gujarati_name": "પુલાવ",
+    "slug": "pulav",
+    "category": BULK_CATEGORY,
+    "description": "Fragrant vegetable pulav, cooked for family gatherings and events.",
+    "short_description": "Fragrant vegetable pulav, cooked for family gatherings and events.",
+    "image": `${IMG}/pulav.webp`,
+    "price": null,
+    "availability": "available",
+    "vegetarian": true,
+    "featured": false,
+    "sort_order": 20,
+    "badge": "Advance order",
+    "ingredients": [],
+    "serving_info": "",
+    "gujarati_description": "સુગંધી શાકનું પુલાવ, કુટુંબ મેળાવડા અને ઇવેન્ટ માટે.",
+    "gujarati_short_description": "સુગંધી શાકનું પુલાવ, કુટુંબ મેળાવડા અને ઇવેન્ટ માટે."
+  },
+  {
+    "name": "Kutchi Dabeli",
+    "gujarati_name": "કચ્છી દાબેલી",
+    "slug": "kutchi-dabeli",
+    "category": BULK_CATEGORY,
+    "description": "Kutchi-style dabeli with a spiced potato filling in pav.",
+    "short_description": "Kutchi-style dabeli with a spiced potato filling in pav.",
+    "image": `${IMG}/kutchi_dabeli.webp`,
+    "price": null,
+    "availability": "available",
+    "vegetarian": true,
+    "featured": false,
+    "sort_order": 21,
+    "badge": "Advance order",
+    "ingredients": [],
+    "serving_info": "",
+    "gujarati_description": "કચ્છી રીતનું દાબેલી, મસાલેદાર બટાકાની ભરણીવાળા પાવ.",
+    "gujarati_short_description": "કચ્છી રીતનું દાબેલી, મસાલેદાર બટાકાની ભરણીવાળા પાવ."
+  },
+  {
+    "name": "Ragda Pattice",
+    "gujarati_name": "રગડા પેટીસ",
+    "slug": "ragda-pattice",
+    "category": BULK_CATEGORY,
+    "description": "Potato patties with spiced white-pea ragda and chutney.",
+    "short_description": "Potato patties with spiced white-pea ragda and chutney.",
+    "image": `${IMG}/ragda_pattice.webp`,
+    "price": null,
+    "availability": "available",
+    "vegetarian": true,
+    "featured": false,
+    "sort_order": 22,
+    "badge": "Advance order",
+    "ingredients": [],
+    "serving_info": "",
+    "gujarati_description": "બટાકાના પેટીસ સાથે મસાલેદાર સફેદ વટાણાનો રગડા અને ચટણી.",
+    "gujarati_short_description": "બટાકાના પેટીસ સાથે મસાલેદાર સફેદ વટાણાનો રગડા અને ચટણી."
   }
 ];
 

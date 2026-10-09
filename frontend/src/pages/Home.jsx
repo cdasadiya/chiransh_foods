@@ -6,6 +6,7 @@ import { fetchProducts } from "@/lib/api";
 import { useSettings } from "@/context/SettingsContext";
 import { useTranslation } from "react-i18next";
 import {
+  BULK_CATEGORY,
   FALLBACK_PRODUCTS,
   whatsappUrl,
 } from "@/lib/site";
@@ -319,11 +320,12 @@ function MenuPreview() {
       soon: false,
     },
     {
-      slug: "fast-food",
-      name: t("home.menu_preview.cats.fast.name"),
-      note: t("home.menu_preview.cats.fast.note"),
-      count: t("home.menu_preview.soon"),
-      soon: true,
+      slug: "family-bulk",
+      name: t("home.menu_preview.cats.bulk.name"),
+      note: t("home.menu_preview.cats.bulk.note"),
+      count: t("home.menu_preview.bulk_live"),
+      soon: false,
+      to: `/menu?category=${encodeURIComponent(BULK_CATEGORY)}`,
     },
     {
       slug: "indian",
@@ -353,7 +355,7 @@ function MenuPreview() {
         {categories.map((c, i) => (
           <Reveal key={c.slug} delay={i * 0.08} className="h-full">
             <LocaleLink
-              to="/menu"
+              to={c.to || "/menu"}
               data-testid={`menu-preview-${c.slug}`}
               className={`group flex h-full flex-col rounded-3xl border p-7 transition-all duration-300 hover:-translate-y-1 ${
                 c.soon

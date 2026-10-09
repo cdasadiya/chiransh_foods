@@ -7,6 +7,12 @@ const RESPONSIVE = new Set([
   "masala_chaas",
   "packaged_drinking_water",
   "spiced_usal_simmering",
+  "bhaji_pav",
+  "khada_pav_bhaji",
+  "masala_pav",
+  "pulav",
+  "kutchi_dabeli",
+  "ragda_pattice",
 ]);
 
 /** Build a same-origin src/srcSet pair for converted food photos. */

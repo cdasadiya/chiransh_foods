@@ -5,9 +5,10 @@ import { ChevronRight, RefreshCw, Sparkles } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
 import { fetchProduct, fetchProducts } from "@/lib/api";
 import { LocaleLink, useLocalizedSeo } from "@/lib/locale";
-import { priceLabel } from "@/lib/site";
+import { priceLabel, showsBulkInstructions } from "@/lib/site";
 import { productNames } from "@/lib/productCopy";
 import FoodImage from "@/components/FoodImage";
+import OrderInstructions from "@/components/OrderInstructions";
 import NotFound from "@/pages/NotFound";
 import OrderButtons from "@/components/OrderButtons";
 import ProductCard from "@/components/ProductCard";
@@ -224,15 +225,19 @@ export default function ProductDetail() {
                   </p>
                 )}
               </div>
-              <div data-testid="product-serving-info">
-                <h2 className="font-serif text-xl font-semibold text-leaf">
-                  {t("menu.serving", "Serving")}
-                </h2>
-                <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                  {product.serving_info ||
-                    t("menu.serving_info")}
-                </p>
-              </div>
+              {showsBulkInstructions(product.category) ? (
+                <OrderInstructions />
+              ) : (
+                <div data-testid="product-serving-info">
+                  <h2 className="font-serif text-xl font-semibold text-leaf">
+                    {t("menu.serving", "Serving")}
+                  </h2>
+                  <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                    {product.serving_info ||
+                      t("menu.serving_info")}
+                  </p>
+                </div>
+              )}
             </div>
           </Reveal>
         </div>

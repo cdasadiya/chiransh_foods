@@ -57,9 +57,14 @@
         "indian": {
           "name": "Indian",
           "note": "Classic Indian preparations are on the way."
+        },
+        "bulk": {
+          "name": "Family & Bulk Orders",
+          "note": "Advance orders for 5 to 200 persons. Book by call or WhatsApp."
         }
       },
       "live": "2 dishes live",
+      "bulk_live": "6 dishes",
       "soon": "Coming soon",
       "view_full": "View Full Menu"
     },
@@ -102,6 +107,25 @@
     "whatsapp_product": "Hello Chiransh Foods, I would like to order {{product}}.",
     "whatsapp_general": "Hello Chiransh Foods, I would like to place an order."
   },
+  "instructions": {
+    "eyebrow": "Advance orders only",
+    "lede": "Fresh vegetarian food for special occasions, gatherings, parties, and events.",
+    "quantity_label": "Order quantity",
+    "quantity": "5 to 200 persons",
+    "booking_label": "Booking",
+    "booking_prefix": "Call or WhatsApp",
+    "quality_title": "Our quality commitment",
+    "points": [
+      "100% vegetarian food",
+      "Prepared with fresh groundnut oil",
+      "Hygienic food preparation with extra care",
+      "Jain and Swaminarayan food options available on request",
+      "FSSAI-registered food business",
+      "Advance-order catering and delivery service"
+    ],
+    "cta": "Planning a party, family gathering, office event, or special occasion? Let Chiransh Foods serve freshly prepared, flavourful vegetarian food for your guests.",
+    "tagline": "Chiransh Foods: Freshness, Quality, and Taste in Every Bite!"
+  },
   "menu": {
     "header": {
       "eyebrow": "The Menu",
@@ -126,6 +150,7 @@
       "Combos (Regular)": "Combos (Regular)",
       "Jain & Swaminarayan": "Jain & Swaminarayan",
       "Family & Party Packs (Regular)": "Family & Party Packs (Regular)",
+      "Family & Bulk Orders": "Family & Bulk Orders",
       "Extras (Regular)": "Extras (Regular)",
       "Beverages": "Beverages"
     },
@@ -135,6 +160,7 @@
       "Combos (Regular)": "The best of both worlds on a single plate.",
       "Jain & Swaminarayan": "Separate recipes made with strict adherence to Jain and Swaminarayan rules (no onion, no garlic, no root veg).",
       "Family & Party Packs (Regular)": "Larger packs for home and gatherings.",
+      "Family & Bulk Orders": "Advance orders for 5 to 200 persons. Book by call or WhatsApp.",
       "Extras (Regular)": "Add-ons and sides to complete your meal.",
       "Beverages": "Refreshing drinks to pair with spicy flavors."
     },
@@ -151,7 +177,8 @@
     "badges": {
       "Signature": "Signature",
       "Jain": "Jain",
-      "Swaminarayan": "Swaminarayan"
+      "Swaminarayan": "Swaminarayan",
+      "Advance order": "Advance order"
     }
   },
   "about": {
@@ -225,9 +252,8 @@
     "order_notes": [
       "Orders are placed on WhatsApp Business.",
       "Call before you arrive for a morning order.",
-      "Place family pack orders in advance by phone or WhatsApp.",
-      "Party orders and family pack orders are available.",
-      "Jain and Swaminarayan orders are available."
+      "Advance orders for 5 to 200 persons — family packs, parties, catering and delivery — are booked by call or WhatsApp.",
+      "Jain and Swaminarayan food options are available on request."
     ],
     "map_title": "Map link coming soon",
     "map_text": "We serve the Ahmedabad areas listed above. A Google Maps link will be added later.",
@@ -272,7 +298,7 @@
       },
       {
         "q": "How can I place an order?",
-        "a": "Order on WhatsApp Business at wa.me/919106354619, or call +91 91063 54619. We are open daily from 10:00 AM to 11:00 PM IST. Family pack and party orders should be placed in advance. Jain and Swaminarayan orders are available. You can also send an enquiry from the Contact page."
+        "a": "Order on WhatsApp Business at wa.me/919106354619, or call +91 91063 54619. We are open daily from 10:00 AM to 11:00 PM IST. Advance orders for 5 to 200 persons, including family packs and parties, are booked by call or WhatsApp. Jain and Swaminarayan food is available on request. You can also send an enquiry from the Contact page."
       },
       {
         "q": "Do you offer pickup?",
@@ -280,7 +306,7 @@
       },
       {
         "q": "Do you offer delivery?",
-        "a": "Delivery is not listed yet. Call or WhatsApp +91 91063 54619 to ask. Pickup by phone call is available in the Ahmedabad areas we serve."
+        "a": "Same-day delivery is not listed. Advance orders for 5 to 200 persons include catering and delivery. Book by call or WhatsApp +91 91063 54619. Pickup by phone call is available in the Ahmedabad areas we serve."
       },
       {
         "q": "How can I contact Chiransh Foods?",
