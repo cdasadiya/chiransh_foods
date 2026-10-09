@@ -171,7 +171,7 @@ const SEO = {
       "Chiransh Foods serves authentic 100% vegetarian Gujarati food in Ahmedabad, including Baroda-style Sev Usal and Tuvar Totha for pickup.",
     menuTitle: "Menu — Chiransh Foods | Gujarati Street Food in Ahmedabad",
     menuDescription:
-      "Explore the Chiransh Foods menu in Ahmedabad — 100% vegetarian Gujarati food: Sev Usal, Tuvar Totha, combos, Jain and Swaminarayan dishes, family packs, and drinks.",
+      "Explore the Chiransh Foods menu in Ahmedabad — 100% vegetarian Gujarati food: Sev Usal, Tuvar Totha, combos, Jain and Swaminarayan dishes, family packs, bulk orders, and drinks.",
     menuList: "Chiransh Foods menu",
     homeName: "Home",
     menuName: "Menu",
@@ -205,7 +205,7 @@ const SEO = {
       "ચિરાંશ ફૂડ્સ અમદાવાદમાં ૧૦૦% શાકાહારી ગુજરાતી ભોજન પીરસે છે — બરોડા સ્ટાઇલ સેવ ઉસળ અને તુવેર ટોઠા, પિકઅપ માટે.",
     menuTitle: "મેનૂ — ચિરાંશ ફૂડ્સ | અમદાવાદની ગુજરાતી સ્ટ્રીટ ફૂડ",
     menuDescription:
-      "અમદાવાદમાં ચિરાંશ ફૂડ્સનું મેનૂ જુઓ — સેવ ઉસળ, તુવેર ટોઠા, કોમ્બો, જૈન અને સ્વામિનારાયણ વાનગીઓ, ફેમિલી પેક અને પીણાં.",
+      "અમદાવાદમાં ચિરાંશ ફૂડ્સનું મેનૂ જુઓ — સેવ ઉસળ, તુવેર ટોઠા, કોમ્બો, જૈન અને સ્વામિનારાયણ વાનગીઓ, ફેમિલી પેક, બલ્ક ઓર્ડર અને પીણાં.",
     menuList: "ચિરાંશ ફૂડ્સ મેનૂ",
     homeName: "હોમ",
     menuName: "મેનુ",

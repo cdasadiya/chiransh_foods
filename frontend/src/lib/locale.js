@@ -14,9 +14,21 @@ export function useLocalizedSeo(barePath) {
   return getRouteSeo(localePath(barePath, lang));
 }
 
+/** Keep query and hash when a path is prefixed for English or Gujarati. */
+export function localizedHref(to, lang) {
+  if (typeof to !== "string") return to;
+  const hashIndex = to.indexOf("#");
+  const hash = hashIndex >= 0 ? to.slice(hashIndex) : "";
+  const beforeHash = hashIndex >= 0 ? to.slice(0, hashIndex) : to;
+  const queryIndex = beforeHash.indexOf("?");
+  const search = queryIndex >= 0 ? beforeHash.slice(queryIndex) : "";
+  const path = queryIndex >= 0 ? beforeHash.slice(0, queryIndex) : beforeHash;
+  return `${localePath(path || "/", lang)}${search}${hash}`;
+}
+
 export function LocaleLink({ to, ...props }) {
   const { lang } = useLocale();
-  const href = typeof to === "string" ? localePath(to, lang) : to;
+  const href = localizedHref(to, lang);
   return createElement(Link, { to: href, ...props });
 }
 

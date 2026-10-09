@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Search, RefreshCw } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
@@ -7,6 +8,7 @@ import { fetchProducts } from "@/lib/api";
 import { CATEGORY_NOTES, MENU_CATEGORIES } from "@/lib/site";
 import { productSearchText } from "@/lib/productCopy";
 import { useTranslation } from "react-i18next";
+import OrderInstructions from "@/components/OrderInstructions";
 import ProductCard from "@/components/ProductCard";
 import SectionHeading from "@/components/SectionHeading";
 
@@ -20,8 +22,35 @@ export default function Menu() {
     isError,
     refetch,
   } = useQuery({ queryKey: ["products"], queryFn: fetchProducts, retry: 1 });
-  const [category, setCategory] = useState("All");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requested = searchParams.get("category") || "All";
+  const category = requested === "All" || MENU_CATEGORIES.includes(requested) ? requested : "All";
   const [search, setSearch] = useState("");
+
+  function selectCategory(tab) {
+    const next = new URLSearchParams(searchParams);
+    if (tab === "All") next.delete("category");
+    else next.set("category", tab);
+    setSearchParams(next, { replace: true });
+  }
+
+  function tabDomId(tab) {
+    return `menu-tab-${tab.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+  }
+
+  useEffect(() => {
+    const tab = document.getElementById(tabDomId(category));
+    const list = tab?.closest('[role="tablist"]');
+    if (!tab || !list) return;
+    if (category === "All") {
+      list.scrollLeft = 0;
+      return;
+    }
+    const tabRect = tab.getBoundingClientRect();
+    const listRect = list.getBoundingClientRect();
+    const next = list.scrollLeft + (tabRect.left - listRect.left) - (listRect.width - tabRect.width) / 2;
+    list.scrollLeft = Math.max(0, next);
+  }, [category]);
 
   const products = data || [];
   const filtered = useMemo(() => {
@@ -70,27 +99,27 @@ export default function Menu() {
       </header>
 
       <section
-        className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20"
+        className="mx-auto max-w-7xl overflow-x-clip px-4 py-14 sm:px-6 lg:px-8 lg:py-20"
         data-testid="menu-catalog"
       >
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div
-            className="flex flex-wrap gap-2"
+            className="-mx-4 flex min-w-0 flex-1 gap-2 overflow-x-auto overscroll-x-contain px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0"
             role="tablist"
             aria-label={t("a11y.menu_categories")}
           >
             {tabs.map((tab) => (
               <button
                 key={tab}
-                id={`menu-tab-${tab.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                id={tabDomId(tab)}
                 role="tab"
                 aria-selected={category === tab}
                 aria-controls="menu-panel"
                 data-testid={`menu-category-tab-${tab
                   .toLowerCase()
                   .replace(/\s+/g, "-")}`}
-                onClick={() => setCategory(tab)}
-                className={`min-h-11 rounded-full px-4 py-2 font-display text-sm font-semibold transition-all duration-300 ${
+                onClick={() => selectCategory(tab)}
+                className={`min-h-11 shrink-0 rounded-full px-4 py-2 font-display text-sm font-semibold transition-all duration-300 ${
                   category === tab
                     ? "bg-leaf text-cream shadow-soft"
                     : "border border-leaf/15 bg-ivory text-stone-600 hover:border-leaf/40"
@@ -116,6 +145,8 @@ export default function Menu() {
             />
           </div>
         </div>
+
+        <OrderInstructions className="mt-8" />
 
         <div
           id="menu-panel"
