@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
 import { Menu as MenuIcon, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import Logo from "./Logo";
@@ -140,18 +139,13 @@ export default function Navbar() {
         </div>
       </header>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
+      {open && (
+          <div
             ref={dialogRef}
             id="mobile-menu"
             role="dialog"
             aria-modal="true"
             aria-label={t("a11y.dialog_menu")}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
             data-testid="nav-mobile-menu"
             className="fixed inset-0 z-[60] flex h-dvh flex-col overflow-y-auto bg-leaf px-6 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-[max(1.25rem,env(safe-area-inset-top))] lg:hidden"
           >
@@ -170,13 +164,8 @@ export default function Navbar() {
               <LanguageLinks light onNavigate={closeMenu} />
             </div>
             <ul className="mt-6 flex flex-col">
-              {LINKS.map((l, i) => (
-                <motion.li
-                  key={l.to}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.08 + i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                >
+              {LINKS.map((l) => (
+                <li key={l.to}>
                   <LocaleLink
                     to={l.to}
                     data-testid={`nav-mobile-${l.label}-link`}
@@ -184,15 +173,10 @@ export default function Navbar() {
                   >
                     {t(`nav.${l.label}`)}
                   </LocaleLink>
-                </motion.li>
+                </li>
               ))}
             </ul>
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.42, duration: 0.5 }}
-              className="mt-auto pt-8"
-            >
+            <div className="mt-auto pt-8">
               <a
                 href={orderHref}
                 {...externalProps}
@@ -201,10 +185,9 @@ export default function Navbar() {
               >
                 {orderLabel}
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         )}
-      </AnimatePresence>
     </>
   );
 }

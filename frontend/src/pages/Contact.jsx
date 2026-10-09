@@ -31,7 +31,7 @@ const DAYS = [
 ];
 
 const inputCls =
-  "min-h-11 w-full rounded-xl border border-leaf/15 bg-ivory px-4 py-3 text-base text-charcoal placeholder:text-stone-400 transition focus:border-saffron focus:outline-none focus:ring-2 focus:ring-saffron/30";
+  "min-h-11 w-full rounded-xl border border-leaf/15 bg-ivory px-4 py-3 text-base text-charcoal placeholder:text-stone-600 transition focus:border-saffron focus:outline-none focus:ring-2 focus:ring-saffron/30";
 
 export default function Contact() {
   usePageMeta(useLocalizedSeo("/contact"));
@@ -296,7 +296,7 @@ export default function Contact() {
                       className="font-display text-sm font-semibold text-leaf"
                     >
                       {t("contact.lbl_email", "Email ")}
-                      <span className="font-normal text-stone-400">
+                      <span className="font-normal text-stone-600">
                         {t("contact.lbl_email_opt", "(optional)")}
                       </span>
                     </label>
@@ -410,7 +410,7 @@ export default function Contact() {
                       <Icon className="h-4 w-4" />
                     </span>
                     <span>
-                      <span className="block text-xs uppercase tracking-[0.15em] text-stone-400">
+                      <span className="block text-xs uppercase tracking-[0.15em] text-stone-600">
                         {label}
                       </span>
                       {value ? (
@@ -428,7 +428,7 @@ export default function Contact() {
                           {value}
                         </a>
                       ) : (
-                        <span className="italic text-stone-400">
+                        <span className="italic text-stone-600">
                           {t("contact.val_tba", "To be announced")}
                         </span>
                       )}
@@ -458,7 +458,7 @@ export default function Contact() {
                     <MapPin className="h-4 w-4" />
                   </span>
                   <span>
-                    <span className="block text-xs uppercase tracking-[0.15em] text-stone-400">
+                    <span className="block text-xs uppercase tracking-[0.15em] text-stone-600">
                       {t("contact.lbl_city", "City")}
                     </span>
                     <span className="font-medium text-charcoal" data-testid="contact-info-city">
@@ -471,7 +471,7 @@ export default function Contact() {
               </ul>
               {areas.length > 0 && (
                 <div className="mt-4">
-                  <p className="text-xs uppercase tracking-[0.15em] text-stone-400">
+                  <p className="text-xs uppercase tracking-[0.15em] text-stone-600">
                     {t("contact.lbl_areas", "Nearest areas")}
                   </p>
                   <ul className="mt-3 flex flex-wrap gap-2" data-testid="contact-info-areas">
@@ -511,7 +511,7 @@ export default function Contact() {
                   >
                     <span className="capitalize text-stone-600">{t(`contact.days.${day}`, day)}</span>
                     <span
-                      className={hoursOpen ? "font-medium text-charcoal" : "italic text-stone-400"}
+                      className={hoursOpen ? "font-medium text-charcoal" : "italic text-stone-600"}
                       data-testid={`contact-hours-${day}`}
                     >
                       {hoursOpen

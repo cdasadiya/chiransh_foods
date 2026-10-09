@@ -1,6 +1,4 @@
-import { useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, MessageCircle, UtensilsCrossed } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
 import { LocaleLink, useLocalizedSeo } from "@/lib/locale";
@@ -31,31 +29,12 @@ const MARQUEE_ITEMS = [
   "Warm Indian Hospitality",
 ];
 
-const lineReveal = {
-  hidden: { y: "110%" },
-  show: (i) => ({
-    y: "0%",
-    transition: { duration: 0.9, delay: 0.15 + i * 0.13, ease: [0.22, 1, 0.36, 1] },
-  }),
-};
-
-function HeroLine({ index, children }) {
-  return (
-    <span className="block overflow-hidden pb-1">
-      <motion.span
-        custom={index}
-        variants={lineReveal}
-        initial="hidden"
-        animate="show"
-        className="block"
-      >
-        {children}
-      </motion.span>
-    </span>
-  );
+function HeroLine({ children }) {
+  return <span className="block pb-1">{children}</span>;
 }
 
 function RotatingBadge() {
+  const { t } = useTranslation();
   return (
     <div
       className="absolute -top-7 right-2 z-10 hidden h-28 w-28 sm:block md:-right-6"
@@ -72,7 +51,7 @@ function RotatingBadge() {
           </defs>
           <text className="fill-leaf font-display text-[10px] font-semibold uppercase tracking-[0.16em]">
             <textPath href="#badge-circle">
-              100% Vegetarian · Gujarati Street Food ·
+              {`${t("home.hero.badge")} · `}
             </textPath>
           </text>
         </svg>
@@ -86,30 +65,21 @@ function RotatingBadge() {
 
 function Hero() {
   const { t } = useTranslation();
-  const ref = useRef(null);
   const { settings } = useSettings();
   const wa = whatsappUrl(settings, null, t("order.whatsapp_general"));
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const yImg = useTransform(scrollYProgress, [0, 1], [0, 90]);
-  const xWord = useTransform(scrollYProgress, [0, 1], [0, -160]);
 
   return (
     <section
-      ref={ref}
       className="relative overflow-hidden pt-28 lg:pt-36"
       data-testid="hero-section"
     >
       <div className="pattern-dots absolute inset-0 opacity-40" aria-hidden="true" />
-      <motion.span
+      <span
         aria-hidden="true"
-        style={{ x: xWord }}
         className="font-guj text-outline pointer-events-none absolute -top-6 left-0 select-none whitespace-nowrap text-[26vw] font-bold leading-none md:text-[19vw]"
       >
         {t("home.marquee.1")}
-      </motion.span>
+      </span>
 
       <div className="relative mx-auto grid max-w-7xl gap-14 px-4 pb-16 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8 lg:pb-28">
         <div className="flex flex-col justify-center lg:col-span-7">
@@ -120,9 +90,9 @@ function Hero() {
           </Reveal>
 
           <h1 className="mt-6 font-serif text-[2.6rem] font-semibold leading-[1.06] text-leaf sm:text-6xl lg:text-[4.25rem]">
-            <HeroLine index={0}>{t("home.hero.title_1")}</HeroLine>
-            <HeroLine index={1}>{t("home.hero.title_2")}</HeroLine>
-            <HeroLine index={2}>
+            <HeroLine>{t("home.hero.title_1")}</HeroLine>
+            <HeroLine>{t("home.hero.title_2")}</HeroLine>
+            <HeroLine>
               {t("home.hero.title_3")} <em className="italic text-saffron-deep">{t("home.hero.title_gujarat")}</em>.
             </HeroLine>
           </h1>
@@ -167,16 +137,9 @@ function Hero() {
         </div>
 
         <div className="relative lg:col-span-5">
-          <motion.div style={{ y: yImg }} className="relative">
+          <div className="relative">
             <RotatingBadge />
-            <motion.div
-              initial={{
-                clipPath: "inset(100% 0 0 0 round 999px 999px 24px 24px)",
-              }}
-              animate={{ clipPath: "inset(0% 0 0 0 round 999px 999px 24px 24px)" }}
-              transition={{ duration: 1.1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="relative overflow-hidden rounded-b-3xl rounded-t-[999px] shadow-lift"
-            >
+            <div className="hero-photo relative overflow-hidden rounded-b-3xl rounded-t-[999px] shadow-lift">
               <FoodImage
                 src={FALLBACK_PRODUCTS[0].image}
                 alt={t("home.hero.image_alt")}
@@ -184,7 +147,7 @@ function Hero() {
                 sizes="(max-width: 1024px) 100vw, 42vw"
                 className="aspect-[4/5] w-full object-cover"
               />
-            </motion.div>
+            </div>
 
             <Reveal
               delay={0.9}
@@ -211,7 +174,7 @@ function Hero() {
                 </span>
               </LocaleLink>
             </Reveal>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
@@ -460,7 +423,7 @@ function OrderBand() {
             <OrderButtons align="center" testPrefix="cta" />
           </div>
           <p
-            className="mt-12 text-xs italic text-cream/50"
+            className="mt-12 text-xs italic text-cream/80"
             data-testid="reviews-coming-soon"
           >
             {t("home.order.reviews")}
