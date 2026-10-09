@@ -9,6 +9,7 @@ export default function useDialog(open, onClose) {
   useEffect(() => {
     if (!open) return undefined;
     const root = ref.current;
+    if (!root) return undefined;
     const previous = document.activeElement;
     const nodes = () => (root ? [...root.querySelectorAll(FOCUSABLE)] : []);
     const first = nodes()[0];
@@ -36,7 +37,8 @@ export default function useDialog(open, onClose) {
 
     const inerted = [];
     const hideOutside = (node) => {
-      if (node === root || node.contains(root)) {
+      if (node === root) return;
+      if (node.contains(root)) {
         [...node.children].forEach(hideOutside);
         return;
       }

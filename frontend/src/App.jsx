@@ -54,7 +54,7 @@ function App() {
               </a>
               <LocaleSync />
               <Navbar />
-              <main id="main-content" className="flex-1 pt-[env(safe-area-inset-top)]">
+              <main id="main-content" className="relative z-40 flex-1 pt-[env(safe-area-inset-top)]">
                 <Suspense fallback={<div className="min-h-[60vh]" aria-busy="true"><span className="sr-only">{t("a11y.loading")}</span></div>}>
                 <Routes>
                   {LOCALES.filter((locale) => locale.prefix).map((locale) => (

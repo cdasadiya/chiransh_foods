@@ -63,7 +63,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-leaf text-cream" data-testid="site-footer">
+    <footer className="relative z-40 bg-leaf text-cream" data-testid="site-footer">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
@@ -100,7 +100,7 @@ export default function Footer() {
                   <LocaleLink
                     to={l.to}
                     data-testid={`footer-${l.label.toLowerCase()}-link`}
-                    className="text-sm text-cream/75 transition-colors hover:text-cream"
+                    className="inline-flex min-h-11 items-center text-sm text-cream/75 transition-colors hover:text-cream"
                   >
                     {t(`nav.${l.to.slice(1) || 'home'}`, l.label)}
                   </LocaleLink>
@@ -119,7 +119,7 @@ export default function Footer() {
                   <LocaleLink
                     to={l.to}
                     data-testid={`footer-legal-${l.label.toLowerCase().split(" ")[0]}-link`}
-                    className="text-sm text-cream/75 transition-colors hover:text-cream"
+                    className="inline-flex min-h-11 items-center text-sm text-cream/75 transition-colors hover:text-cream"
                   >
                     {t(`footer.${l.to.slice(1).split('/')[0]}`, l.label)}
                   </LocaleLink>

@@ -18,7 +18,7 @@ export default function About() {
     <>
       <header className="relative overflow-hidden bg-leaf" data-testid="about-header">
         <div
-          className="pattern-dots-light absolute inset-0 opacity-60"
+          className="pattern-dots-light pointer-events-none absolute inset-0 opacity-60"
           aria-hidden="true"
         />
         <span

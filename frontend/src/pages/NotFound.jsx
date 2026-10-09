@@ -18,7 +18,7 @@ export default function NotFound() {
       data-testid="notfound-page"
     >
       <div
-        className="pattern-dots absolute inset-0 opacity-40"
+        className="pattern-dots pointer-events-none absolute inset-0 opacity-40"
         aria-hidden="true"
       />
       <div className="relative max-w-xl text-center">
