@@ -1,10 +1,32 @@
 import { LocaleLink } from "@/lib/locale";
 import { Mail, MessageCircle, Phone } from "lucide-react";
-import { FaFacebook as Facebook, FaInstagram as Instagram, FaYoutube as Youtube } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import Logo from "./Logo";
 import { useSettings } from "@/context/SettingsContext";
 import { whatsappUrl } from "@/lib/site";
+
+function SocialIcon({ name }) {
+  const common = { viewBox: "0 0 24 24", className: "h-4 w-4", "aria-hidden": true, fill: "currentColor" };
+  if (name === "Instagram") {
+    return (
+      <svg {...common}>
+        <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm5 4.2A4.8 4.8 0 1 0 16.8 12 4.8 4.8 0 0 0 12 7.2zm6.4-1.1a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1zM12 9.4A2.6 2.6 0 1 1 9.4 12 2.6 2.6 0 0 1 12 9.4z" />
+      </svg>
+    );
+  }
+  if (name === "Facebook") {
+    return (
+      <svg {...common}>
+        <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.6l.4-3H13v-2c0-.6.4-1 1-1z" />
+      </svg>
+    );
+  }
+  return (
+    <svg {...common}>
+      <path d="M23 12.2a11 11 0 1 1-3.2-7.8 11 11 0 0 1 3.2 7.8zM10 16.5V7.5l8 4.5-8 4.5z" />
+    </svg>
+  );
+}
 
 const EXPLORE = [
   { label: "Home", to: "/" },
@@ -26,17 +48,17 @@ export default function Footer() {
   const { settings } = useSettings();
   const phone = settings?.contact?.phone_display || settings?.contact?.phone;
   const email = settings?.contact?.email;
-  const wa = whatsappUrl(settings);
+  const wa = whatsappUrl(settings, null, t("order.whatsapp_general"));
 
   const socials = [
-    { label: "Instagram", url: settings?.social?.instagram, Icon: Instagram },
-    { label: "Facebook", url: settings?.social?.facebook, Icon: Facebook },
-    { label: "YouTube", url: settings?.social?.youtube, Icon: Youtube },
+    { label: "Instagram", url: settings?.social?.instagram },
+    { label: "Facebook", url: settings?.social?.facebook },
+    { label: "YouTube", url: settings?.social?.youtube },
   ].filter((s) => s.url);
 
   const contactRows = [
     { label: "Phone", value: phone, href: settings?.contact?.phone ? `tel:${String(settings.contact.phone).replace(/\s/g, "")}` : null, Icon: Phone, testId: "footer-phone-link" },
-    { label: "WhatsApp", value: wa ? "Chat with us" : null, href: wa, Icon: MessageCircle, testId: "footer-whatsapp-link" },
+    { label: "WhatsApp", value: wa ? t("contact.val_chat") : null, href: wa, Icon: MessageCircle, testId: "footer-whatsapp-link" },
     { label: "Email", value: email, href: email ? `mailto:${email}` : null, Icon: Mail, testId: "footer-email-link" },
   ];
 
@@ -51,17 +73,17 @@ export default function Footer() {
             </p>
             {socials.length > 0 && (
               <div className="mt-6 flex gap-3">
-                {socials.map(({ label, url, Icon }) => (
+                {socials.map(({ label, url }) => (
                   <a
                     key={label}
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Chiransh Foods on ${label}`}
+                    aria-label={t("footer.social", { network: label })}
                     data-testid={`footer-social-${label.toLowerCase()}`}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition-colors hover:border-gold hover:text-gold"
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition-colors hover:border-gold hover:text-gold"
                   >
-                    <Icon className="h-4 w-4" />
+                    <SocialIcon name={label} />
                   </a>
                 ))}
               </div>
@@ -121,9 +143,9 @@ export default function Footer() {
                         target={href?.startsWith("http") ? "_blank" : undefined}
                         rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
                         data-testid={testId}
-                        className="inline-flex items-center gap-2 text-sm text-cream/75 transition-colors hover:text-cream"
+                        className="inline-flex min-h-11 items-center gap-2 text-sm text-cream/75 transition-colors hover:text-cream"
                       >
-                        <Icon className="h-4 w-4" /> {t(`footer.${label.toLowerCase()}`, value)}
+                        <Icon className="h-4 w-4" aria-hidden="true" /> {value}
                       </a>
                     </li>
                   ),

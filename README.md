@@ -23,10 +23,14 @@ This project is built using modern web development technologies to ensure a fast
 - **Lucide React**: Beautiful and consistent iconography.
 - **i18next**: Robust internationalization framework for English & Gujarati support.
 
-### Backend (API)
-- **FastAPI**: High-performance Python web framework for building APIs.
-- **Uvicorn**: Lightning-fast ASGI server.
-- **Python 3.10+**: For reliable data serving.
+### Production server
+- **Node.js**: `server.mjs` serves the built site, per-page SEO, and `/api` on Render.
+- **JSON data**: Menu and settings live in `backend/data`.
+
+### Local API
+- **FastAPI**: Local mock of the same API, used with `./run.sh` and pytest.
+- **Uvicorn**: ASGI server for that local API.
+- **Python 3.10+**: Required for the local API, tests, and helper scripts.
 
 ## 🚀 Getting Started
 

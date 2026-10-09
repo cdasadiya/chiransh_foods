@@ -401,17 +401,53 @@
     <lastmod>2026-10-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/privacy" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/privacy</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/privacy" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/terms</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/terms" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/terms" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/terms</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/terms" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/terms" />
   </url>
   <url>
     <loc>https://chiransh-foods.onrender.com/refund</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/refund" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/refund" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/refund" />
+  </url>
+  <url>
+    <loc>https://chiransh-foods.onrender.com/gu/refund</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chiransh-foods.onrender.com/refund" />
+    <xhtml:link rel="alternate" hreflang="gu" href="https://chiransh-foods.onrender.com/gu/refund" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chiransh-foods.onrender.com/refund" />
   </url>
 </urlset>

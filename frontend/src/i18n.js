@@ -4,6 +4,11 @@ import { initReactI18next } from "react-i18next";
 import enTranslations from "./locales/en/translation.json";
 import guTranslations from "./locales/gu/translation.json";
 
+function initialLanguage() {
+  if (typeof window === "undefined") return "en";
+  return /^\/gu(\/|$)/.test(window.location.pathname) ? "gu" : "en";
+}
+
 i18n
   .use(initReactI18next)
   .init({
@@ -15,7 +20,7 @@ i18n
         translation: guTranslations
       }
     },
-    lng: typeof window !== "undefined" && /^\/gu(\/|$)/.test(window.location.pathname) ? "gu" : "en",
+    lng: initialLanguage(),
     fallbackLng: "en",
     interpolation: {
       escapeValue: false // react already safes from xss

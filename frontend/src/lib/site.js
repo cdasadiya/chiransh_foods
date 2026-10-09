@@ -112,7 +112,7 @@ export const FALLBACK_PRODUCTS = [
     "category": "Sev Usal (Regular)",
     "description": "Spicy Baroda-style usal topped with crunchy sev. Made in our home kitchen in Ahmedabad. Regular recipe. For a no-onion, no-garlic version, see Jain & Swaminarayan.",
     "short_description": "Vadodara's beloved street-food legend — slow-simmered spiced usal crowned with a generous heap of crunchy sev.",
-    "image": `${IMG}/sev_usal_with_chutney.png`,
+    "image": `${IMG}/sev_usal_with_chutney.webp`,
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -131,7 +131,7 @@ export const FALLBACK_PRODUCTS = [
     "category": "Sev Usal (Regular)",
     "description": "Baroda-style sev usal served with soft pav, onion and lemon. Regular recipe. Pick your spice level.",
     "short_description": "Baroda-style sev usal served with soft pav, onion and lemon.",
-    "image": `${IMG}/sev_usal_with_chutney.png`,
+    "image": `${IMG}/sev_usal_with_chutney.webp`,
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -150,7 +150,7 @@ export const FALLBACK_PRODUCTS = [
     "category": "Sev Usal (Regular)",
     "description": "Sev usal packed to take home, with the sev packed separately so it stays crunchy. Pav, onion-coriander and lemon on the side. Regular recipe. Pick your spice level.",
     "short_description": "Sev usal packed to take home, with the sev packed separately so it stays crunchy.",
-    "image": `${IMG}/sev_usal_with_chutney.png`,
+    "image": `${IMG}/sev_usal_with_chutney.webp`,
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -169,7 +169,7 @@ export const FALLBACK_PRODUCTS = [
     "category": "Tuvar Totha (Regular)",
     "description": "Gujarati tuvar totha: dried tuvar cooked in a spicy masala gravy. Made in our home kitchen in Ahmedabad. Regular recipe. For a no-onion, no-garlic version, see Jain & Swaminarayan.",
     "short_description": "A rustic, heartwarming Gujarati street-style tuvar preparation — bold flavour, homestyle comfort.",
-    "image": `${IMG}/tuvar_totha_with_chutney.png`,
+    "image": `${IMG}/tuvar_totha_with_chutney.webp`,
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -188,7 +188,7 @@ export const FALLBACK_PRODUCTS = [
     "category": "Tuvar Totha (Regular)",
     "description": "Spicy Gujarati tuvar totha served with soft pav, onion and lemon. Regular recipe. Pick your spice level.",
     "short_description": "Spicy Gujarati tuvar totha served with soft pav, onion and lemon.",
-    "image": `${IMG}/tuvar_totha_with_chutney.png`,
+    "image": `${IMG}/tuvar_totha_with_chutney.webp`,
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -207,7 +207,7 @@ export const FALLBACK_PRODUCTS = [
     "category": "Combos (Regular)",
     "description": "Sev usal and tuvar totha on one plate, with pav, onion and lemon. Serves 1. Regular recipe. Pick your spice level.",
     "short_description": "Sev usal and tuvar totha on one plate, with pav, onion and lemon.",
-    "image": `${IMG}/combo_plate_with_chutney.png`,
+    "image": `${IMG}/combo_plate_with_chutney.webp`,
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -226,7 +226,7 @@ export const FALLBACK_PRODUCTS = [
     "category": "Jain & Swaminarayan",
     "description": "Baroda-style sev usal made Jain style: no onion, no garlic and no root vegetables. Topped with crunchy sev, with lemon on the side. Served without pav. Pick your spice level.",
     "short_description": "Baroda-style sev usal made Jain style: no onion, no garlic and no root vegetables.",
-    "image": `${IMG}/jain_sev_usal.png`,
+    "image": `${IMG}/jain_sev_usal.webp`,
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -245,7 +245,7 @@ export const FALLBACK_PRODUCTS = [
     "category": "Jain & Swaminarayan",
     "description": "Gujarati tuvar totha made Jain style: no onion, no garlic and no root vegetables, in a spicy masala gravy. Served without pav. Pick your spice level.",
     "short_description": "Gujarati tuvar totha made Jain style: no onion, no garlic and no root vegetables.",
-    "image": `${IMG}/jain_tuvar_totha.png`,
+    "image": `${IMG}/jain_tuvar_totha.webp`,
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -264,7 +264,7 @@ export const FALLBACK_PRODUCTS = [
     "category": "Jain & Swaminarayan",
     "description": "Baroda-style sev usal made Swaminarayan style: no onion and no garlic. Topped with crunchy sev, with lemon on the side. Served without pav. Pick your spice level.",
     "short_description": "Baroda-style sev usal made Swaminarayan style: no onion and no garlic.",
-    "image": `${IMG}/jain_sev_usal.png`,
+    "image": `${IMG}/jain_sev_usal.webp`,
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -283,7 +283,7 @@ export const FALLBACK_PRODUCTS = [
     "category": "Jain & Swaminarayan",
     "description": "Gujarati tuvar totha made Swaminarayan style: no onion and no garlic, in a spicy masala gravy. Served without pav. Pick your spice level.",
     "short_description": "Gujarati tuvar totha made Swaminarayan style: no onion and no garlic.",
-    "image": `${IMG}/jain_tuvar_totha.png`,
+    "image": `${IMG}/jain_tuvar_totha.webp`,
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -302,7 +302,7 @@ export const FALLBACK_PRODUCTS = [
     "category": "Family & Party Packs (Regular)",
     "description": "Sev usal in family and party sizes, with the sev packed separately so it stays crunchy. Pav, onion and lemon on the side. Regular recipe. Pick the size and spice level.",
     "short_description": "Sev usal in family and party sizes, with the sev packed separately so it stays crunchy.",
-    "image": `${IMG}/sev_usal_with_chutney.png`,
+    "image": `${IMG}/sev_usal_with_chutney.webp`,
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -321,7 +321,7 @@ export const FALLBACK_PRODUCTS = [
     "category": "Family & Party Packs (Regular)",
     "description": "Gujarati tuvar totha in family and party sizes, with pav, onion and lemon on the side. Regular recipe. Pick the size and spice level.",
     "short_description": "Gujarati tuvar totha in family and party sizes, with pav, onion and lemon on the side.",
-    "image": `${IMG}/tuvar_totha_with_chutney.png`,
+    "image": `${IMG}/tuvar_totha_with_chutney.webp`,
     "price": null,
     "availability": "available",
     "vegetarian": true,
@@ -414,17 +414,21 @@ export function priceLabel(price) {
   return `₹ ${price}`;
 }
 
-export function whatsappUrl(settings, productName) {
+export function whatsappUrl(settings, productName, messageOverride) {
   const number = settings?.contact?.whatsapp;
   if (!number) return null;
+  const digits = String(number).replace(/\D/g, "");
+  if (messageOverride) {
+    return `https://wa.me/${digits}?text=${encodeURIComponent(messageOverride)}`;
+  }
   if (productName) {
     const template =
       settings?.ordering?.whatsapp_message_template ||
       "Hello Chiransh Foods, I would like to order {product}.";
     const message = template.replace("{product}", productName).trim();
-    return `https://wa.me/${String(number).replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
+    return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
   }
-  return `https://wa.me/${String(number).replace(/\D/g, "")}?text=${encodeURIComponent(
+  return `https://wa.me/${digits}?text=${encodeURIComponent(
     "Hello Chiransh Foods, I would like to place an order.",
   )}`;
 }

@@ -14,6 +14,7 @@ import usePageMeta from "@/hooks/usePageMeta";
 import { useLocalizedSeo } from "@/lib/locale";
 import { fetchProducts, submitEnquiry } from "@/lib/api";
 import { FALLBACK_PRODUCTS, whatsappUrl } from "@/lib/site";
+import { productNames } from "@/lib/productCopy";
 import { useTranslation } from "react-i18next";
 import { useSettings } from "@/context/SettingsContext";
 import Reveal from "@/components/Reveal";
@@ -30,12 +31,12 @@ const DAYS = [
 ];
 
 const inputCls =
-  "w-full rounded-xl border border-leaf/15 bg-ivory px-4 py-3 text-sm text-charcoal placeholder:text-stone-400 transition focus:border-saffron focus:outline-none focus:ring-2 focus:ring-saffron/30";
+  "min-h-11 w-full rounded-xl border border-leaf/15 bg-ivory px-4 py-3 text-base text-charcoal placeholder:text-stone-400 transition focus:border-saffron focus:outline-none focus:ring-2 focus:ring-saffron/30";
 
 export default function Contact() {
   usePageMeta(useLocalizedSeo("/contact"));
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { settings } = useSettings();
   const { data: productsData } = useQuery({
     queryKey: ["products"],
@@ -43,7 +44,7 @@ export default function Contact() {
   });
   const products = productsData?.length ? productsData : FALLBACK_PRODUCTS;
 
-  const waContact = whatsappUrl(settings);
+  const waContact = whatsappUrl(settings, null, t("order.whatsapp_general"));
   const phoneDisplay = settings?.contact?.phone_display || settings?.contact?.phone || null;
   const phoneHref = settings?.contact?.phone
     ? `tel:${String(settings.contact.phone).replace(/\s/g, "")}`
@@ -83,6 +84,8 @@ export default function Contact() {
     email: "",
     productInterest: t("contact.opt_general", "General enquiry"),
     message: "",
+    website: "",
+    company: "",
   });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
@@ -120,6 +123,8 @@ export default function Contact() {
         email: form.email.trim() || undefined,
         product_interest: form.productInterest,
         message: form.message.trim(),
+        website: form.website,
+        company: form.company,
       });
       setSubmitted(true);
       setForm({
@@ -128,6 +133,8 @@ export default function Contact() {
         email: "",
         productInterest: t("contact.opt_general", "General enquiry"),
         message: "",
+        website: "",
+        company: "",
       });
       toast.success(
         t("contact.toast_success", "Thank you! We've received your enquiry and will get back to you soon.")
@@ -202,7 +209,7 @@ export default function Contact() {
                 onSubmit={onSubmit}
                 noValidate
                 data-testid="contact-order-form"
-                className="rounded-3xl border border-leaf/10 bg-ivory p-6 shadow-soft sm:p-9"
+                className="relative rounded-3xl border border-leaf/10 bg-ivory p-6 shadow-soft sm:p-9"
               >
                 <h2 className="font-serif text-2xl font-semibold text-leaf">
                   {t("contact.form_title", "Send an order enquiry")}
@@ -210,6 +217,13 @@ export default function Contact() {
                 <p className="mt-1.5 text-sm text-stone-500">
                   {t("contact.form_req", "Fields marked * are required.")}
                 </p>
+
+                <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+                  <label htmlFor="contact-website">{t("contact.honeypot")}</label>
+                  <input id="contact-website" name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={set("website")} />
+                  <label htmlFor="contact-company">{t("contact.honeypot")}</label>
+                  <input id="contact-company" name="company" tabIndex={-1} autoComplete="off" value={form.company} onChange={set("company")} />
+                </div>
 
                 <div className="mt-7 grid gap-5 sm:grid-cols-2">
                   <div>
@@ -327,7 +341,7 @@ export default function Contact() {
                       <option>{t("contact.opt_general", "General enquiry")}</option>
                       {products.map((p) => (
                         <option key={p.slug} value={p.name}>
-                          {p.name}
+                          {productNames(p, i18n.language).name}
                         </option>
                       ))}
                     </select>

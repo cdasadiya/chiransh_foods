@@ -5,13 +5,13 @@ import usePageMeta from "@/hooks/usePageMeta";
 import { useLocalizedSeo } from "@/lib/locale";
 import { fetchProducts } from "@/lib/api";
 import { CATEGORY_NOTES, MENU_CATEGORIES } from "@/lib/site";
+import { productSearchText } from "@/lib/productCopy";
 import { useTranslation } from "react-i18next";
 import ProductCard from "@/components/ProductCard";
 import SectionHeading from "@/components/SectionHeading";
 
 export default function Menu() {
-  const { t, i18n } = useTranslation();
-  const isGu = i18n.language === "gu";
+  const { t } = useTranslation();
   usePageMeta(useLocalizedSeo("/menu"));
 
   const {
@@ -30,9 +30,7 @@ export default function Menu() {
       const inCategory = category === "All" || p.category === category;
       const inSearch =
         !q ||
-        `${p.name} ${p.gujarati_name} ${p.short_description} ${p.description} ${p.gujarati_description} ${p.gujarati_short_description}`
-          .toLowerCase()
-          .includes(q);
+        productSearchText(p).toLowerCase().includes(q);
       return inCategory && inSearch;
     });
   }, [products, category, search]);
@@ -79,18 +77,20 @@ export default function Menu() {
           <div
             className="flex flex-wrap gap-2"
             role="tablist"
-            aria-label="Menu categories"
+            aria-label={t("a11y.menu_categories")}
           >
             {tabs.map((tab) => (
               <button
                 key={tab}
+                id={`menu-tab-${tab.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
                 role="tab"
                 aria-selected={category === tab}
+                aria-controls="menu-panel"
                 data-testid={`menu-category-tab-${tab
                   .toLowerCase()
                   .replace(/\s+/g, "-")}`}
                 onClick={() => setCategory(tab)}
-                className={`rounded-full px-4 py-2 font-display text-sm font-semibold transition-all duration-300 ${
+                className={`min-h-11 rounded-full px-4 py-2 font-display text-sm font-semibold transition-all duration-300 ${
                   category === tab
                     ? "bg-leaf text-cream shadow-soft"
                     : "border border-leaf/15 bg-ivory text-stone-600 hover:border-leaf/40"
@@ -112,11 +112,16 @@ export default function Menu() {
               data-testid="menu-search-input"
               placeholder={t("menu.search")}
               aria-label={t("menu.search")}
-              className="w-full rounded-full border border-leaf/15 bg-ivory py-2.5 pl-10 pr-4 text-sm text-charcoal placeholder:text-stone-400 focus:border-saffron focus:outline-none focus:ring-2 focus:ring-saffron/30"
+              className="min-h-11 w-full rounded-full border border-leaf/15 bg-ivory py-2.5 pl-10 pr-4 text-base text-charcoal placeholder:text-stone-400 focus:border-saffron focus:outline-none focus:ring-2 focus:ring-saffron/30"
             />
           </div>
         </div>
 
+        <div
+          id="menu-panel"
+          role="tabpanel"
+          aria-labelledby={`menu-tab-${category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+        >
         {isError ? (
           <div
             className="mt-10 rounded-3xl border border-dashed border-chili/30 bg-ivory px-6 py-16 text-center"
@@ -179,6 +184,7 @@ export default function Menu() {
             </div>
           </>
         )}
+        </div>
       </section>
     </>
   );

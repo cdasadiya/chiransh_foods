@@ -18,7 +18,12 @@ export default defineConfig({
   css: {
     postcss: {},
   },
+  test: {
+    environment: "jsdom",
+    setupFiles: "./src/test/setup.js",
+  },
   build: {
+    sourcemap: false,
     // Split long-lived vendor code so page chunks stay small and cache well.
     rollupOptions: {
       output: {

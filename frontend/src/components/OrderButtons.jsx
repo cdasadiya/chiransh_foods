@@ -5,7 +5,7 @@ import { useSettings } from "@/context/SettingsContext";
 import { whatsappUrl } from "@/lib/site";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-display text-sm font-semibold transition-all duration-300";
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-3 font-display text-sm font-semibold transition-all duration-300";
 
 export default function OrderButtons({
   productName,
@@ -14,7 +14,10 @@ export default function OrderButtons({
 }) {
   const { t } = useTranslation();
   const { settings } = useSettings();
-  const wa = whatsappUrl(settings, productName);
+  const waMessage = productName
+    ? t("order.whatsapp_product", { product: productName })
+    : t("order.whatsapp_general");
+  const wa = whatsappUrl(settings, productName, waMessage);
   const phone = settings?.contact?.phone;
   const hasDirect = Boolean(wa || phone);
 

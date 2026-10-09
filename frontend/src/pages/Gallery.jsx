@@ -6,6 +6,8 @@ import usePageMeta from "@/hooks/usePageMeta";
 import { useLocalizedSeo } from "@/lib/locale";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
+import FoodImage from "@/components/FoodImage";
+import useDialog from "@/hooks/useDialog";
 
 const IMG =
   "/images";
@@ -19,7 +21,7 @@ const GALLERY = [
   { src: `${IMG}/da7bd498a6ba6bcf1a798b19b9852a5c933f812e8c34dd3f232eca06200a0382.webp`, alt: "Hands sprinkling sev over a steaming bowl", caption: "Finishing touches" },
   { src: `${IMG}/0fcaf35923b615c8dcab00e8a9843eac3ba0e899512260c0ed9f3bbc8569f608.webp`, alt: "Buttered pav toasting on a griddle", caption: "Buttered pav, toasted golden" },
   { src: `${IMG}/f60e06ce5df687c2b2b455940b778d6a054b268564dceae3fc75de82cc31877d.webp`, alt: "Gujarati vegetarian spread on a wooden table", caption: "The Gujarati table" },
-  { src: `${IMG}/spiced_usal_simmering.png`, alt: "Spiced usal simmering in a pot", caption: "Slow-simmered usal" },
+  { src: `${IMG}/spiced_usal_simmering.webp`, alt: "Spiced usal simmering in a pot", caption: "Slow-simmered usal" },
   { src: `${IMG}/bcf4d62101e67d8b5fbc90de6d671f52fc6c820f74b1b1a8cb6c4d9e9134792b.webp`, alt: "Close-up of tuvar totha with tempering", caption: "Totha, straight off the fire" },
 ];
 
@@ -33,6 +35,7 @@ export default function Gallery() {
   const [active, setActive] = useState(null);
 
   const close = useCallback(() => setActive(null), []);
+  const dialogRef = useDialog(active !== null, close);
   const step = useCallback(
     (dir) =>
       setActive((i) =>
@@ -95,17 +98,16 @@ export default function Gallery() {
                   <button
                     onClick={() => setActive(i)}
                     data-testid={`gallery-item-${i}`}
-                    aria-label={`Open image: ${translatedCaption}`}
+                    aria-label={t("gallery.aria.open", { caption: translatedCaption })}
                     className="group relative block w-full overflow-hidden rounded-2xl shadow-soft transition-shadow duration-300 hover:shadow-lift"
                   >
-                    <img
+                    <FoodImage
                       src={g.src}
                       alt={translatedCaption}
-                      loading="lazy"
-                      decoding="async"
+                      sizes="(max-width: 768px) 50vw, 33vw"
                       className="w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
-                    <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-leaf/85 to-transparent p-4 pt-10 text-left text-xs font-medium text-cream opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-leaf/85 to-transparent p-4 pt-10 text-left text-xs font-medium text-cream">
                       {translatedCaption}
                     </span>
                   </button>
@@ -123,18 +125,19 @@ export default function Gallery() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[90] flex items-center justify-center bg-leaf/95 p-4 backdrop-blur"
+            ref={dialogRef}
+            className="fixed inset-0 z-[90] flex h-dvh items-center justify-center bg-leaf/95 p-4 pt-[max(1rem,env(safe-area-inset-top))] backdrop-blur"
             data-testid="gallery-lightbox"
             role="dialog"
             aria-modal="true"
-            aria-label={GALLERY[active].caption}
+            aria-label={t("a11y.dialog_gallery")}
             onClick={close}
           >
             <button
               onClick={close}
               data-testid="gallery-lightbox-close"
-              aria-label="Close image viewer"
-              className="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/25 text-cream transition-colors hover:bg-cream/10"
+              aria-label={t("gallery.aria.close")}
+              className="absolute right-[max(1rem,env(safe-area-inset-right))] top-[max(1rem,env(safe-area-inset-top))] inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/25 text-cream transition-colors hover:bg-cream/10"
             >
               <X className="h-5 w-5" />
             </button>
@@ -144,7 +147,7 @@ export default function Gallery() {
                 step(-1);
               }}
               data-testid="gallery-lightbox-prev"
-              aria-label="Previous image"
+              aria-label={t("gallery.aria.prev")}
               className="absolute left-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-cream/25 text-cream transition-colors hover:bg-cream/10 md:left-6"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -155,7 +158,7 @@ export default function Gallery() {
                 step(1);
               }}
               data-testid="gallery-lightbox-next"
-              aria-label="Next image"
+              aria-label={t("gallery.aria.next")}
               className="absolute right-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-cream/25 text-cream transition-colors hover:bg-cream/10 md:right-6"
             >
               <ChevronRight className="h-5 w-5" />
@@ -168,10 +171,11 @@ export default function Gallery() {
               className="max-w-4xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <FoodImage
                 src={GALLERY[active].src}
-                alt={GALLERY[active].alt}
-                className="max-h-[78vh] w-auto rounded-2xl object-contain shadow-lift"
+                alt={captions[active] || GALLERY[active].caption}
+                sizes="(max-width: 896px) 100vw, 896px"
+                className="max-h-[78svh] w-auto rounded-2xl object-contain shadow-lift"
               />
               <figcaption className="mt-4 text-center font-serif text-lg italic text-cream/85">
                 {captions[active] || GALLERY[active].caption}

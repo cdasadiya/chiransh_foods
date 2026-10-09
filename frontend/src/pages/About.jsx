@@ -68,7 +68,7 @@ export default function About() {
           />
           <img
             src={`${IMG}/f60e06ce5df687c2b2b455940b778d6a054b268564dceae3fc75de82cc31877d.webp`}
-            alt="A Gujarati vegetarian food spread on a wooden table"
+            alt={t("about.image_spread")}
             loading="lazy"
             decoding="async"
             className="relative aspect-[4/3] w-full rounded-3xl object-cover shadow-lift"
@@ -98,10 +98,10 @@ export default function About() {
                     <v.Icon className="h-5 w-5" />
                   </span>
                   <h3 className="mt-5 font-serif text-xl font-semibold text-leaf">
-                    {t(`values.${v.slug}_title`, v.title)}
+                    {t(`values.${v.slug}.title`, v.title)}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                    {t(`values.${v.slug}_text`, v.text)}
+                    {t(`values.${v.slug}.text`, v.text)}
                   </p>
                 </div>
               </Reveal>
@@ -115,7 +115,7 @@ export default function About() {
           <Reveal className="order-2 lg:order-1">
             <img
               src={`${IMG}/384a05646bbcef1e73af0433ab6e9d7d2e31ab9757a30e99bd75df1fc4db15c2.webp`}
-              alt="A flat-lay of Indian spices — turmeric, chilies and coriander seeds"
+              alt={t("about.image_spices")}
               loading="lazy"
               decoding="async"
               className="aspect-[4/3] w-full rounded-3xl object-cover shadow-lift"

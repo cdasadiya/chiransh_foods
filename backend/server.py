@@ -12,12 +12,13 @@ Run:  uvicorn server:app --port 8001
 """
 import json
 import re
+import time
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, field_validator
 
@@ -33,12 +34,34 @@ app = FastAPI(title="Chiransh Foods API (local mock)")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 
+RATE_WINDOW = 10 * 60
+RATE_MAX = 5
+_rate_hits: dict[str, list[float]] = {}
+
+
+def reset_rate_limits():
+    _rate_hits.clear()
+
+
+def allow_rate(ip: str) -> bool:
+    now = time.time()
+    bucket = [stamp for stamp in _rate_hits.get(ip, []) if now - stamp < RATE_WINDOW]
+    if len(bucket) >= RATE_MAX:
+        _rate_hits[ip] = bucket
+        return False
+    bucket.append(now)
+    _rate_hits[ip] = bucket
+    return True
+
+
 class EnquiryIn(BaseModel):
     name: str = Field(..., max_length=120)
     phone: str = Field(..., max_length=20)
     email: Optional[str] = Field(None, max_length=200)
     product_interest: Optional[str] = Field("General enquiry", max_length=120)
     message: Optional[str] = Field("", max_length=2000)
+    website: Optional[str] = None
+    company: Optional[str] = None
 
     @field_validator("name")
     @classmethod
@@ -92,13 +115,20 @@ def settings():
 
 
 @app.post("/api/enquiries", status_code=201)
-def create_enquiry(body: EnquiryIn):
+def create_enquiry(body: EnquiryIn, request: Request):
+    if (body.website or "").strip() or (body.company or "").strip():
+        raise HTTPException(status_code=422, detail="Unable to accept this enquiry.")
+    ip = request.client.host if request.client else "unknown"
+    if not allow_rate(ip):
+        raise HTTPException(status_code=429, detail="Too many enquiries. Please try again later.")
+    payload = body.model_dump(exclude={"website", "company"})
     rec = {
         "id": str(uuid.uuid4()),
-        **body.model_dump(),
+        **payload,
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
     items = load("enquiries.json", [])
     items.append(rec)
     (DATA / "enquiries.json").write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(json.dumps({"event": "enquiry", "id": rec["id"], "at": rec["created_at"], "product": rec["product_interest"]}))
     return rec

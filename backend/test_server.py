@@ -1,9 +1,15 @@
 import pytest
-import json
 from fastapi.testclient import TestClient
-from server import app
+from server import app, reset_rate_limits
 
 client = TestClient(app)
+
+
+@pytest.fixture(autouse=True)
+def _clear_rate_limits():
+    reset_rate_limits()
+    yield
+    reset_rate_limits()
 
 def test_root():
     response = client.get("/api/")
@@ -71,6 +77,16 @@ def test_create_enquiry_invalid_phone():
     }
     response = client.post("/api/enquiries", json=payload)
     assert response.status_code == 422
+
+def test_create_enquiry_honeypot():
+    payload = {
+        "name": "Test User",
+        "phone": "9876543210",
+        "website": "https://spam.example",
+    }
+    response = client.post("/api/enquiries", json=payload)
+    assert response.status_code == 422
+
 
 def test_create_enquiry_invalid_email():
     payload = {

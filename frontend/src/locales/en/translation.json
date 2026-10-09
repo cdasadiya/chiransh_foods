@@ -5,7 +5,9 @@
     "about": "About Us",
     "gallery": "Gallery",
     "faq": "FAQ",
-    "contact": "Contact"
+    "contact": "Contact",
+    "order_whatsapp": "Order on WhatsApp",
+    "order_contact": "Contact to Order"
   },
   "home": {
     "hero": {
@@ -17,7 +19,9 @@
       "desc": "Chiransh Foods is a 100% vegetarian Gujarati food brand serving authentic street-food legends — Baroda-style Sev Usal and Tuvar Totha — made with homestyle care and the bold flavours of Gujarat.",
       "explore_menu": "Explore Menu",
       "order_whatsapp": "Order on WhatsApp",
-      "contact_order": "Contact to Order"
+      "contact_order": "Contact to Order",
+      "image_alt": "Baroda-style Sev Usal — spiced pea curry crowned with crunchy sev",
+      "float_alt": "Tuvar Totha served in a brass handi"
     },
     "signature": {
       "eyebrow": "Our Signatures",
@@ -32,7 +36,8 @@
       "title_2": "served with care",
       "p1": "Chiransh Foods is a home-grown Gujarati food brand with one aim — to bring the honest, bold flavours of Gujarat's street-food culture to your table.",
       "p2": "From the slow-simmered comfort of Tuvar Totha to the iconic crunch of a Baroda-style Sev Usal, everything we prepare is 100% vegetarian, rooted in the food culture we love, and made with the care of a home kitchen.",
-      "read_story": "Read our story"
+      "read_story": "Read our story",
+      "image_alt": "Finishing touches — sprinkling crunchy sev over a steaming bowl"
     },
     "menu_preview": {
       "eyebrow": "The Menu",
@@ -85,12 +90,17 @@
     "rights": "All rights reserved.",
     "description": "Authentic Gujarati vegetarian food, with the soul of Gujarat's street-food culture.",
     "copyright": "© 2026 Chiransh Foods · Gujarat, India",
-    "tagline": "100% Vegetarian · Made with care"
+    "tagline": "100% Vegetarian · Made with care",
+    "social": "Chiransh Foods on {{network}}",
+    "explore": "Explore",
+    "legal": "Legal"
   },
   "order": {
     "whatsapp": "Order on WhatsApp",
     "call": "Call to Order",
-    "contact": "Contact to Order"
+    "contact": "Contact to Order",
+    "whatsapp_product": "Hello Chiransh Foods, I would like to order {{product}}.",
+    "whatsapp_general": "Hello Chiransh Foods, I would like to place an order."
   },
   "menu": {
     "header": {
@@ -136,7 +146,13 @@
     "serving_info": "Serving details are available on request. Please contact Chiransh Foods for current availability.",
     "keep_exploring": "Keep Exploring",
     "may_also_love": "You may also",
-    "love": "love"
+    "love": "love",
+    "price_contact": "Contact for current price",
+    "badges": {
+      "Signature": "Signature",
+      "Jain": "Jain",
+      "Swaminarayan": "Swaminarayan"
+    }
   },
   "about": {
     "header_story": "વાર્તા",
@@ -159,7 +175,9 @@
     "p4": "Gujarati food is a balance — sweet meets spice, crunch meets comfort. Getting that balance right takes spices you can smell from across the kitchen and cooking that refuses to be rushed.",
     "p5": "Our signature dishes — Baroda-style Sev Usal and Tuvar Totha — are made the way they're meant to be: slow-simmered, generously finished and served hot, exactly as the streets of Gujarat would have them.",
     "veg_100": "100% Vegetarian",
-    "explore_menu": "Explore the menu"
+    "explore_menu": "Explore the menu",
+    "image_spread": "A Gujarati vegetarian food spread on a wooden table",
+    "image_spices": "A flat-lay of Indian spices — turmeric, chilies and coriander seeds"
   },
   "contact": {
     "eyebrow_header": "Contact & Order",
@@ -214,16 +232,17 @@
     "map_title": "Map link coming soon",
     "map_text": "We serve the Ahmedabad areas listed above. A Google Maps link will be added later.",
     "days": {
-      "monday": "monday",
-      "tuesday": "tuesday",
-      "wednesday": "wednesday",
-      "thursday": "thursday",
-      "friday": "friday",
-      "saturday": "saturday",
-      "sunday": "sunday"
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
     },
     "toast_success": "Thank you! We've received your enquiry and will get back to you soon.",
-    "toast_error": "Something went wrong while sending your enquiry. Please try again in a moment."
+    "toast_error": "Something went wrong while sending your enquiry. Please try again in a moment.",
+    "honeypot": "Leave this field empty"
   },
   "faq": {
     "eyebrow_header": "FAQ",
@@ -291,7 +310,8 @@
     "aria": {
       "close": "Close image viewer",
       "prev": "Previous image",
-      "next": "Next image"
+      "next": "Next image",
+      "open": "Open image: {{caption}}"
     }
   },
   "values": {
@@ -306,6 +326,143 @@
     "care": {
       "title": "Home-style Care",
       "text": "Prepared at home with clean, careful and consistent quality."
+    }
+  },
+  "a11y": {
+    "skip": "Skip to content",
+    "main_nav": "Main navigation",
+    "open_menu": "Open menu",
+    "close_menu": "Close menu",
+    "language": "Language",
+    "loading": "Loading page",
+    "menu_categories": "Menu categories",
+    "breadcrumb": "Breadcrumb",
+    "dialog_menu": "Site menu",
+    "dialog_gallery": "Image viewer"
+  },
+  "notfound": {
+    "title": "Looks like this plate is empty.",
+    "body": "The page you're looking for isn't on the menu — but plenty of good food is.",
+    "menu": "Return to Menu",
+    "home": "Back to Home"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "body": "An unexpected error occurred. Please refresh the page and try again.",
+    "refresh": "Refresh page"
+  },
+  "product": {
+    "available": "Available now",
+    "seasonal": "Seasonal",
+    "unavailable": "Currently unavailable",
+    "load_error": "We couldn't load this dish.",
+    "load_error_detail": "Please check your connection and try again.",
+    "try_again": "Try again",
+    "view_details": "{{name}} — view details",
+    "badge_fallback": "Signature",
+    "veg": "100% Vegetarian"
+  },
+  "legal": {
+    "eyebrow": "Legal",
+    "note": "This policy is kept simple and honest for now. As Chiransh Foods grows — online ordering, payments and analytics — this page will be updated to reflect exactly how your information and orders are handled.",
+    "privacy": {
+      "title_lead": "Privacy",
+      "title_em": "Policy",
+      "intro": "Chiransh Foods respects your privacy. This policy explains, in plain language, what we collect and what we do with it.",
+      "sections": [
+        {
+          "h": "What we collect",
+          "p": [
+            "When you send an order enquiry through our website, we collect the details you choose to share: your name, phone number, email address (optional), product interest and message. We collect nothing else and do not use advertising cookies on this website."
+          ]
+        },
+        {
+          "h": "How we use it",
+          "p": [
+            "Your enquiry details are used for one purpose only — to respond to your enquiry and arrange your order. We do not sell, rent or share your information with third parties for marketing."
+          ]
+        },
+        {
+          "h": "How it is stored",
+          "p": [
+            "Enquiries are stored so Chiransh Foods can reply to you. On the current hosting setup they live with the site and can be cleared when the server restarts. We keep them only as long as needed to serve you."
+          ]
+        },
+        {
+          "h": "Your choices",
+          "p": [
+            "You may ask us at any time to update or delete the details you have shared. Reach out through our Contact page and we will take care of it."
+          ]
+        },
+        {
+          "h": "Updates",
+          "p": [
+            "If this policy changes, the updated version will be published on this page."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title_lead": "Terms &",
+      "title_em": "Conditions",
+      "intro": "These terms apply to your use of the Chiransh Foods website and the order enquiries you send through it.",
+      "sections": [
+        {
+          "h": "The website",
+          "p": [
+            "This website presents Chiransh Foods — a 100% vegetarian Gujarati food brand in Ahmedabad, Gujarat, India. Content on this site (text, images and branding) belongs to Chiransh Foods and may not be reproduced without permission."
+          ]
+        },
+        {
+          "h": "Menu information & prices",
+          "p": [
+            "Dishes, availability and descriptions on this website are kept accurate and up to date. Where a price is not listed, current prices are shared on enquiry — please contact us before placing an order."
+          ]
+        },
+        {
+          "h": "Ordering",
+          "p": [
+            "Ordering is arranged by direct contact — WhatsApp, phone, or the enquiry form. An order is confirmed only when we respond and confirm it with you. Online checkout and payments are not active on this website."
+          ]
+        },
+        {
+          "h": "Liability",
+          "p": [
+            "We prepare food with care and hygiene, but this website is provided as is. To the extent permitted by law, Chiransh Foods is not liable for indirect losses arising from the use of this website."
+          ]
+        },
+        {
+          "h": "Governing law",
+          "p": [
+            "These terms are governed by the laws of India."
+          ]
+        }
+      ]
+    },
+    "refund": {
+      "title_lead": "Refund /",
+      "title_em": "Cancellation",
+      "intro": "Ordering at Chiransh Foods is arranged by direct contact, so this policy is intentionally simple.",
+      "sections": [
+        {
+          "h": "Changing or cancelling an order",
+          "p": [
+            "Need to change or cancel an order you've enquired about? Contact us as soon as possible — ideally before we begin preparing your food — and we will do our best to accommodate you."
+          ]
+        },
+        {
+          "h": "Payments & refunds",
+          "p": [
+            "No online payments are taken on this website. If a payment has been arranged with us directly and an order is cancelled or unavailable, any amount due back to you will be refunded in full through the same arrangement."
+          ]
+        },
+        {
+          "h": "When online ordering launches",
+          "p": [
+            "Once online checkout and payments become available, this page will be updated with the matching cancellation and refund terms before those features go live."
+          ]
+        }
+      ]
     }
   }
 }
