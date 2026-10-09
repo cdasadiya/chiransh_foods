@@ -1,0 +1,4 @@
+Contact: https://chiransh-foods.onrender.com/contact
+Preferred-Languages: en, gu
+Canonical: https://chiransh-foods.onrender.com
+Policy: https://chiransh-foods.onrender.com/privacy

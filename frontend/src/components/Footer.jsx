@@ -151,7 +151,7 @@ export default function Footer() {
                   ),
               )}
               {!phone && !wa && !email && (
-                <li className="text-sm italic text-cream/60">
+                <li className="text-sm italic text-cream/80">
                   {t("footer.contact_soon", "Contact details coming soon — reach us via the enquiry form.")}
                 </li>
               )}
@@ -160,10 +160,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-cream/10 pt-6 sm:flex-row">
-          <p className="text-xs text-cream/60">
+          <p className="text-xs text-cream/80">
             {t("footer.copyright", `© ${new Date().getFullYear()} Chiransh Foods · Gujarat, India`)}
           </p>
-          <p className="font-display text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-cream/50">
+          <p className="font-display text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-cream/80">
             {t("footer.tagline", "100% Vegetarian · Made with care")}
           </p>
         </div>
