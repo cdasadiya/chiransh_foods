@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
 import { useLocalizedSeo } from "@/lib/locale";
@@ -65,33 +64,24 @@ export default function FAQ() {
                     <span className="font-serif text-lg font-semibold text-leaf">
                       {f.q}
                     </span>
-                    <motion.span
-                      animate={{ rotate: isOpen ? 45 : 0 }}
-                      transition={{ duration: 0.25 }}
-                      className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
-                        isOpen ? "bg-saffron text-cream" : "bg-leaf/5 text-leaf"
+                    <span
+                      className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-transform duration-200 ${
+                        isOpen ? "rotate-45 bg-saffron text-cream" : "bg-leaf/5 text-leaf"
                       }`}
                     >
                       <Plus className="h-4 w-4" />
-                    </motion.span>
+                    </span>
                   </button>
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        id={`faq-panel-${i}`}
-                        role="region"
-                        aria-labelledby={`faq-button-${i}`}
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                      >
-                        <p className="px-6 pb-6 text-sm leading-relaxed text-stone-600">
-                          {f.a}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  <div
+                    id={`faq-panel-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-button-${i}`}
+                    hidden={!isOpen}
+                  >
+                    <p className="px-6 pb-6 text-sm leading-relaxed text-stone-600">
+                      {f.a}
+                    </p>
+                  </div>
                 </div>
               </Reveal>
             );

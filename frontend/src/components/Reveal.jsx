@@ -1,21 +1,36 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
-export default function Reveal({
-  children,
-  delay = 0,
-  y = 28,
-  className,
-  once = true,
-}) {
+/**
+ * Above-the-fold content stays visible so it can paint immediately.
+ * Only content that starts below the viewport fades in.
+ */
+export default function Reveal({ children, className }) {
+  const ref = useRef(null);
+  const [state, setState] = useState("visible");
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return undefined;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.92) return undefined;
+    setState("waiting");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setState("visible");
+        observer.disconnect();
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const motionClass = state === "waiting" ? " reveal-wait" : " reveal-in";
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, amount: 0.15 }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
+    <div ref={ref} className={`reveal${motionClass}${className ? ` ${className}` : ""}`}>
       {children}
-    </motion.div>
+    </div>
   );
 }

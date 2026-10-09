@@ -30,7 +30,7 @@ export default defineConfig({
         manualChunks(id) {
           if (!id.includes("node_modules")) return undefined;
           if (/node_modules\/(react|react-dom|scheduler|react-router|react-router-dom|cookie|set-cookie-parser)\//.test(id)) return "react";
-          if (/node_modules\/(framer-motion|motion-dom|motion-utils|lenis)\//.test(id)) return "motion";
+          if (/node_modules\/lenis\//.test(id)) return "motion";
           if (/node_modules\/lucide-react\//.test(id)) return "icons";
           return "vendor";
         },

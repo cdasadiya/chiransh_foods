@@ -176,7 +176,7 @@ export default function ProductDetail() {
 
             <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-3 border-y border-leaf/10 py-4">
               <div>
-                <p className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-400">
+                <p className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-600">
                   {t("menu.price", "Price")}
                 </p>
                 <p className="mt-0.5 font-display text-base font-semibold text-leaf" data-testid="product-detail-price">
@@ -184,7 +184,7 @@ export default function ProductDetail() {
                 </p>
               </div>
               <div>
-                <p className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-400">
+                <p className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-600">
                   {t("menu.category", "Category")}
                 </p>
                 <p className="mt-0.5 font-display text-base font-semibold text-leaf">

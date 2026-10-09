@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
 import { useLocalizedSeo } from "@/lib/locale";
@@ -118,13 +117,8 @@ export default function Gallery() {
         </section>
       )}
 
-      <AnimatePresence>
-        {active !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+      {active !== null && (
+          <div
             ref={dialogRef}
             className="fixed inset-0 z-[90] flex h-dvh items-center justify-center bg-leaf/95 p-4 pt-[max(1rem,env(safe-area-inset-top))] backdrop-blur"
             data-testid="gallery-lightbox"
@@ -163,11 +157,7 @@ export default function Gallery() {
             >
               <ChevronRight className="h-5 w-5" />
             </button>
-            <motion.figure
-              key={active}
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            <figure
               className="max-w-4xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -179,14 +169,13 @@ export default function Gallery() {
               />
               <figcaption className="mt-4 text-center font-serif text-lg italic text-cream/85">
                 {captions[active] || GALLERY[active].caption}
-                <span className="ml-3 font-display text-xs not-italic tracking-[0.2em] text-cream/50">
+                <span className="ml-3 font-display text-xs not-italic tracking-[0.2em] text-cream/80">
                   {active + 1} / {GALLERY.length}
                 </span>
               </figcaption>
-            </motion.figure>
-          </motion.div>
+            </figure>
+          </div>
         )}
-      </AnimatePresence>
     </>
   );
 }
