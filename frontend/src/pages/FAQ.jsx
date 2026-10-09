@@ -19,7 +19,7 @@ export default function FAQ() {
     <>
       <header className="relative overflow-hidden bg-leaf" data-testid="faq-header">
         <div
-          className="pattern-dots-light absolute inset-0 opacity-60"
+          className="pattern-dots-light pointer-events-none absolute inset-0 opacity-60"
           aria-hidden="true"
         />
         <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-28 sm:px-6 lg:px-8 lg:pb-24 lg:pt-40">

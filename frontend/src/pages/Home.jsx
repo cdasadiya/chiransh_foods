@@ -74,7 +74,7 @@ function Hero() {
       className="relative overflow-hidden pt-28 lg:pt-36"
       data-testid="hero-section"
     >
-      <div className="pattern-dots absolute inset-0 opacity-40" aria-hidden="true" />
+      <div className="pattern-dots pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
       <span
         aria-hidden="true"
         className="font-guj text-outline pointer-events-none absolute -top-6 left-0 select-none whitespace-nowrap text-[26vw] font-bold leading-none md:text-[19vw]"
@@ -157,7 +157,7 @@ function Hero() {
               <LocaleLink
                 to="/menu/tuvar-totha"
                 data-testid="hero-floating-tuvar-link"
-                className="flex items-center gap-3 rounded-2xl border border-leaf/10 bg-ivory/95 p-3 pr-5 shadow-lift backdrop-blur transition-transform duration-300 hover:-translate-y-1"
+                className="flex items-center gap-3 rounded-2xl border border-leaf/10 bg-ivory p-3 pr-5 shadow-lift transition-transform duration-300 hover:-translate-y-1"
               >
                 <FoodImage
                   src={FALLBACK_PRODUCTS[1].image}
@@ -207,7 +207,7 @@ function SignatureBento({ products }) {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-leaf/95 via-leaf/35 to-transparent" />
       <div className="relative p-7 md:p-9">
-        <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-leaf/40 px-3 py-1 text-[11px] font-display font-semibold uppercase tracking-[0.2em] text-gold backdrop-blur">
+        <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-leaf/80 px-3 py-1 text-[11px] font-display font-semibold uppercase tracking-[0.2em] text-gold">
           <UtensilsCrossed className="h-3 w-3" /> {product.badge ? t(`menu.badges.${product.badge}`, product.badge) : t("product.badge_fallback")}
         </span>
         <h3 className="mt-4 font-serif text-3xl font-semibold text-cream md:text-4xl">
@@ -406,7 +406,7 @@ function OrderBand() {
       data-testid="cta-band"
     >
       <div
-        className="pattern-dots-light absolute inset-0 opacity-60"
+        className="pattern-dots-light pointer-events-none absolute inset-0 opacity-60"
         aria-hidden="true"
       />
       <div className="relative mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 lg:py-28">

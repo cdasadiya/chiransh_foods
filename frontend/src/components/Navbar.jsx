@@ -32,9 +32,10 @@ function LanguageLinks({ light = false, onNavigate }) {
             hrefLang={locale.htmlLang}
             lang={locale.htmlLang}
             aria-current={active ? "page" : undefined}
+            data-testid={`lang-switch-${locale.code}${light ? "-menu" : ""}`}
             aria-label={locale.label}
             onClick={onNavigate}
-            className={`inline-flex h-11 min-w-11 items-center justify-center rounded-full px-2 font-display text-xs font-semibold transition-colors ${
+            className={`relative z-20 inline-flex h-11 min-w-11 items-center justify-center rounded-full px-2 font-display text-xs font-semibold transition-colors ${
               active
                 ? light
                   ? "bg-cream text-leaf"
@@ -85,9 +86,9 @@ export default function Navbar() {
           scrolled ? "shadow-soft" : ""
         }`}
       >
-        <div className="border-b border-leaf/10 bg-cream/85 backdrop-blur-xl">
+        <div className="border-b border-leaf/10 bg-cream">
           <nav
-            className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8"
+            className="relative z-10 mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8"
             aria-label={t("a11y.main_nav")}
           >
             <Logo />
@@ -112,8 +113,8 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
-            <div className="flex items-center gap-2 sm:gap-3">
-              <div className="hidden min-[360px]:block">
+            <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+              <div data-testid="header-language">
                 <LanguageLinks />
               </div>
               <a

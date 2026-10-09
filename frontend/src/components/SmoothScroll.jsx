@@ -8,7 +8,8 @@ export default function SmoothScroll({ children }) {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    if (reduce || !fine) return undefined;
+    const touch = window.matchMedia("(any-pointer: coarse), (hover: none)").matches;
+    if (reduce || touch || !fine) return undefined;
     const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
     let rafId;
     const raf = (time) => {

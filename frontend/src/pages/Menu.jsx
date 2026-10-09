@@ -74,7 +74,7 @@ export default function Menu() {
     <>
       <header className="relative overflow-hidden bg-leaf" data-testid="menu-header">
         <div
-          className="pattern-dots-light absolute inset-0 opacity-60"
+          className="pattern-dots-light pointer-events-none absolute inset-0 opacity-60"
           aria-hidden="true"
         />
         <span
@@ -119,7 +119,7 @@ export default function Menu() {
                   .toLowerCase()
                   .replace(/\s+/g, "-")}`}
                 onClick={() => selectCategory(tab)}
-                className={`min-h-11 shrink-0 rounded-full px-4 py-2 font-display text-sm font-semibold transition-all duration-300 ${
+                className={`relative z-10 min-h-11 shrink-0 touch-manipulation rounded-full px-4 py-2 font-display text-sm font-semibold transition-all duration-300 ${
                   category === tab
                     ? "bg-leaf text-cream shadow-soft"
                     : "border border-leaf/15 bg-ivory text-stone-600 hover:border-leaf/40"

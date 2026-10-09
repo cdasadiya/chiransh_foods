@@ -34,16 +34,16 @@ export default function Logo({ light = false }) {
       to="/"
       data-testid="logo-link"
       aria-label="Chiransh Foods — Home"
-      className="group inline-flex items-center gap-2.5"
+      className="group inline-flex min-w-0 items-center gap-2.5"
     >
       <LogoMark
         className={`h-10 w-10 shrink-0 transition-transform duration-500 group-hover:rotate-6 ${
           light ? "text-cream" : "text-leaf"
         }`}
       />
-      <span className="leading-none">
+      <span className="min-w-0 leading-none">
         <span
-          className={`block font-serif text-[1.4rem] font-semibold tracking-wide ${
+          className={`block truncate font-serif text-[1.4rem] font-semibold tracking-wide ${
             light ? "text-cream" : "text-leaf"
           }`}
         >

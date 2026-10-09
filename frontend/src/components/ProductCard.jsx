@@ -27,7 +27,7 @@ export default function ProductCard({ product, index = 0, dataTestId }) {
             className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
           {badge && (
-            <span className="absolute left-3 top-3 rounded-full bg-cream/90 px-3 py-1 text-[11px] font-display font-semibold uppercase tracking-[0.15em] text-leaf backdrop-blur">
+            <span className="absolute left-3 top-3 rounded-full bg-cream px-3 py-1 text-[11px] font-display font-semibold uppercase tracking-[0.15em] text-leaf">
               {badge}
             </span>
           )}
