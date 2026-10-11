@@ -10,19 +10,138 @@ Endpoints reproduced (captured from the live preview on 2026-10-02):
 
 Run:  uvicorn server:app --port 8001
 """
+import base64
+import hashlib
 import json
+import os
 import re
 import time
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Optional
+from typing import Annotated, Any, Optional
 
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, BeforeValidator, Field, field_validator
 
 DATA = Path(__file__).parent / "data"
+# Keep these aligned with frontend/src/lib/enquiry.js and SECURITY.md.
+POLICY_VERSION = "2026-10-11"
+RETENTION_DAYS = 90
+ENQUIRY_AAD = b"chiransh-enquiries-v1"
+_warned_plaintext = False
+
+
+class EnquiryStoreError(Exception):
+    pass
+
+
+def _require_consent(value: Any) -> bool:
+    if value is not True:
+        raise ValueError("Please agree to the privacy notice before sending.")
+    return True
+
+
+def enquiries_path() -> Path:
+    override = os.environ.get("ENQUIRIES_PATH", "").strip()
+    return Path(override) if override else DATA / "enquiries.json"
+
+
+def _storage_key():
+    raw = os.environ.get("ENQUIRY_STORAGE_KEY", "")
+    if not raw.strip():
+        return None
+    return hashlib.sha256(raw.encode("utf-8")).digest()
+
+
+def seal_enquiries(plaintext: str, key: bytes, iv: Optional[bytes] = None) -> dict:
+    nonce = iv if iv is not None else os.urandom(12)
+    blob = AESGCM(key).encrypt(nonce, plaintext.encode("utf-8"), ENQUIRY_AAD)
+    return {
+        "v": 1,
+        "alg": "aes-256-gcm",
+        "iv": base64.b64encode(nonce).decode("ascii"),
+        "tag": base64.b64encode(blob[-16:]).decode("ascii"),
+        "data": base64.b64encode(blob[:-16]).decode("ascii"),
+    }
+
+
+def open_enquiries(envelope: dict, key: bytes) -> str:
+    try:
+        iv = base64.b64decode(envelope["iv"])
+        tag = base64.b64decode(envelope["tag"])
+        data = base64.b64decode(envelope["data"])
+        plain = AESGCM(key).decrypt(iv, data + tag, ENQUIRY_AAD)
+        return plain.decode("utf-8")
+    except Exception as exc:
+        raise EnquiryStoreError("decrypt failed") from exc
+
+
+def prune_enquiries(items, now=None):
+    moment = now or datetime.now(timezone.utc)
+    cutoff = moment - timedelta(days=RETENTION_DAYS)
+    kept = []
+    for item in items if isinstance(items, list) else []:
+        if not isinstance(item, dict):
+            continue
+        raw = item.get("created_at")
+        try:
+            stamp = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+        except (TypeError, ValueError):
+            continue
+        if stamp.tzinfo is None:
+            stamp = stamp.replace(tzinfo=timezone.utc)
+        if stamp >= cutoff:
+            kept.append(item)
+    return kept
+
+
+def read_enquiries():
+    path = enquiries_path()
+    if not path.exists():
+        return []
+    raw = path.read_text(encoding="utf-8")
+    if not raw.strip():
+        return []
+    try:
+        parsed = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise EnquiryStoreError("unreadable") from exc
+    if isinstance(parsed, list):
+        return parsed
+    if isinstance(parsed, dict) and parsed.get("alg") == "aes-256-gcm":
+        key = _storage_key()
+        if key is None:
+            raise EnquiryStoreError("encrypted without key")
+        decoded = json.loads(open_enquiries(parsed, key))
+        if not isinstance(decoded, list):
+            raise EnquiryStoreError("unexpected payload")
+        return decoded
+    raise EnquiryStoreError("unexpected payload")
+
+
+def write_enquiries(records):
+    global _warned_plaintext
+    path = enquiries_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    key = _storage_key()
+    if key is None:
+        if not _warned_plaintext:
+            _warned_plaintext = True
+            print(json.dumps({"event": "enquiry_store", "mode": "plaintext", "reason": "ENQUIRY_STORAGE_KEY unset"}))
+        payload = json.dumps(records, ensure_ascii=False, indent=2)
+    else:
+        payload = json.dumps(seal_enquiries(json.dumps(records, ensure_ascii=False, separators=(",", ":")), key))
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_text(payload, encoding="utf-8")
+    os.chmod(tmp, 0o600)
+    os.replace(tmp, path)
+    try:
+        os.chmod(path, 0o600)
+    except OSError:
+        pass
 
 
 def load(name, default):
@@ -62,6 +181,8 @@ class EnquiryIn(BaseModel):
     message: Optional[str] = Field("", max_length=2000)
     website: Optional[str] = None
     company: Optional[str] = None
+    consent: Annotated[bool, BeforeValidator(_require_consent)]
+    locale: Optional[str] = None
 
     @field_validator("name")
     @classmethod
@@ -121,14 +242,21 @@ def create_enquiry(body: EnquiryIn, request: Request):
     ip = request.client.host if request.client else "unknown"
     if not allow_rate(ip):
         raise HTTPException(status_code=429, detail="Too many enquiries. Please try again later.")
-    payload = body.model_dump(exclude={"website", "company"})
+    payload = body.model_dump(exclude={"website", "company", "locale"})
+    now = datetime.now(timezone.utc).isoformat()
     rec = {
         "id": str(uuid.uuid4()),
         **payload,
-        "created_at": datetime.now(timezone.utc).isoformat(),
+        "locale": "gu" if body.locale == "gu" else "en",
+        "policy_version": POLICY_VERSION,
+        "consent_at": now,
+        "created_at": now,
     }
-    items = load("enquiries.json", [])
-    items.append(rec)
-    (DATA / "enquiries.json").write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
+    try:
+        items = prune_enquiries(read_enquiries())
+        items.append(rec)
+        write_enquiries(items)
+    except EnquiryStoreError:
+        raise HTTPException(status_code=500, detail="Enquiry storage is unavailable")
     print(json.dumps({"event": "enquiry", "id": rec["id"], "at": rec["created_at"], "product": rec["product_interest"]}))
     return rec

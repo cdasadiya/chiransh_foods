@@ -1,6 +1,21 @@
 const PHONE = /^[0-9+()\-\s]{7,20}$/;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/** Published privacy-notice version. Keep this aligned with SECURITY.md and both locale files. */
+export const POLICY_VERSION = "2026-10-11";
+export const RETENTION_DAYS = 90;
+export const RETENTION_MS = RETENTION_DAYS * 24 * 60 * 60 * 1000;
+
+/** Drop enquiry records older than the retention window. Undated records are dropped too. */
+export function retainedEnquiries(items, nowMs = Date.now()) {
+  const cutoff = nowMs - RETENTION_MS;
+  if (!Array.isArray(items)) return [];
+  return items.filter((item) => {
+    const created = Date.parse(item?.created_at ?? "");
+    return Number.isFinite(created) && created >= cutoff;
+  });
+}
+
 export function fieldError(field, message) {
   return { loc: ["body", field], msg: `Value error, ${message}`, type: "value_error" };
 }
@@ -46,9 +61,21 @@ export function validateEnquiry(body) {
   } else if (message.length > 2000) {
     errors.push(fieldError("message", "Please shorten your message."));
   }
+  if (body?.consent !== true) {
+    errors.push(fieldError("consent", "Please agree to the privacy notice before sending."));
+  }
+  const locale = body?.locale === "gu" ? "gu" : "en";
   return {
     errors,
     honeypot: false,
-    value: { name: name.trim(), phone, email, product_interest: product || "General enquiry", message },
+    value: {
+      name: name.trim(),
+      phone,
+      email,
+      product_interest: product || "General enquiry",
+      message,
+      consent: body?.consent === true,
+      locale,
+    },
   };
 }

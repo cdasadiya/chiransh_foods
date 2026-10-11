@@ -22,6 +22,7 @@ __pycache__/
 
 # Runtime data written by the mock API (POST /api/enquiries)
 backend/data/enquiries.json
+backend/data/enquiries.json.tmp
 
 # OS junk
 .DS_Store

@@ -232,6 +232,8 @@
     "plh_message": "Quantity, preferred date, anything else we should know…",
     "btn_sending": "Sending…",
     "btn_send": "Send enquiry",
+    "consent_label": "I agree that Chiransh Foods may use my name, phone number, and email (if I gave one) only to reply to this enquiry and arrange my order. I have read the <policy>Privacy Policy</policy>. I am 18 or older.",
+    "err_consent": "Please agree to the privacy notice before sending.",
     "info_contact": "Contact",
     "lbl_phone_val": "Phone",
     "lbl_whatsapp_val": "WhatsApp",
@@ -390,40 +392,72 @@
   },
   "legal": {
     "eyebrow": "Legal",
-    "note": "This policy is kept simple and honest for now. As Chiransh Foods grows — online ordering, payments and analytics — this page will be updated to reflect exactly how your information and orders are handled.",
+    "note": "Chiransh Foods handles personal data on this website under the Digital Personal Data Protection Act, 2023, and only to reply to enquiries and arrange orders.",
     "privacy": {
       "title_lead": "Privacy",
       "title_em": "Policy",
-      "intro": "Chiransh Foods respects your privacy. This policy explains, in plain language, what we collect and what we do with it.",
+      "intro": "Chiransh Foods, Ahmedabad, Gujarat, India, is the data fiduciary for personal data on this website. This notice explains, in plain language, how that data is used under the Digital Personal Data Protection Act, 2023.",
       "sections": [
+        {
+          "h": "Who we are",
+          "p": [
+            "Questions about your personal data, and requests to access, correct, complete, erase, withdraw consent, or nominate another person, go through the Contact page or +91 91063 54619."
+          ]
+        },
         {
           "h": "What we collect",
           "p": [
-            "When you send an order enquiry through our website, we collect the details you choose to share: your name, phone number, email address (optional), product interest and message. We collect nothing else and do not use advertising cookies on this website."
+            "When you send an enquiry and agree to this notice, we store your name, phone number, email address if you gave one, product interest, and message. We also store the time you agreed, this notice version (2026-10-11), and whether you used English or Gujarati.",
+            "We do not store your IP address. We do not use advertising cookies, analytics, or tracking pixels."
           ]
         },
         {
-          "h": "How we use it",
+          "h": "Why we use it",
           "p": [
-            "Your enquiry details are used for one purpose only — to respond to your enquiry and arrange your order. We do not sell, rent or share your information with third parties for marketing."
+            "We use these details for one purpose: to reply to your enquiry and arrange your order. We do not sell or rent your information, and we do not use it for marketing or advertising."
           ]
         },
         {
-          "h": "How it is stored",
+          "h": "How long we keep it",
           "p": [
-            "Enquiries are stored so Chiransh Foods can reply to you. On the current hosting setup they live with the site and can be cleared when the server restarts. We keep them only as long as needed to serve you."
+            "We keep an enquiry for 90 days from the time it is sent, then we erase it. You may ask us to erase it sooner through the Contact page or by calling +91 91063 54619."
           ]
         },
         {
-          "h": "Your choices",
+          "h": "Who else sees it",
           "p": [
-            "You may ask us at any time to update or delete the details you have shared. Reach out through our Contact page and we will take care of it."
+            "The enquiry file is stored with this website's host, Render, which processes it outside India. Render may not use that file for its own marketing. India-region hosting is the standard we aim to meet for this personal data. Until that move, this notice names the current host. We will not use a country the Central Government of India has restricted.",
+            "If you choose to open WhatsApp or a social link, that service (such as WhatsApp/Meta) receives what you send there. We do not pass your enquiry form to those services."
+          ]
+        },
+        {
+          "h": "How we protect it",
+          "p": [
+            "The site is served over HTTPS. Enquiry submissions are rate-limited. Logs do not include your name, phone number, or email. When the operator sets an encryption key, the enquiry file is encrypted on disk. Access is limited to operating this website."
+          ]
+        },
+        {
+          "h": "Your rights",
+          "p": [
+            "You may ask for access to your personal data, correction, completion, erasure, withdrawal of consent, and nomination of another person to exercise these rights. Use the Contact page or call +91 91063 54619. You may also complain to the Data Protection Board of India."
+          ]
+        },
+        {
+          "h": "Children",
+          "p": [
+            "We do not knowingly collect personal data from anyone under 18. The enquiry form asks you to confirm that you are 18 or older. If we learn that we have collected a child's data, we will erase it."
+          ]
+        },
+        {
+          "h": "If something goes wrong",
+          "p": [
+            "If a personal data breach occurs, we will contain it, record what happened, and inform affected people and the Data Protection Board of India in the manner the Digital Personal Data Protection Rules prescribe. Contact us through the Contact page or +91 91063 54619."
           ]
         },
         {
           "h": "Updates",
           "p": [
-            "If this policy changes, the updated version will be published on this page."
+            "The current version of this notice is 2026-10-11. If it changes, the updated version will be published on this page. A new enquiry uses the version published at that time."
           ]
         }
       ]
@@ -461,6 +495,12 @@
           "h": "Governing law",
           "p": [
             "These terms are governed by the laws of India."
+          ]
+        },
+        {
+          "h": "Personal data",
+          "p": [
+            "Personal data you send through this website is handled under our Privacy Policy and the Digital Personal Data Protection Act, 2023."
           ]
         }
       ]

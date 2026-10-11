@@ -11,11 +11,11 @@ import {
   Send,
 } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
-import { useLocalizedSeo } from "@/lib/locale";
+import { LocaleLink, useLocalizedSeo } from "@/lib/locale";
 import { fetchProducts, submitEnquiry } from "@/lib/api";
 import { FALLBACK_PRODUCTS, whatsappUrl } from "@/lib/site";
 import { productNames } from "@/lib/productCopy";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { useSettings } from "@/context/SettingsContext";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
@@ -86,6 +86,7 @@ export default function Contact() {
     message: "",
     website: "",
     company: "",
+    consent: false,
   });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
@@ -107,6 +108,9 @@ export default function Contact() {
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())
     )
       errs.email = t("contact.err_email", "Please enter a valid email address.");
+    if (form.consent !== true) {
+      errs.consent = t("contact.err_consent", "Please agree to the privacy notice before sending.");
+    }
     return errs;
   };
 
@@ -125,6 +129,8 @@ export default function Contact() {
         message: form.message.trim(),
         website: form.website,
         company: form.company,
+        consent: true,
+        locale: i18n.language?.startsWith("gu") ? "gu" : "en",
       });
       setSubmitted(true);
       setForm({
@@ -135,6 +141,7 @@ export default function Contact() {
         message: "",
         website: "",
         company: "",
+        consent: false,
       });
       toast.success(
         t("contact.toast_success", "Thank you! We've received your enquiry and will get back to you soon.")
@@ -366,9 +373,48 @@ export default function Contact() {
                   </div>
                 </div>
 
+                <div className="mt-6 flex items-start gap-3">
+                  <input
+                    id="contact-consent"
+                    name="consent"
+                    type="checkbox"
+                    checked={form.consent}
+                    onChange={(e) => setForm((current) => ({ ...current, consent: e.target.checked }))}
+                    data-testid="contact-consent"
+                    aria-invalid={Boolean(errors.consent)}
+                    aria-describedby={errors.consent ? "contact-consent-error" : undefined}
+                    className="mt-1 h-4 w-4 shrink-0 rounded border-leaf/30 accent-leaf"
+                  />
+                  <div className="min-w-0">
+                    <label htmlFor="contact-consent" className="text-sm leading-relaxed text-stone-600">
+                      <Trans
+                        i18nKey="contact.consent_label"
+                        components={{
+                          policy: (
+                            <LocaleLink
+                              to="/privacy"
+                              className="font-semibold text-leaf underline decoration-leaf/30 underline-offset-2 hover:text-saffron-deep"
+                            />
+                          ),
+                        }}
+                      />
+                    </label>
+                    {errors.consent && (
+                      <p
+                        id="contact-consent-error"
+                        className="mt-1.5 text-xs text-chili"
+                        data-testid="contact-consent-error"
+                        role="alert"
+                      >
+                        {errors.consent}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
                 <button
                   type="submit"
-                  disabled={submitting}
+                  disabled={submitting || !form.consent}
                   data-testid="contact-form-submit"
                   className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-leaf px-8 py-4 font-display text-sm font-semibold text-cream shadow-soft transition-all duration-300 hover:bg-forest disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
                 >

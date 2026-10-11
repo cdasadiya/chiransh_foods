@@ -1,4 +1,5 @@
 Contact: https://chiransh-foods.onrender.com/contact
+Expires: 2027-10-11T00:00:00.000Z
 Preferred-Languages: en, gu
-Canonical: https://chiransh-foods.onrender.com
+Canonical: https://chiransh-foods.onrender.com/.well-known/security.txt
 Policy: https://chiransh-foods.onrender.com/privacy

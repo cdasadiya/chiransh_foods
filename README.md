@@ -100,9 +100,13 @@ In the `frontend` directory:
 
 Editable public facts live in [`backend/data/settings.json`](backend/data/settings.json): Ahmedabad, the pickup areas, daily hours, the phone and WhatsApp number, and the canonical host `https://chiransh-foods.onrender.com`. Email and the Google Maps link are still empty.
 
-The contact form stores enquiries in `backend/data/enquiries.json`. That file is gitignored.
+The contact form stores enquiries in `backend/data/enquiries.json`. That file is gitignored. Records are erased 90 days after they are sent. Set `ENQUIRY_STORAGE_KEY` on the host to encrypt the file. Do not commit that secret.
 
 The canonical host, sitemap, and `robots.txt` use the Render address. `chiranshfoods.com` is not the live site.
+
+## Security and data protection
+
+Personal data on this site is handled under the Digital Personal Data Protection Act, 2023. Notice, consent, retention, processors, and the hosting standard are in [SECURITY.md](SECURITY.md).
 
 ## Deploy on Render
 

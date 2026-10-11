@@ -19,7 +19,11 @@ describe("Contact form", () => {
         </SettingsProvider>
       </QueryClientProvider>,
     );
-    await user.click(screen.getByRole("button", { name: /send enquiry/i }));
+    const submit = screen.getByRole("button", { name: /send enquiry/i });
+    expect(submit.disabled).toBe(true);
+    await user.click(screen.getByRole("checkbox", { name: /privacy policy/i }));
+    expect(submit.disabled).toBe(false);
+    await user.click(submit);
     expect(await screen.findByText(/please enter your name/i)).toBeTruthy();
   });
 });

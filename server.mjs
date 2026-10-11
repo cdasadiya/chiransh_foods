@@ -3,7 +3,8 @@ import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { validateEnquiry } from "./frontend/src/lib/enquiry.js";
+import { POLICY_VERSION, retainedEnquiries, validateEnquiry } from "./frontend/src/lib/enquiry.js";
+import { readEnquiries, writeEnquiries } from "./frontend/src/lib/enquiryStore.js";
 import { applySeoToHtml, isKnownPath, renderRobots, renderSitemap } from "./frontend/src/lib/seo.js";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
@@ -137,6 +138,14 @@ function sendJson(req, res, status, payload, cacheControl = "no-store") {
   });
 }
 
+export function resetRateLimits() {
+  rateHits.clear();
+}
+
+function enquiryFile() {
+  return process.env.ENQUIRIES_PATH || enquiriesPath;
+}
+
 function allowRate(ip) {
   const now = Date.now();
   const bucket = (rateHits.get(ip) || []).filter((time) => now - time < RATE_WINDOW_MS);
@@ -170,10 +179,9 @@ function appendEnquiry(record) {
   }
   enquiryDepth += 1;
   const run = enquiryQueue.then(() => {
-    const items = fs.existsSync(enquiriesPath) ? JSON.parse(fs.readFileSync(enquiriesPath, "utf8")) : [];
-    const list = Array.isArray(items) ? items : [];
+    const list = retainedEnquiries(readEnquiries(enquiryFile()));
     list.push(record);
-    fs.writeFileSync(enquiriesPath, JSON.stringify(list, null, 2));
+    writeEnquiries(enquiryFile(), list);
     console.log(JSON.stringify({ event: "enquiry", id: record.id, at: record.created_at, product: record.product_interest }));
   });
   enquiryQueue = run.then(
@@ -264,7 +272,14 @@ async function handleApi(req, res, pathname) {
       sendJson(req, res, 422, { detail: errors });
       return;
     }
-    const record = { id: randomUUID(), ...value, created_at: new Date().toISOString() };
+    const now = new Date().toISOString();
+    const record = {
+      id: randomUUID(),
+      ...value,
+      policy_version: POLICY_VERSION,
+      consent_at: now,
+      created_at: now,
+    };
     await appendEnquiry(record);
     sendJson(req, res, 201, record, "no-store");
     return;
