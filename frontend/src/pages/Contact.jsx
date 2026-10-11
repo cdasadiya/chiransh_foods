@@ -14,7 +14,7 @@ import {
 import usePageMeta from "@/hooks/usePageMeta";
 import { useLocalizedSeo } from "@/lib/locale";
 import { fetchProducts, submitEnquiry } from "@/lib/api";
-import { FALLBACK_PRODUCTS, addonsForSlug, whatsappUrl } from "@/lib/site";
+import { FALLBACK_PRODUCTS, addonsForSlug, priceLabel, whatsappUrl } from "@/lib/site";
 import { orderDetailsText, parseEnquirySearch } from "@/lib/order";
 import { productNames } from "@/lib/productCopy";
 import { useTranslation } from "react-i18next";
@@ -368,11 +368,15 @@ export default function Contact() {
                       className={`mt-2 ${inputCls}`}
                     >
                       <option>{t("contact.opt_general", "General enquiry")}</option>
-                      {products.map((p) => (
-                        <option key={p.slug} value={p.name}>
-                          {productNames(p, i18n.language).name}
-                        </option>
-                      ))}
+                      {products.map((p) => {
+                        const name = productNames(p, i18n.language).name;
+                        const priced = p.price != null && p.price !== "";
+                        return (
+                          <option key={p.slug} value={p.name}>
+                            {priced ? `${name} — ${priceLabel(p.price)}` : name}
+                          </option>
+                        );
+                      })}
                     </select>
                   </div>
                   <div className="sm:col-span-2">

@@ -77,8 +77,8 @@ describe("menu catalog", () => {
     for (const slug of UNPRICED) {
       expect(products.find((item) => item.slug === slug).price).toBeNull();
     }
-    expect(priceLabel(100)).toBe("₹100");
-    expect(priceLabel(1000)).toBe("₹1,000");
+    expect(priceLabel(100)).toBe("₹ 100");
+    expect(priceLabel(1000)).toBe("₹ 1,000");
     expect(priceLabel(100)).not.toMatch(/[૦-૯]/);
     expect(addonsForSlug("baroda-style-sev-usal").map((addon) => addon.id)).toEqual(
       ADDONS.map((addon) => addon.id),

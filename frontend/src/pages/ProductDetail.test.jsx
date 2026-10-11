@@ -53,9 +53,9 @@ describe("Product detail instructions", () => {
     expect(whatsapp.getAttribute("href")).toContain("wa.me/919106354619");
     const message = decodeURIComponent(whatsapp.getAttribute("href"));
     expect(message).toContain("Bhaji Pav");
-    expect(message).toContain("₹120");
+    expect(message).toContain("₹ 120");
     expect(message).toContain("Quantity: 1");
-    expect(message).toContain("Total: ₹120");
+    expect(message).toContain("Total: ₹ 120");
     expect(screen.queryByTestId("product-addons")).toBeNull();
     expect(screen.queryByTestId("product-detail-call-btn")).toBeNull();
     expect(screen.getByTestId("product-detail-enquiry-btn").getAttribute("href")).toContain(
@@ -79,16 +79,16 @@ describe("Product detail instructions", () => {
     const { unmount } = renderDish("baroda-style-sev-usal");
     expect(await screen.findByTestId("addon-extra-sev")).toBeTruthy();
     expect(screen.getByTestId("addon-extra-garlic-red-chutney")).toBeTruthy();
-    expect(screen.getByTestId("product-detail-price").textContent).toBe("₹100");
+    expect(screen.getByTestId("product-detail-price").textContent).toBe("₹ 100");
     await user.click(screen.getByTestId("addon-extra-sev"));
     await user.click(screen.getByTestId("quantity-increase"));
     expect(screen.getByTestId("product-quantity").textContent).toBe("2");
-    expect(screen.getByTestId("product-detail-total").textContent).toBe("₹230");
+    expect(screen.getByTestId("product-detail-total").textContent).toBe("₹ 230");
     const order = decodeURIComponent(screen.getByTestId("product-detail-whatsapp-btn").getAttribute("href"));
-    expect(order).toContain("Baroda-Style Sev Usal — ₹100");
-    expect(order).toContain("Extra sev — ₹15");
+    expect(order).toContain("Baroda-Style Sev Usal — ₹ 100");
+    expect(order).toContain("Extra sev — ₹ 15");
     expect(order).toContain("Quantity: 2");
-    expect(order).toContain("Total: ₹230");
+    expect(order).toContain("Total: ₹ 230");
     expect(order).not.toMatch(/[૦-૯]/);
     const enquiry = screen.getByTestId("product-detail-enquiry-btn").getAttribute("href");
     expect(enquiry).toContain("product=baroda-style-sev-usal");
@@ -98,24 +98,24 @@ describe("Product detail instructions", () => {
 
     const tuvar = renderDish("tuvar-totha");
     expect(await screen.findByTestId("product-addons")).toBeTruthy();
-    expect(screen.getByTestId("product-detail-price").textContent).toBe("₹120");
+    expect(screen.getByTestId("product-detail-price").textContent).toBe("₹ 120");
     tuvar.unmount();
 
     renderDish("jain-sev-usal");
     expect(await screen.findByRole("heading", { name: "Jain Sev Usal" })).toBeTruthy();
     expect(screen.queryByTestId("product-addons")).toBeNull();
-    expect(screen.getByTestId("product-detail-price").textContent).toBe("₹120");
+    expect(screen.getByTestId("product-detail-price").textContent).toBe("₹ 120");
   });
 
   it("keeps English digits in the Gujarati order message", async () => {
     await i18n.changeLanguage("gu");
     renderDish("baroda-style-sev-usal", "gu");
     expect(await screen.findByRole("heading", { name: "બરોડા સ્ટાઇલ સેવ ઉસળ" })).toBeTruthy();
-    expect(screen.getByTestId("product-detail-price").textContent).toBe("₹100");
+    expect(screen.getByTestId("product-detail-price").textContent).toBe("₹ 100");
     const order = decodeURIComponent(screen.getByTestId("product-detail-whatsapp-btn").getAttribute("href"));
-    expect(order).toContain("બરોડા સ્ટાઇલ સેવ ઉસળ — ₹100");
+    expect(order).toContain("બરોડા સ્ટાઇલ સેવ ઉસળ — ₹ 100");
     expect(order).toContain("સંખ્યા: 1");
-    expect(order).toContain("કુલ: ₹100");
+    expect(order).toContain("કુલ: ₹ 100");
     expect(order).not.toMatch(/[૦-૯]/);
     expect(screen.getByTestId("product-detail-enquiry-btn").getAttribute("href")).toContain(
       "/gu/contact?product=baroda-style-sev-usal&qty=1",

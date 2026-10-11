@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import {
   BULK_CATEGORY,
   FALLBACK_PRODUCTS,
+  priceLabel,
   whatsappUrl,
 } from "@/lib/site";
 import { productNames } from "@/lib/productCopy";
@@ -219,6 +220,11 @@ function SignatureBento({ products }) {
         <p className="mt-3 max-w-md text-sm leading-relaxed text-cream/85">
           {shortDesc}
         </p>
+        {product.price != null && product.price !== "" && (
+          <p lang="en" className="mt-4 font-display text-lg font-semibold text-cream" data-testid={`bento-price-${product.slug}`}>
+            {priceLabel(product.price)}
+          </p>
+        )}
         <span className="mt-5 inline-flex items-center gap-2 font-display text-sm font-semibold text-cream transition-transform duration-300 group-hover:translate-x-1">
           {t("home.signature.view_dish")} <ArrowRight className="h-4 w-4" />
         </span>

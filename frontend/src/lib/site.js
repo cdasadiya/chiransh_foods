@@ -558,7 +558,7 @@ export function priceLabel(price) {
   }
   const amount = Number(price);
   if (!Number.isFinite(amount)) return "Contact for current price";
-  return `₹${INR_DIGITS.format(amount)}`;
+  return `₹ ${INR_DIGITS.format(amount)}`;
 }
 
 export function whatsappUrl(settings, productName, messageOverride) {
