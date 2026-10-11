@@ -105,7 +105,21 @@
     "call": "ઓર્ડર માટે કોલ કરો",
     "contact": "ઓર્ડર માટે સંપર્ક કરો",
     "whatsapp_product": "નમસ્તે ચિરાંશ ફૂડ્સ, હું {{product}} ઓર્ડર કરવા માંગું છું.",
-    "whatsapp_general": "નમસ્તે ચિરાંશ ફૂડ્સ, હું ઓર્ડર આપવા માંગું છું."
+    "whatsapp_general": "નમસ્તે ચિરાંશ ફૂડ્સ, હું ઓર્ડર આપવા માંગું છું.",
+    "enquiry": "પૂછપરછ મોકલો",
+    "summary_intro": "નમસ્તે ચિરાંશ ફૂડ્સ, હું આ ઓર્ડર કરવા માંગું છું:",
+    "summary_line": "{{name}} — {{price}}",
+    "summary_quantity": "સંખ્યા: {{count}}",
+    "summary_total": "કુલ: {{total}}"
+  },
+  "addons": {
+    "heading": "વૈકલ્પિક ઉમેરા",
+    "extra-sev": "વધારાની સેવ",
+    "extra-garlic-red-chutney": "વધારાની લસણવાળી લાલ ચટણી",
+    "quantity": "સંખ્યા",
+    "total": "કુલ",
+    "decrease": "સંખ્યા ઘટાડો",
+    "increase": "સંખ્યા વધારો"
   },
   "instructions": {
     "eyebrow": "ફક્ત અગાઉથી ઓર્ડર",
