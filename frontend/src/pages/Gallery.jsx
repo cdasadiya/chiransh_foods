@@ -19,7 +19,7 @@ const GALLERY = [
   { src: `${IMG}/384a05646bbcef1e73af0433ab6e9d7d2e31ab9757a30e99bd75df1fc4db15c2.webp`, alt: "Flat-lay of Indian spices", caption: "Our spice palette" },
   { src: `${IMG}/da7bd498a6ba6bcf1a798b19b9852a5c933f812e8c34dd3f232eca06200a0382.webp`, alt: "Hands sprinkling sev over a steaming bowl", caption: "Finishing touches" },
   { src: `${IMG}/0fcaf35923b615c8dcab00e8a9843eac3ba0e899512260c0ed9f3bbc8569f608.webp`, alt: "Buttered pav toasting on a griddle", caption: "Buttered pav, toasted golden" },
-  { src: `${IMG}/f60e06ce5df687c2b2b455940b778d6a054b268564dceae3fc75de82cc31877d.webp`, alt: "Gujarati vegetarian spread on a wooden table", caption: "The Gujarati table" },
+  { src: `${IMG}/f60e06ce5df687c2b2b455940b778d6a054b268564dceae3fc75de82cc31877d.webp`, alt: "Chiransh Foods Tuvar Totha and Baroda-style Sev Usal family packs", caption: "Family packs — Tuvar Totha and Sev Usal" },
   { src: `${IMG}/spiced_usal_simmering.webp`, alt: "Spiced usal simmering in a pot", caption: "Slow-simmered usal" },
   { src: `${IMG}/bcf4d62101e67d8b5fbc90de6d671f52fc6c820f74b1b1a8cb6c4d9e9134792b.webp`, alt: "Close-up of tuvar totha with tempering", caption: "Totha, straight off the fire" },
 ];

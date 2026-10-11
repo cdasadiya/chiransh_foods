@@ -40,4 +40,16 @@ describe("menu catalog", () => {
       expect(foodImageProps(item.image).srcSet).toContain("-768.webp");
     }
   });
+
+  it("serves the family-pack spread as a responsive 4:3 webp", () => {
+    const image = foodImageProps(
+      "/images/f60e06ce5df687c2b2b455940b778d6a054b268564dceae3fc75de82cc31877d.webp",
+    );
+    expect(image.src).toBe(
+      "/images/f60e06ce5df687c2b2b455940b778d6a054b268564dceae3fc75de82cc31877d.webp",
+    );
+    expect(image.srcSet).toContain("-480.webp 480w");
+    expect(image.srcSet).toContain("-768.webp 768w");
+    expect(image.srcSet).toContain(".webp 1152w");
+  });
 });
