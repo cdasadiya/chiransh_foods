@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
 import { LocaleLink, useLocalizedSeo } from "@/lib/locale";
+import FoodImage from "@/components/FoodImage";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import VegMark from "@/components/VegMark";
@@ -66,11 +67,10 @@ export default function About() {
             className="pattern-dots absolute -right-4 -top-6 h-full w-full rounded-3xl sm:-right-6"
             aria-hidden="true"
           />
-          <img
+          <FoodImage
             src={`${IMG}/f60e06ce5df687c2b2b455940b778d6a054b268564dceae3fc75de82cc31877d.webp`}
             alt={t("about.image_spread")}
-            loading="lazy"
-            decoding="async"
+            sizes="(max-width: 1024px) 100vw, 640px"
             className="relative aspect-[4/3] w-full rounded-3xl object-cover shadow-lift"
           />
         </Reveal>
