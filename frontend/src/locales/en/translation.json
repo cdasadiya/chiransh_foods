@@ -105,7 +105,21 @@
     "call": "Call to Order",
     "contact": "Contact to Order",
     "whatsapp_product": "Hello Chiransh Foods, I would like to order {{product}}.",
-    "whatsapp_general": "Hello Chiransh Foods, I would like to place an order."
+    "whatsapp_general": "Hello Chiransh Foods, I would like to place an order.",
+    "enquiry": "Send an enquiry",
+    "summary_intro": "Hello Chiransh Foods, I would like to order:",
+    "summary_line": "{{name}} — {{price}}",
+    "summary_quantity": "Quantity: {{count}}",
+    "summary_total": "Total: {{total}}"
+  },
+  "addons": {
+    "heading": "Optional add-ons",
+    "extra-sev": "Extra sev",
+    "extra-garlic-red-chutney": "Extra garlic red chutney",
+    "quantity": "Quantity",
+    "total": "Total",
+    "decrease": "Decrease quantity",
+    "increase": "Increase quantity"
   },
   "instructions": {
     "eyebrow": "Advance orders only",

@@ -1,20 +1,25 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
-import { ChevronRight, RefreshCw, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronRight, MessageCircle, Minus, Plus, RefreshCw } from "lucide-react";
 import usePageMeta from "@/hooks/usePageMeta";
 import { fetchProduct, fetchProducts } from "@/lib/api";
 import { LocaleLink, useLocalizedSeo } from "@/lib/locale";
-import { priceLabel, showsBulkInstructions } from "@/lib/site";
+import { enquirySearch, orderDetailsText, orderTotal } from "@/lib/order";
+import { addonsForSlug, priceLabel, showsBulkInstructions, whatsappUrl } from "@/lib/site";
 import { productNames } from "@/lib/productCopy";
+import { useSettings } from "@/context/SettingsContext";
 import FoodImage from "@/components/FoodImage";
 import OrderInstructions from "@/components/OrderInstructions";
 import NotFound from "@/pages/NotFound";
-import OrderButtons from "@/components/OrderButtons";
 import ProductCard from "@/components/ProductCard";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import VegMark from "@/components/VegMark";
+
+const actionButton =
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-3 font-display text-sm font-semibold transition-all duration-300";
 
 const AVAILABILITY = {
   available: { label: "Available now", cls: "border-green-600/30 bg-green-50 text-green-700" },
@@ -25,6 +30,14 @@ const AVAILABILITY = {
 export default function ProductDetail() {
   const { slug } = useParams();
   const { t, i18n } = useTranslation();
+  const { settings } = useSettings();
+  const [quantity, setQuantity] = useState(1);
+  const [selectedIds, setSelectedIds] = useState([]);
+
+  useEffect(() => {
+    setQuantity(1);
+    setSelectedIds([]);
+  }, [slug]);
   const {
     data: product,
     isLoading,
@@ -180,7 +193,7 @@ export default function ProductDetail() {
                 <p className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-600">
                   {t("menu.price", "Price")}
                 </p>
-                <p className="mt-0.5 font-display text-base font-semibold text-leaf" data-testid="product-detail-price">
+                <p lang="en" className="mt-0.5 font-display text-base font-semibold text-leaf" data-testid="product-detail-price">
                   {product.price == null || product.price === "" ? t("menu.price_contact") : priceLabel(product.price)}
                 </p>
               </div>
@@ -194,14 +207,16 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            <div className="mt-7">
-              <OrderButtons productName={mainName} testPrefix="product-detail" />
-              {product.availability === "unavailable" && (
-                <p className="mt-3 text-sm italic text-stone-500">
-                  {t("menu.unavailable", "This dish is currently unavailable — contact us to enquire when it's back.")}
-                </p>
-              )}
-            </div>
+            <OrderPanel
+              product={product}
+              productName={mainName}
+              quantity={quantity}
+              setQuantity={setQuantity}
+              selectedIds={selectedIds}
+              setSelectedIds={setSelectedIds}
+              settings={settings}
+              t={t}
+            />
 
             <div className="mt-9 space-y-5">
               <div data-testid="product-ingredients">
@@ -271,5 +286,153 @@ export default function ProductDetail() {
         </section>
       )}
     </>
+  );
+}
+
+function OrderPanel({
+  product,
+  productName,
+  quantity,
+  setQuantity,
+  selectedIds,
+  setSelectedIds,
+  settings,
+  t,
+}) {
+  const addons = addonsForSlug(product.slug);
+  const selectedAddons = addons
+    .filter((addon) => selectedIds.includes(addon.id))
+    .map((addon) => ({
+      id: addon.id,
+      name: t(`addons.${addon.id}`),
+      price: addon.price,
+    }));
+  const total = orderTotal(
+    product.price,
+    selectedAddons.map((addon) => addon.price),
+    quantity,
+  );
+  const summary = orderDetailsText(t, {
+    productName,
+    unitPrice: product.price,
+    quantity,
+    addons: selectedAddons,
+  });
+  const wa = whatsappUrl(settings, null, summary);
+  const enquiryTo = `/contact?${enquirySearch({
+    slug: product.slug,
+    quantity,
+    addonIds: selectedAddons.map((addon) => addon.id),
+  })}`;
+
+  function toggleAddon(id) {
+    setSelectedIds((current) =>
+      current.includes(id) ? current.filter((item) => item !== id) : [...current, id],
+    );
+  }
+
+  return (
+    <div className="mt-7 space-y-5">
+      {addons.length > 0 && (
+        <fieldset data-testid="product-addons">
+          <legend className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-600">
+            {t("addons.heading")}
+          </legend>
+          <div className="mt-3 space-y-2">
+            {addons.map((addon) => (
+              <label
+                key={addon.id}
+                className="flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-leaf/15 bg-ivory px-4 py-3"
+              >
+                <span className="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    checked={selectedIds.includes(addon.id)}
+                    onChange={() => toggleAddon(addon.id)}
+                    data-testid={`addon-${addon.id}`}
+                    className="h-4 w-4 accent-leaf"
+                  />
+                  <span className="text-sm text-charcoal">{t(`addons.${addon.id}`)}</span>
+                </span>
+                <span lang="en" className="font-display text-sm font-semibold text-leaf">
+                  {priceLabel(addon.price)}
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      )}
+
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-600">
+            {t("addons.quantity")}
+          </p>
+          <div className="mt-2 inline-flex items-center rounded-full border border-leaf/15 bg-ivory">
+            <button
+              type="button"
+              aria-label={t("addons.decrease")}
+              data-testid="quantity-decrease"
+              onClick={() => setQuantity((current) => Math.max(1, current - 1))}
+              className="inline-flex min-h-11 min-w-11 items-center justify-center text-leaf"
+            >
+              <Minus className="h-4 w-4" />
+            </button>
+            <span lang="en" className="min-w-8 text-center font-display text-sm font-semibold text-leaf" data-testid="product-quantity">
+              {quantity}
+            </span>
+            <button
+              type="button"
+              aria-label={t("addons.increase")}
+              data-testid="quantity-increase"
+              onClick={() => setQuantity((current) => Math.min(99, current + 1))}
+              className="inline-flex min-h-11 min-w-11 items-center justify-center text-leaf"
+            >
+              <Plus className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+        {total != null && (
+          <div>
+            <p className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-600">
+              {t("addons.total")}
+            </p>
+            <p lang="en" className="mt-0.5 font-display text-base font-semibold text-leaf" data-testid="product-detail-total">
+              {priceLabel(total)}
+            </p>
+          </div>
+        )}
+      </div>
+
+      <div className="flex flex-wrap gap-3">
+        {wa && (
+          <a
+            href={wa}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="product-detail-whatsapp-btn"
+            className={`${actionButton} bg-forest text-cream hover:bg-leaf hover:shadow-soft`}
+          >
+            <MessageCircle className="h-4 w-4" /> {t("order.whatsapp", "Order on WhatsApp")}
+          </a>
+        )}
+        <LocaleLink
+          to={enquiryTo}
+          data-testid="product-detail-enquiry-btn"
+          className={`${actionButton} ${
+            wa
+              ? "border border-leaf/20 bg-ivory text-leaf hover:border-leaf"
+              : "bg-saffron text-cream shadow-soft hover:bg-saffron-deep"
+          }`}
+        >
+          {t("order.enquiry", "Send an enquiry")} <ArrowRight className="h-4 w-4" />
+        </LocaleLink>
+      </div>
+      {product.availability === "unavailable" && (
+        <p className="text-sm italic text-stone-500">
+          {t("menu.unavailable", "This dish is currently unavailable — contact us to enquire when it's back.")}
+        </p>
+      )}
+    </div>
   );
 }

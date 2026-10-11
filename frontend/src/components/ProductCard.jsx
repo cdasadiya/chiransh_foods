@@ -49,7 +49,7 @@ export default function ProductCard({ product, index = 0, dataTestId }) {
             {shortDesc}
           </p>
           <div className="mt-5 flex items-center justify-between border-t border-leaf/10 pt-4">
-            <span className="text-sm font-medium text-charcoal" data-testid={`product-price-${product.slug}`}>
+            <span lang="en" className="font-display text-sm font-medium text-charcoal" data-testid={`product-price-${product.slug}`}>
               {product.price == null || product.price === "" ? t("menu.price_contact") : priceLabel(product.price)}
             </span>
             <span className="inline-flex items-center gap-1.5 font-display text-sm font-semibold text-saffron-deep transition-transform duration-300 group-hover:translate-x-1">

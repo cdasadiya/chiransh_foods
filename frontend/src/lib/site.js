@@ -126,7 +126,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Spicy Baroda-style usal topped with crunchy sev. Made in our home kitchen in Ahmedabad. Regular recipe. For a no-onion, no-garlic version, see Jain & Swaminarayan.",
     "short_description": "Vadodara's beloved street-food legend — slow-simmered spiced usal crowned with a generous heap of crunchy sev.",
     "image": `${IMG}/sev_usal_with_chutney.webp`,
-    "price": null,
+    "price": 100,
     "availability": "available",
     "vegetarian": true,
     "featured": true,
@@ -145,7 +145,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Baroda-style sev usal served with soft pav, onion and lemon. Regular recipe. Pick your spice level.",
     "short_description": "Baroda-style sev usal served with soft pav, onion and lemon.",
     "image": `${IMG}/sev_usal_with_chutney.webp`,
-    "price": null,
+    "price": 100,
     "availability": "available",
     "vegetarian": true,
     "featured": true,
@@ -164,7 +164,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Sev usal packed to take home, with the sev packed separately so it stays crunchy. Pav, onion-coriander and lemon on the side. Regular recipe. Pick your spice level.",
     "short_description": "Sev usal packed to take home, with the sev packed separately so it stays crunchy.",
     "image": `${IMG}/sev_usal_with_chutney.webp`,
-    "price": null,
+    "price": 100,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -183,7 +183,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Gujarati tuvar totha: dried tuvar cooked in a spicy masala gravy. Made in our home kitchen in Ahmedabad. Regular recipe. For a no-onion, no-garlic version, see Jain & Swaminarayan.",
     "short_description": "A rustic, heartwarming Gujarati street-style tuvar preparation — bold flavour, homestyle comfort.",
     "image": `${IMG}/tuvar_totha_with_chutney.webp`,
-    "price": null,
+    "price": 120,
     "availability": "available",
     "vegetarian": true,
     "featured": true,
@@ -202,7 +202,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Spicy Gujarati tuvar totha served with soft pav, onion and lemon. Regular recipe. Pick your spice level.",
     "short_description": "Spicy Gujarati tuvar totha served with soft pav, onion and lemon.",
     "image": `${IMG}/tuvar_totha_with_chutney.webp`,
-    "price": null,
+    "price": 140,
     "availability": "available",
     "vegetarian": true,
     "featured": true,
@@ -221,7 +221,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Sev usal and tuvar totha on one plate, with pav, onion and lemon. Serves 1. Regular recipe. Pick your spice level.",
     "short_description": "Sev usal and tuvar totha on one plate, with pav, onion and lemon.",
     "image": `${IMG}/combo_plate_with_chutney.webp`,
-    "price": null,
+    "price": 220,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -240,7 +240,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Baroda-style sev usal made Jain style: no onion, no garlic and no root vegetables. Topped with crunchy sev, with lemon on the side. Served without pav. Pick your spice level.",
     "short_description": "Baroda-style sev usal made Jain style: no onion, no garlic and no root vegetables.",
     "image": `${IMG}/jain_sev_usal.webp`,
-    "price": null,
+    "price": 120,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -259,7 +259,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Gujarati tuvar totha made Jain style: no onion, no garlic and no root vegetables, in a spicy masala gravy. Served without pav. Pick your spice level.",
     "short_description": "Gujarati tuvar totha made Jain style: no onion, no garlic and no root vegetables.",
     "image": `${IMG}/jain_tuvar_totha.webp`,
-    "price": null,
+    "price": 140,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -278,7 +278,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Baroda-style sev usal made Swaminarayan style: no onion and no garlic. Topped with crunchy sev, with lemon on the side. Served without pav. Pick your spice level.",
     "short_description": "Baroda-style sev usal made Swaminarayan style: no onion and no garlic.",
     "image": `${IMG}/jain_sev_usal.webp`,
-    "price": null,
+    "price": 120,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -297,7 +297,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Gujarati tuvar totha made Swaminarayan style: no onion and no garlic, in a spicy masala gravy. Served without pav. Pick your spice level.",
     "short_description": "Gujarati tuvar totha made Swaminarayan style: no onion and no garlic.",
     "image": `${IMG}/jain_tuvar_totha.webp`,
-    "price": null,
+    "price": 140,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -354,7 +354,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Two soft pav to go with sev usal or tuvar totha.",
     "short_description": "Two soft pav to go with sev usal or tuvar totha.",
     "image": `${IMG}/og-image.jpg`,
-    "price": null,
+    "price": 20,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -388,7 +388,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Spiced Gujarati buttermilk, [200 ml].",
     "short_description": "Spiced Gujarati buttermilk.",
     "image": `${IMG}/og-image.jpg`,
-    "price": null,
+    "price": 20,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -407,7 +407,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Sealed bottle of packaged drinking water, [500 ml / 1 L].",
     "short_description": "Sealed bottle of packaged drinking water.",
     "image": `${IMG}/og-image.jpg`,
-    "price": null,
+    "price": 20,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -426,7 +426,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Soft buttered pav with a spiced vegetable bhaji, prepared fresh for advance orders.",
     "short_description": "Soft buttered pav with a spiced vegetable bhaji, prepared fresh for advance orders.",
     "image": `${IMG}/bhaji_pav.webp`,
-    "price": null,
+    "price": 120,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -445,7 +445,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Chunky vegetable bhaji, kept in pieces rather than mashed, served with pav.",
     "short_description": "Chunky vegetable bhaji, kept in pieces rather than mashed, served with pav.",
     "image": `${IMG}/khada_pav_bhaji.webp`,
-    "price": null,
+    "price": 130,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -464,7 +464,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Pav tossed with a spicy masala, a street-style snack for gatherings.",
     "short_description": "Pav tossed with a spicy masala, a street-style snack for gatherings.",
     "image": `${IMG}/masala_pav.webp`,
-    "price": null,
+    "price": 60,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -483,7 +483,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Fragrant vegetable pulav, cooked for family gatherings and events.",
     "short_description": "Fragrant vegetable pulav, cooked for family gatherings and events.",
     "image": `${IMG}/pulav.webp`,
-    "price": null,
+    "price": 100,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -502,7 +502,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Kutchi-style dabeli with a spiced potato filling in pav.",
     "short_description": "Kutchi-style dabeli with a spiced potato filling in pav.",
     "image": `${IMG}/kutchi_dabeli.webp`,
-    "price": null,
+    "price": 30,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -521,7 +521,7 @@ export const FALLBACK_PRODUCTS = [
     "description": "Potato patties with spiced white-pea ragda and chutney.",
     "short_description": "Potato patties with spiced white-pea ragda and chutney.",
     "image": `${IMG}/ragda_pattice.webp`,
-    "price": null,
+    "price": 75,
     "availability": "available",
     "vegetarian": true,
     "featured": false,
@@ -534,11 +534,31 @@ export const FALLBACK_PRODUCTS = [
   }
 ];
 
+const INR_DIGITS = new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 });
+
+export const ADDONS = [
+  { id: "extra-sev", price: 15 },
+  { id: "extra-garlic-red-chutney", price: 15 },
+];
+
+/** Optional add-ons are offered only on these two dishes. */
+export const DISH_ADDONS = {
+  "baroda-style-sev-usal": ["extra-sev", "extra-garlic-red-chutney"],
+  "tuvar-totha": ["extra-sev", "extra-garlic-red-chutney"],
+};
+
+export function addonsForSlug(slug) {
+  const ids = DISH_ADDONS[slug] || [];
+  return ADDONS.filter((addon) => ids.includes(addon.id));
+}
+
 export function priceLabel(price) {
   if (price === null || price === undefined || price === "") {
     return "Contact for current price";
   }
-  return `₹ ${price}`;
+  const amount = Number(price);
+  if (!Number.isFinite(amount)) return "Contact for current price";
+  return `₹${INR_DIGITS.format(amount)}`;
 }
 
 export function whatsappUrl(settings, productName, messageOverride) {
