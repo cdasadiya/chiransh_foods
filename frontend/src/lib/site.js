@@ -113,6 +113,7 @@ export const FALLBACK_SETTINGS = {
     meta_pixel_id: null,
   },
   domain: { canonical_base: "https://chiransh-foods.onrender.com" },
+  fssai: { license: "20726038003778" },
 };
 
 const IMG = "/images";

@@ -98,7 +98,9 @@
     "tagline": "100% Vegetarian · Made with care",
     "social": "Chiransh Foods on {{network}}",
     "explore": "Explore",
-    "legal": "Legal"
+    "legal": "Legal",
+    "fssai_name": "FSSAI Registered Food Provider",
+    "fssai_license_label": "License No."
   },
   "order": {
     "whatsapp": "Order on WhatsApp",
@@ -134,7 +136,7 @@
       "Prepared with fresh groundnut oil",
       "Hygienic food preparation with extra care",
       "Jain and Swaminarayan food options available on request",
-      "FSSAI-registered food business",
+      "FSSAI Registered Food Provider",
       "Advance-order catering and delivery service"
     ],
     "cta": "Planning a party, family gathering, office event, or special occasion? Let Chiransh Foods serve freshly prepared, flavourful vegetarian food for your guests.",

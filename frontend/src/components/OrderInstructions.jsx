@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useSettings } from "@/context/SettingsContext";
+import FssaiBadge from "./FssaiBadge";
 
 export default function OrderInstructions({ className = "" }) {
   const { t } = useTranslation();
@@ -57,6 +58,7 @@ export default function OrderInstructions({ className = "" }) {
           </li>
         ))}
       </ul>
+      <FssaiBadge className="mt-6" />
       <p className="mt-5 max-w-3xl text-sm leading-relaxed text-stone-600 sm:text-base">
         {t("instructions.cta")}
       </p>
