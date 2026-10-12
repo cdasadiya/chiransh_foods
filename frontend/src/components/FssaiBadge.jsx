@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useSettings } from "@/context/SettingsContext";
 
-const LICENSE_FALLBACK = "XXXXXXXXXXXX";
+const LICENSE_FALLBACK = "20726038003778";
 
 function FssaiMark({ className = "" }) {
   return (
@@ -41,8 +41,10 @@ export default function FssaiBadge({ tone = "light", className = "" }) {
       <div className="rounded-3xl border border-leaf/10 bg-cream px-4 pb-3.5 pt-2 shadow-soft">
         <FssaiMark className="h-auto w-full" />
         <p
-          className={`text-center font-medium leading-snug text-leaf ${
-            gujarati ? "font-guj text-[0.85rem]" : "font-sans text-[0.7rem]"
+          className={`text-center font-semibold leading-snug text-leaf ${
+            gujarati
+              ? "font-guj text-[0.85rem]"
+              : "font-display text-[0.68rem] uppercase tracking-[0.14em]"
           }`}
         >
           {t("footer.fssai_name")}
