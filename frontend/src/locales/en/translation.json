@@ -98,7 +98,9 @@
     "tagline": "100% Vegetarian · Made with care",
     "social": "Chiransh Foods on {{network}}",
     "explore": "Explore",
-    "legal": "Legal"
+    "legal": "Legal",
+    "fssai_name": "Food Safety & Standards Authority of India",
+    "fssai_license_label": "License No."
   },
   "order": {
     "whatsapp": "Order on WhatsApp",

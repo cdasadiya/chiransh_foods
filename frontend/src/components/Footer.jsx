@@ -1,6 +1,7 @@
 import { LocaleLink } from "@/lib/locale";
 import { Mail, MessageCircle, Phone } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import FssaiBadge from "./FssaiBadge";
 import Logo from "./Logo";
 import { useSettings } from "@/context/SettingsContext";
 import { whatsappUrl } from "@/lib/site";
@@ -66,7 +67,7 @@ export default function Footer() {
     <footer className="relative z-40 bg-leaf text-cream" data-testid="site-footer">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
+          <div className="min-w-0 md:col-span-5">
             <Logo light />
             <p className="mt-5 max-w-sm font-serif text-lg italic leading-relaxed text-cream/80">
               {t("footer.description", "Authentic Gujarati vegetarian food, with the soul of Gujarat's street-food culture.")}
@@ -88,6 +89,7 @@ export default function Footer() {
                 ))}
               </div>
             )}
+            <FssaiBadge tone="onDark" className="mt-8" />
           </div>
 
           <nav className="md:col-span-3" aria-label="Footer">
