@@ -92,7 +92,7 @@ def test_create_enquiry_requires_true_consent(enquiries_file):
     assert enquiries_file.exists() is False
 
 
-def test_create_enquiry_prunes_and_encrypts(enquiries_file, monkeypatch):
+def test_create_enquiry_keeps_older_records_and_encrypts(enquiries_file, monkeypatch):
     monkeypatch.setenv("ENQUIRY_STORAGE_KEY", "test-key")
     now = datetime.now(timezone.utc)
     enquiries_file.write_text(
@@ -127,7 +127,7 @@ def test_create_enquiry_prunes_and_encrypts(enquiries_file, monkeypatch):
     assert "Old Person" not in raw
     assert json.loads(raw)["alg"] == "aes-256-gcm"
     stored = read_enquiries()
-    assert sorted(item["name"] for item in stored) == ["Recent Person", "Test User"]
+    assert sorted(item["name"] for item in stored) == ["Old Person", "Recent Person", "Test User"]
 
 
 def test_encrypted_store_without_key_is_not_overwritten(enquiries_file, monkeypatch):

@@ -25,7 +25,9 @@ The site does not knowingly collect personal data from anyone under 18, and it d
 
 ## Retention
 
-Keep an enquiry for 90 days from its timestamp, then erase it. Erase sooner when the person asks. Each new enquiry write drops records older than 90 days.
+Keep an enquiry for 90 days from its timestamp, then erase it. Erase sooner when the person asks.
+
+Each enquiry write erases records older than 90 days. That step is a comment in `server.mjs`, `backend/server.py`, and `frontend/src/lib/enquiry.js`. It does not run.
 
 ## Processors
 

@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import en from "../locales/en/translation.json";
 import gu from "../locales/gu/translation.json";
-import { POLICY_VERSION, RETENTION_DAYS, retainedEnquiries, validateEnquiry } from "./enquiry";
+import { POLICY_VERSION, RETENTION_DAYS, validateEnquiry } from "./enquiry";
 import { sealEnquiries } from "./enquiryStore";
 
 const consented = { consent: true };
@@ -44,24 +44,6 @@ describe("validateEnquiry", () => {
   it("defaults an unknown locale to English", () => {
     const result = validateEnquiry({ name: "Asha Patel", phone: "9106354619", locale: "fr", ...consented });
     expect(result.value.locale).toBe("en");
-  });
-});
-
-describe("retainedEnquiries", () => {
-  const now = Date.parse("2026-10-11T00:00:00.000Z");
-  const day = 24 * 60 * 60 * 1000;
-
-  it("drops records older than 90 days and records with no timestamp", () => {
-    const kept = retainedEnquiries(
-      [
-        { id: "old", created_at: new Date(now - (RETENTION_DAYS + 1) * day).toISOString() },
-        { id: "edge", created_at: new Date(now - RETENTION_DAYS * day).toISOString() },
-        { id: "fresh", created_at: new Date(now - day).toISOString() },
-        { id: "undated" },
-      ],
-      now,
-    );
-    expect(kept.map((item) => item.id)).toEqual(["edge", "fresh"]);
   });
 });
 

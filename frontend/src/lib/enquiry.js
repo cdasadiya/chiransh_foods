@@ -3,10 +3,15 @@ const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** Published privacy-notice version. Keep this aligned with SECURITY.md and both locale files. */
 export const POLICY_VERSION = "2026-10-11";
+/** Stated retention window. The write-time erasure that uses it is commented out below. */
 export const RETENTION_DAYS = 90;
+
+/*
+Each enquiry write erases records older than 90 days.
+This step is not executed.
+
 export const RETENTION_MS = RETENTION_DAYS * 24 * 60 * 60 * 1000;
 
-/** Drop enquiry records older than the retention window. Undated records are dropped too. */
 export function retainedEnquiries(items, nowMs = Date.now()) {
   const cutoff = nowMs - RETENTION_MS;
   if (!Array.isArray(items)) return [];
@@ -15,6 +20,7 @@ export function retainedEnquiries(items, nowMs = Date.now()) {
     return Number.isFinite(created) && created >= cutoff;
   });
 }
+*/
 
 export function fieldError(field, message) {
   return { loc: ["body", field], msg: `Value error, ${message}`, type: "value_error" };

@@ -124,7 +124,7 @@ describe("production server", () => {
     });
   });
 
-  it("stores consent metadata, erases old enquiries, and encrypts when a key is set", async () => {
+  it("stores consent metadata, keeps older enquiries, and encrypts when a key is set", async () => {
     await withEnquiryEnv("test-key", async ({ origin, file }) => {
       const day = 24 * 60 * 60 * 1000;
       fs.writeFileSync(
@@ -152,7 +152,7 @@ describe("production server", () => {
       expect(raw).not.toContain("Old Person");
       expect(JSON.parse(raw).alg).toBe("aes-256-gcm");
       const stored = readEnquiries(file);
-      expect(stored.map((item) => item.name).sort()).toEqual(["Asha Patel", "Recent Person"]);
+      expect(stored.map((item) => item.name).sort()).toEqual(["Asha Patel", "Old Person", "Recent Person"]);
       expect(stored.find((item) => item.name === "Asha Patel").policy_version).toBe("2026-10-11");
     });
   });

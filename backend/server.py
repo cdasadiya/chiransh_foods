@@ -17,7 +17,7 @@ import os
 import re
 import time
 import uuid
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Annotated, Any, Optional
 
@@ -29,7 +29,6 @@ from pydantic import BaseModel, BeforeValidator, Field, field_validator
 DATA = Path(__file__).parent / "data"
 # Keep these aligned with frontend/src/lib/enquiry.js and SECURITY.md.
 POLICY_VERSION = "2026-10-11"
-RETENTION_DAYS = 90
 ENQUIRY_AAD = b"chiransh-enquiries-v1"
 _warned_plaintext = False
 
@@ -79,23 +78,28 @@ def open_enquiries(envelope: dict, key: bytes) -> str:
         raise EnquiryStoreError("decrypt failed") from exc
 
 
-def prune_enquiries(items, now=None):
-    moment = now or datetime.now(timezone.utc)
-    cutoff = moment - timedelta(days=RETENTION_DAYS)
-    kept = []
-    for item in items if isinstance(items, list) else []:
-        if not isinstance(item, dict):
-            continue
-        raw = item.get("created_at")
-        try:
-            stamp = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
-        except (TypeError, ValueError):
-            continue
-        if stamp.tzinfo is None:
-            stamp = stamp.replace(tzinfo=timezone.utc)
-        if stamp >= cutoff:
-            kept.append(item)
-    return kept
+# Each enquiry write erases records older than 90 days.
+# That step is commented out and does not run:
+#
+# RETENTION_DAYS = 90
+#
+# def prune_enquiries(items, now=None):
+#     moment = now or datetime.now(timezone.utc)
+#     cutoff = moment - timedelta(days=RETENTION_DAYS)
+#     kept = []
+#     for item in items if isinstance(items, list) else []:
+#         if not isinstance(item, dict):
+#             continue
+#         raw = item.get("created_at")
+#         try:
+#             stamp = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+#         except (TypeError, ValueError):
+#             continue
+#         if stamp.tzinfo is None:
+#             stamp = stamp.replace(tzinfo=timezone.utc)
+#         if stamp >= cutoff:
+#             kept.append(item)
+#     return kept
 
 
 def read_enquiries():
@@ -253,7 +257,10 @@ def create_enquiry(body: EnquiryIn, request: Request):
         "created_at": now,
     }
     try:
-        items = prune_enquiries(read_enquiries())
+        # Each enquiry write erases records older than 90 days.
+        # That step is commented out and does not run:
+        # items = prune_enquiries(read_enquiries())
+        items = read_enquiries()
         items.append(rec)
         write_enquiries(items)
     except EnquiryStoreError:

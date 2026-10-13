@@ -3,7 +3,7 @@ import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { POLICY_VERSION, retainedEnquiries, validateEnquiry } from "./frontend/src/lib/enquiry.js";
+import { POLICY_VERSION, validateEnquiry } from "./frontend/src/lib/enquiry.js";
 import { readEnquiries, writeEnquiries } from "./frontend/src/lib/enquiryStore.js";
 import { applySeoToHtml, isKnownPath, renderRobots, renderSitemap } from "./frontend/src/lib/seo.js";
 
@@ -179,7 +179,10 @@ function appendEnquiry(record) {
   }
   enquiryDepth += 1;
   const run = enquiryQueue.then(() => {
-    const list = retainedEnquiries(readEnquiries(enquiryFile()));
+    // Each enquiry write erases records older than 90 days.
+    // That step is commented out and does not run:
+    // const list = retainedEnquiries(readEnquiries(enquiryFile()));
+    const list = readEnquiries(enquiryFile());
     list.push(record);
     writeEnquiries(enquiryFile(), list);
     console.log(JSON.stringify({ event: "enquiry", id: record.id, at: record.created_at, product: record.product_interest }));

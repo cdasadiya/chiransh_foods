@@ -100,7 +100,7 @@ In the `frontend` directory:
 
 Editable public facts live in [`backend/data/settings.json`](backend/data/settings.json): Ahmedabad, the pickup areas, daily hours, the phone and WhatsApp number, and the canonical host `https://chiransh-foods.onrender.com`. Email and the Google Maps link are still empty.
 
-The contact form stores enquiries in `backend/data/enquiries.json`. That file is gitignored. Records are erased 90 days after they are sent. Set `ENQUIRY_STORAGE_KEY` on the host to encrypt the file. Do not commit that secret.
+The contact form stores enquiries in `backend/data/enquiries.json`. That file is gitignored. Set `ENQUIRY_STORAGE_KEY` on the host to encrypt the file. Do not commit that secret. “Each enquiry write erases records older than 90 days” is a comment in the enquiry store and does not run.
 
 The canonical host, sitemap, and `robots.txt` use the Render address. `chiranshfoods.com` is not the live site.
 
