@@ -98,7 +98,7 @@ In the `frontend` directory:
 
 ## Public site details
 
-Editable public facts live in [`backend/data/settings.json`](backend/data/settings.json): Ahmedabad, the pickup areas, daily hours, the phone and WhatsApp number, and the canonical host `https://chiransh-foods.onrender.com`. Email and the Google Maps link are still empty.
+Editable public facts live in [`backend/data/settings.json`](backend/data/settings.json): Ahmedabad, the pickup areas, daily hours, the phone and WhatsApp number, the email `chiranshfoods@gmail.com`, and the canonical host `https://chiransh-foods.onrender.com`. The Google Maps link is still empty.
 
 The contact form stores enquiries in `backend/data/enquiries.json`. That file is gitignored.
 

@@ -88,11 +88,13 @@ function socialLinks(settings) {
 
 function localBusinessFields(settings) {
   const phone = settings?.contact?.phone;
+  const email = settings?.contact?.email;
   const city = settings?.location?.city;
   const areas = Array.isArray(settings?.location?.areas) ? settings.location.areas.filter(Boolean) : [];
   const hours = settings?.business_hours || {};
   const fields = {};
   if (typeof phone === "string" && phone) fields.telephone = phone.replace(/\s/g, "");
+  if (typeof email === "string" && email) fields.email = email;
   if (city) {
     fields.address = {
       "@type": "PostalAddress",
@@ -188,7 +190,7 @@ const SEO = {
       "A look inside Chiransh Foods in Ahmedabad — signature Gujarati dishes, fresh ingredients, hand-ground spices and the care behind every plate.",
     contactTitle: "Contact & Order — Chiransh Foods | Ahmedabad",
     contactDescription:
-      "Order Chiransh Foods in Ahmedabad. Pickup is by phone call, daily 10:00 AM to 11:00 PM IST. Call or WhatsApp +91 91063 54619.",
+      "Contact Chiransh Foods in Ahmedabad at chiranshfoods@gmail.com, or call and WhatsApp +91 91063 54619. Pickup daily, 10:00 AM to 11:00 PM IST.",
     faqTitle: "FAQ — Chiransh Foods | Gujarati Vegetarian Food in Ahmedabad",
     faqDescription:
       "Questions about Chiransh Foods in Ahmedabad — vegetarian Gujarati dishes, Baroda-style Sev Usal, Tuvar Totha, pickup and ordering.",
@@ -221,7 +223,7 @@ const SEO = {
     galleryDescription: "અમદાવાદની ચિરાંશ ફૂડ્સની અંદર એક નજર — ખાસ વાનગીઓ, તાજી સામગ્રી અને દરેક થાળી પાછળની કાળજી.",
     contactTitle: "સંપર્ક અને ઓર્ડર — ચિરાંશ ફૂડ્સ | અમદાવાદ",
     contactDescription:
-      "અમદાવાદમાં ચિરાંશ ફૂડ્સનો ઓર્ડર કરો. પિકઅપ ફક્ત ફોન કોલથી, દરરોજ સવારે ૧૦ થી રાત્રે ૧૧. કોલ અથવા WhatsApp +91 91063 54619.",
+      "અમદાવાદમાં ચિરાંશ ફૂડ્સનો સંપર્ક chiranshfoods@gmail.com પર કરો, અથવા +91 91063 54619 પર કોલ અને WhatsApp કરો. પિકઅપ દરરોજ સવારે ૧૦ થી રાત્રે ૧૧.",
     faqTitle: "પ્રશ્નો — ચિરાંશ ફૂડ્સ | અમદાવાદ",
     faqDescription: "અમદાવાદની ચિરાંશ ફૂડ્સ વિશે પ્રશ્નો — શાકાહારી ગુજરાતી વાનગીઓ, સેવ ઉસળ, તુવેર ટોઠા અને ઓર્ડર.",
     privacyTitle: "ગોપનીયતા નીતિ — ચિરાંશ ફૂડ્સ",
@@ -277,6 +279,7 @@ export function getPageSeo(pathname, data) {
         hasMenu: canonicalUrl(localized("/menu"), origin),
         areaServed: business.areaServed || { "@type": "AdministrativeArea", name: area },
         ...(business.telephone ? { telephone: business.telephone } : {}),
+        ...(business.email ? { email: business.email } : {}),
         ...(business.address ? { address: business.address } : {}),
         ...(business.openingHoursSpecification
           ? { openingHoursSpecification: business.openingHoursSpecification }

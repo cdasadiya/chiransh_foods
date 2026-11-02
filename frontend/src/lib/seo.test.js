@@ -65,6 +65,19 @@ describe("locales", () => {
     expect(escapeHtml(`"<>&`)).toBe("&quot;&lt;&gt;&amp;");
   });
 
+  it("publishes the business email on the home establishment", () => {
+    const seo = getPageSeo("/", {
+      products,
+      settings: {
+        contact: { phone: "+919106354619", email: "chiranshfoods@gmail.com" },
+        domain: { canonical_base: "https://chiransh-foods.onrender.com" },
+      },
+    });
+    expect(seo.jsonLd.email).toBe("chiranshfoods@gmail.com");
+    expect(seo.jsonLd.telephone).toBe("+919106354619");
+    expect(getPageSeo("/contact", { products }).description).toContain("chiranshfoods@gmail.com");
+  });
+
   it("includes three language urls in the sitemap", () => {
     const locs = sitemapEntries(products).map((entry) => entry.loc);
     expect(locs).not.toContain("https://chiransh-foods.onrender.com/hi");

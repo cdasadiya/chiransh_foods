@@ -34,6 +34,13 @@ function renderContact(path = "/contact") {
 }
 
 describe("Contact form", () => {
+  it("lists chiranshfoods@gmail.com as the contact email", () => {
+    renderContact();
+    const email = screen.getByTestId("contact-info-email");
+    expect(email.textContent).toBe("chiranshfoods@gmail.com");
+    expect(email.getAttribute("href")).toBe("mailto:chiranshfoods@gmail.com");
+  });
+
   it("shows a name error and does not submit an empty form", async () => {
     const user = userEvent.setup();
     renderContact();

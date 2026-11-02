@@ -44,6 +44,18 @@ const LEGAL = [
   { label: "Refund / Cancellation", to: "/refund" },
 ];
 
+function EmailAddress({ value }) {
+  const at = String(value).indexOf("@");
+  if (at <= 0) return value;
+  return (
+    <>
+      {value.slice(0, at + 1)}
+      <wbr />
+      {value.slice(at + 1)}
+    </>
+  );
+}
+
 export default function Footer() {
   const { t } = useTranslation();
   const { settings } = useSettings();
@@ -58,16 +70,16 @@ export default function Footer() {
   ].filter((s) => s.url);
 
   const contactRows = [
+    { label: "Email", value: email, href: email ? `mailto:${email}` : null, Icon: Mail, testId: "footer-email-link" },
     { label: "Phone", value: phone, href: settings?.contact?.phone ? `tel:${String(settings.contact.phone).replace(/\s/g, "")}` : null, Icon: Phone, testId: "footer-phone-link" },
     { label: "WhatsApp", value: wa ? t("contact.val_chat") : null, href: wa, Icon: MessageCircle, testId: "footer-whatsapp-link" },
-    { label: "Email", value: email, href: email ? `mailto:${email}` : null, Icon: Mail, testId: "footer-email-link" },
   ];
 
   return (
     <footer className="relative z-40 bg-leaf text-cream" data-testid="site-footer">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-12">
-          <div className="min-w-0 md:col-span-5">
+          <div className="min-w-0 md:col-span-4">
             <Logo light />
             <p className="mt-5 max-w-sm font-serif text-lg italic leading-relaxed text-cream/80">
               {t("footer.description", "Authentic Gujarati vegetarian food, with the soul of Gujarat's street-food culture.")}
@@ -130,7 +142,7 @@ export default function Footer() {
             </ul>
           </nav>
 
-          <div className="md:col-span-2">
+          <div className="min-w-0 md:col-span-3">
             <h3 className="font-display text-xs font-semibold uppercase tracking-[0.3em] text-gold">
               {t("footer.contact", "Contact")}
             </h3>
@@ -145,9 +157,10 @@ export default function Footer() {
                         target={href?.startsWith("http") ? "_blank" : undefined}
                         rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
                         data-testid={testId}
-                        className="inline-flex min-h-11 items-center gap-2 text-sm text-cream/75 transition-colors hover:text-cream"
+                        className="inline-flex min-h-11 max-w-full items-center gap-2 text-sm text-cream/75 transition-colors hover:text-cream"
                       >
-                        <Icon className="h-4 w-4" aria-hidden="true" /> {value}
+                        <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                        <span className="min-w-0">{label === "Email" ? <EmailAddress value={value} /> : value}</span>
                       </a>
                     </li>
                   ),
