@@ -339,7 +339,7 @@ export default function Contact() {
                       aria-describedby={
                         errors.email ? "contact-email-error" : undefined
                       }
-                      placeholder={t("contact.plh_email", "you@example.com")}
+                      placeholder={t("contact.plh_email", "Optional — for our reply")}
                       className={`mt-2 ${inputCls}`}
                     />
                     {errors.email && (

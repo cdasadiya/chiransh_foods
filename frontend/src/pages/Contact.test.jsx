@@ -41,6 +41,12 @@ describe("Contact form", () => {
     expect(email.getAttribute("href")).toBe("mailto:chiranshfoods@gmail.com");
   });
 
+  it("does not show placeholder or example contact emails", () => {
+    renderContact();
+    expect(document.body.textContent).not.toMatch(/example\.com|you@/i);
+    expect(screen.getByTestId("contact-email-input").getAttribute("placeholder")).not.toContain("@");
+  });
+
   it("shows a name error and does not submit an empty form", async () => {
     const user = userEvent.setup();
     renderContact();

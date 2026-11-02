@@ -240,7 +240,7 @@
     "err_phone": "Please enter a valid phone number.",
     "lbl_email": "Email ",
     "lbl_email_opt": "(optional)",
-    "plh_email": "you@example.com",
+    "plh_email": "Optional — for our reply",
     "err_email": "Please enter a valid email address.",
     "lbl_product": "Product interest",
     "opt_general": "General enquiry",
