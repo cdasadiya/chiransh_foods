@@ -57,6 +57,15 @@ export default function Contact() {
   const hoursOpen = Boolean(settings?.business_hours?.opens && settings?.business_hours?.closes);
   const contactRows = [
     {
+      id: "email",
+      Icon: Mail,
+      label: t("contact.lbl_email_val", "Email"),
+      value: settings?.contact?.email || null,
+      href: settings?.contact?.email
+        ? `mailto:${settings.contact.email}`
+        : null,
+    },
+    {
       id: "phone",
       Icon: Phone,
       label: t("contact.lbl_phone_val", "Phone"),
@@ -69,15 +78,6 @@ export default function Contact() {
       label: t("contact.lbl_whatsapp_val", "WhatsApp"),
       value: waContact ? phoneDisplay || t("contact.val_chat", "Chat with us") : null,
       href: waContact,
-    },
-    {
-      id: "email",
-      Icon: Mail,
-      label: t("contact.lbl_email_val", "Email"),
-      value: settings?.contact?.email || null,
-      href: settings?.contact?.email
-        ? `mailto:${settings.contact.email}`
-        : null,
     },
   ];
   const contactEmpty = !contactRows.some((r) => r.value);
@@ -339,7 +339,7 @@ export default function Contact() {
                       aria-describedby={
                         errors.email ? "contact-email-error" : undefined
                       }
-                      placeholder={t("contact.plh_email", "you@example.com")}
+                      placeholder={t("contact.plh_email", "Optional — for our reply")}
                       className={`mt-2 ${inputCls}`}
                     />
                     {errors.email && (
@@ -442,7 +442,7 @@ export default function Contact() {
                     <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-leaf/5 text-saffron-deep">
                       <Icon className="h-4 w-4" />
                     </span>
-                    <span>
+                    <span className="min-w-0">
                       <span className="block text-xs uppercase tracking-[0.15em] text-stone-600">
                         {label}
                       </span>

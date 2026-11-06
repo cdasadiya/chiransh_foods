@@ -58,7 +58,7 @@ export const FALLBACK_SETTINGS = {
     phone: "+919106354619",
     phone_display: "+91 91063 54619",
     whatsapp: "919106354619",
-    email: null,
+    email: "chiranshfoods@gmail.com",
   },
   location: {
     state: "Gujarat",
@@ -95,7 +95,7 @@ export const FALLBACK_SETTINGS = {
     opens: "10:00",
     closes: "23:00",
     timezone: "Asia/Kolkata",
-    note: "Open daily, 10:00 AM to 11:00 PM IST. For any other plan, call or WhatsApp +91 91063 54619.",
+    note: "Open daily, 10:00 AM to 11:00 PM IST. For any other plan, email chiranshfoods@gmail.com, or call or WhatsApp +91 91063 54619.",
   },
   ordering: {
     mode: "contact",

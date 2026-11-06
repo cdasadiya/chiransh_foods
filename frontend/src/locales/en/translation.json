@@ -226,7 +226,7 @@
     "eyebrow_header": "Contact & Order",
     "title_header_1": "Let's get you ",
     "title_header_2": "served",
-    "lede": "Order directly on WhatsApp or send us an enquiry — we'll confirm your order personally. Online ordering is on the way.",
+    "lede": "Email chiranshfoods@gmail.com, order on WhatsApp, or send an enquiry — we'll confirm your order personally. Online ordering is on the way.",
     "form_success": "Enquiry received!",
     "form_success_msg": "Thank you for reaching out to Chiransh Foods. We've received your enquiry and will get back to you as soon as possible.",
     "btn_another": "Send another enquiry",
@@ -240,7 +240,7 @@
     "err_phone": "Please enter a valid phone number.",
     "lbl_email": "Email ",
     "lbl_email_opt": "(optional)",
-    "plh_email": "you@example.com",
+    "plh_email": "Optional — for our reply",
     "err_email": "Please enter a valid email address.",
     "lbl_product": "Product interest",
     "opt_general": "General enquiry",
@@ -263,7 +263,7 @@
     "empty_location": "Exact location and map details will be published soon.",
     "info_hours": "Business Hours",
     "hours_daily": "10:00 AM – 11:00 PM",
-    "hours_note": "Open daily, 10:00 AM to 11:00 PM IST. For any other plan, call or WhatsApp +91 91063 54619.",
+    "hours_note": "Open daily, 10:00 AM to 11:00 PM IST. For any other plan, email chiranshfoods@gmail.com, or call or WhatsApp +91 91063 54619.",
     "notes_title": "Before you order",
     "order_notes": [
       "Orders are placed on WhatsApp Business.",
@@ -326,7 +326,7 @@
       },
       {
         "q": "How can I contact Chiransh Foods?",
-        "a": "Call or WhatsApp +91 91063 54619. WhatsApp Business is at wa.me/919106354619. Email will be added later. You can also use the enquiry form on the Contact page."
+        "a": "Email chiranshfoods@gmail.com. Call or WhatsApp +91 91063 54619. WhatsApp Business is at wa.me/919106354619. You can also use the enquiry form on the Contact page."
       }
     ]
   },
@@ -433,7 +433,7 @@
         {
           "h": "Your choices",
           "p": [
-            "You may ask us at any time to update or delete the details you have shared. Reach out through our Contact page and we will take care of it."
+            "You may ask us at any time to update or delete the details you have shared. Email chiranshfoods@gmail.com or use the Contact page and we will take care of it."
           ]
         },
         {
@@ -464,7 +464,7 @@
         {
           "h": "Ordering",
           "p": [
-            "Ordering is arranged by direct contact — WhatsApp, phone, or the enquiry form. An order is confirmed only when we respond and confirm it with you. Online checkout and payments are not active on this website."
+            "Ordering is arranged by direct contact — email (chiranshfoods@gmail.com), WhatsApp, phone, or the enquiry form. An order is confirmed only when we respond and confirm it with you. Online checkout and payments are not active on this website."
           ]
         },
         {
